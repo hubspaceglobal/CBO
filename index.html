@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CBO HubSpace — Where Faith-Based CBOs Anchor Communities</title>
+<meta name="description" content="CBO HubSpace connects faith-based organizations with community service partners — housing, education, civic engagement, and wellness programs — helping congregations keep their doors open through service.">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+@font-face { font-family: 'Conthrax'; src: url('https://fonts.cdnfonts.com/s/15068/conthrax-sb.woff') format('woff'); }
+:root {
+  --white:#FFFFFF; --black:#0A0A0A; --gray-dark:#3D3D3D; --gray-mid:#6B6B6B;
+  --gray-light:#E5E5E5; --gray-bg:#F8F8F8; --purple:#3B0764;
+  --purple-tint:#F3EEFF; --crimson:#A31621;
+  --font-title:'Conthrax','Orbitron',sans-serif; --font-body:'Montserrat',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--white);color:var(--black);font-family:var(--font-body);font-size:17px;line-height:1.75;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--purple);border-bottom:3px solid var(--crimson);display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nav-logo-text{display:flex;flex-direction:column;line-height:1.1;}
+.nav-logo-name{font-family:var(--font-title);font-size:1rem;color:var(--white);letter-spacing:.08em;}
+.nav-logo-name span{color:#D4B8F0;}
+.nav-logo-sub{font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45);}
+.nav-links{display:flex;gap:2rem;}
+.nav-links a{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:#D4B8F0;}
+
+/* LOGO MARK SVG inline */
+.logo-hex{flex-shrink:0;}
+
+/* HERO */
+.hero{padding:7.5rem 3rem 5rem;background:var(--white);border-bottom:4px solid var(--purple);}
+.hero-inner{max-width:860px;margin:0 auto;}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--purple);margin-bottom:1.2rem;display:block;}
+.hero-title{font-family:var(--font-title);font-size:clamp(2rem,4.5vw,3.8rem);color:var(--purple);line-height:1.1;margin-bottom:1rem;}
+.hero-title em{color:var(--crimson);font-style:normal;}
+.hero-divider{width:3rem;height:3px;background:var(--purple);margin:1.4rem 0 1.8rem;}
+.hero-body{font-size:1.1rem;font-weight:400;color:var(--gray-dark);line-height:1.85;max-width:720px;}
+
+/* TICKER */
+.ticker-band{background:var(--purple);padding:1rem 0;overflow:hidden;}
+.ticker-inner{display:flex;gap:5rem;width:max-content;animation:scroll 55s linear infinite;}
+@keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.ticker-item{white-space:nowrap;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.8);}
+.ticker-item strong{color:#F9C0C5;margin-right:.4rem;}
+
+/* SECTIONS */
+.pg{padding:5rem 3rem;}
+.pg.white{background:var(--white);}
+.pg.offwhite{background:var(--gray-bg);}
+.pg.tint{background:var(--purple-tint);}
+.pg.dark{background:var(--purple);}
+.inner{max-width:1080px;margin:0 auto;}
+
+.s-label{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--purple);margin-bottom:.7rem;display:block;}
+.s-label.light{color:#D4B8F0;}
+.s-label.red{color:var(--crimson);}
+.s-title{font-family:var(--font-title);font-size:clamp(1.7rem,3vw,2.6rem);color:var(--purple);line-height:1.15;margin-bottom:.4rem;}
+.s-title.light{color:var(--white);}
+.s-div{width:3rem;height:3px;background:var(--purple);margin:1.2rem 0 2rem;}
+.s-div.red{background:var(--crimson);}
+.s-div.light{background:#D4B8F0;}
+.s-body{font-size:17px;font-weight:400;color:var(--gray-dark);line-height:1.85;}
+.s-body p+p{margin-top:1.1rem;}
+
+/* TWO-COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.two-col.wl{grid-template-columns:1.3fr 1fr;}
+.two-col.wr{grid-template-columns:1fr 1.3fr;}
+
+/* CRISIS STATS */
+.crisis-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:2.5rem 0;}
+.cs{border-top:3px solid var(--crimson);padding-top:1.1rem;}
+.cs .num{font-family:var(--font-title);font-size:2.4rem;color:var(--crimson);display:block;line-height:1;}
+.cs .desc{font-size:13px;font-weight:500;color:var(--gray-dark);margin-top:.4rem;display:block;line-height:1.4;}
+.cs .src{font-size:11px;font-weight:300;color:var(--gray-mid);margin-top:.3rem;display:block;font-style:italic;}
+
+/* 5 WHYS */
+.why-list{list-style:none;margin-top:2rem;}
+.why-item{display:grid;grid-template-columns:3.2rem 1fr;gap:1.1rem;align-items:start;padding:1.4rem 0;border-bottom:1px solid var(--gray-light);}
+.why-item:first-child{border-top:1px solid var(--gray-light);}
+.why-num{font-family:var(--font-title);font-size:1.6rem;color:var(--purple);line-height:1;padding-top:.2rem;}
+.why-ttl{font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--purple);margin-bottom:.3rem;}
+.why-body{font-size:15px;font-weight:400;color:var(--gray-dark);line-height:1.65;}
+.why-data{font-size:12px;font-weight:600;color:var(--crimson);margin-top:.4rem;display:block;letter-spacing:.03em;}
+
+/* SCORECARD CTA */
+.scorecard-cta{background:var(--purple);padding:2.5rem 3rem;margin-top:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
+.scorecard-cta-text h4{font-family:var(--font-title);font-size:1.1rem;color:var(--white);margin-bottom:.5rem;}
+.scorecard-cta-text p{font-size:14px;color:rgba(255,255,255,.7);line-height:1.65;max-width:520px;}
+.btn-crimson{display:inline-block;padding:.9rem 2rem;background:var(--crimson);color:var(--white);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:background .2s;white-space:nowrap;}
+.btn-crimson:hover{background:#7a1019;}
+.btn-purple{display:inline-block;padding:.9rem 2rem;background:var(--purple);color:var(--white);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:2px solid var(--purple);cursor:pointer;transition:background .2s;}
+.btn-purple:hover{background:#2a0548;}
+.btn-outline{display:inline-block;padding:.9rem 2rem;background:var(--white);color:var(--purple);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:2px solid var(--purple);cursor:pointer;transition:all .2s;}
+.btn-outline:hover{background:var(--purple);color:var(--white);}
+
+/* AUDIENCE OVERVIEW CARDS */
+.audience-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:2.5rem;}
+.aud-card{background:var(--white);border:1px solid var(--gray-light);border-top:4px solid var(--purple);padding:2rem;}
+.aud-card .num{font-family:var(--font-title);font-size:.85rem;color:var(--purple);letter-spacing:.1em;margin-bottom:.6rem;display:block;}
+.aud-card h3{font-family:var(--font-title);font-size:1.15rem;color:var(--purple);margin-bottom:.8rem;line-height:1.2;}
+.aud-card p{font-size:15px;font-weight:400;color:var(--gray-dark);line-height:1.75;margin-bottom:1.2rem;}
+.learn-more{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--purple);text-decoration:none;border-bottom:2px solid var(--purple);padding-bottom:2px;transition:color .2s;}
+.learn-more:hover{color:var(--crimson);border-color:var(--crimson);}
+
+/* TENSION */
+.tension{background:var(--purple);border-left:6px solid var(--crimson);padding:3rem;}
+.tension p{font-family:var(--font-title);font-size:clamp(1.1rem,2.2vw,1.6rem);color:var(--white);line-height:1.5;}
+.tension em{color:#F9C0C5;font-style:normal;}
+.tension-sub{font-size:15px;font-weight:400;color:rgba(255,255,255,.7);margin-top:1.2rem;line-height:1.8;}
+.tension-res{margin-top:1.8rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.15);font-size:15px;font-weight:600;color:#D4B8F0;}
+
+/* MEMBERSHIP */
+.membership-promo{background:var(--crimson);padding:1rem 2rem;margin-bottom:2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
+.membership-promo p{font-size:13px;font-weight:600;color:var(--white);letter-spacing:.04em;}
+.membership-promo strong{font-size:14px;}
+.membership-tiers{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:2rem 0;}
+.tier-card{background:var(--white);border:1px solid var(--gray-light);border-top:4px solid var(--purple);padding:2rem;}
+.tier-card.featured{border-top-color:var(--crimson);background:var(--purple-tint);}
+.tier-price{font-family:var(--font-title);font-size:2rem;color:var(--purple);line-height:1;margin:1rem 0 .3rem;}
+.tier-price.featured{color:var(--crimson);}
+.tier-range{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-mid);margin-bottom:1.2rem;display:block;}
+.tier-card h3{font-family:var(--font-title);font-size:1rem;color:var(--purple);margin-bottom:.5rem;}
+.benefits-list{list-style:none;margin-top:1.5rem;}
+.benefits-list li{font-size:14px;color:var(--gray-dark);padding:.6rem 0;border-bottom:1px solid var(--gray-light);display:flex;gap:.7rem;align-items:flex-start;line-height:1.5;}
+.benefits-list li::before{content:'›';color:var(--purple);font-size:1.1rem;font-weight:700;flex-shrink:0;}
+
+/* CONTACT FORM */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.form-block{background:var(--white);border:1px solid var(--gray-light);padding:2.5rem;}
+.form-group{margin-bottom:1.4rem;}
+.form-group label{display:block;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gray-mid);margin-bottom:.5rem;}
+.form-group input, .form-group select{width:100%;padding:.8rem 1rem;border:1.5px solid var(--gray-light);font-family:var(--font-body);font-size:15px;color:var(--black);background:var(--white);outline:none;transition:border-color .2s;}
+.form-group input:focus, .form-group select:focus{border-color:var(--purple);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-info{padding:2rem 0;}
+.form-info h4{font-family:var(--font-title);font-size:1.1rem;color:var(--purple);margin-bottom:1rem;}
+.form-info p{font-size:15px;color:var(--gray-dark);line-height:1.8;margin-bottom:1rem;}
+.form-qualify{list-style:none;margin-top:1.5rem;}
+.form-qualify li{font-size:14px;color:var(--gray-dark);padding:.6rem 0;border-bottom:1px solid var(--gray-light);display:flex;gap:.7rem;align-items:flex-start;}
+.form-qualify li::before{content:'›';color:var(--purple);font-size:1.1rem;flex-shrink:0;}
+
+/* SOURCES */
+.sources-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:2rem;}
+.src-link{display:block;padding:.9rem 1rem;border:1px solid rgba(255,255,255,.1);text-decoration:none;transition:border-color .2s;}
+.src-link:hover{border-color:#D4B8F0;}
+.src-link .pub{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#D4B8F0;display:block;margin-bottom:.3rem;}
+.src-link .ttl{font-size:13px;color:rgba(255,255,255,.75);line-height:1.4;}
+.src-link .dt{font-size:10px;color:rgba(255,255,255,.3);margin-top:.3rem;display:block;}
+
+/* FOOTER */
+footer{background:var(--purple);border-top:3px solid var(--crimson);padding:2.5rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.foot-logo{display:flex;align-items:center;gap:10px;}
+.foot-logo-text{font-family:var(--font-title);font-size:1rem;color:var(--white);}
+.foot-logo-text span{color:#D4B8F0;}
+footer p{font-size:12px;color:rgba(255,255,255,.35);font-weight:300;}
+
+/* ANIMATIONS */
+.fu{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;}
+.fu.vis{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem;}
+  .nav-links{gap:1rem;}
+  .pg{padding:3.5rem 1.5rem;}
+  .hero{padding:6rem 1.5rem 3.5rem;}
+  .two-col,.two-col.wl,.two-col.wr,.audience-grid,.membership-tiers,.contact-grid,.sources-grid,.crisis-stats{grid-template-columns:1fr;}
+  footer{flex-direction:column;text-align:center;padding:2rem 1.5rem;}
+}
+@media(max-width:560px){.nav-links{display:none;}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg class="logo-hex" width="36" height="36" viewBox="0 0 100 100" fill="none">
+      <polygon points="50,4 93,27.5 93,72.5 50,96 7,72.5 7,27.5" fill="#3B0764"/>
+      <clipPath id="lh"><rect x="0" y="0" width="50" height="100"/></clipPath>
+      <polygon points="50,4 93,27.5 93,72.5 50,96 7,72.5 7,27.5" fill="#A31621" clip-path="url(#lh)"/>
+      <rect x="47" y="4" width="6" height="92" fill="white" opacity="0.15"/>
+      <polygon points="50,28 67,50 50,72 33,50" fill="white" opacity="0.92"/>
+      <circle cx="50" cy="50" r="6" fill="#3B0764"/>
+    </svg>
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">CBO <span>HUBSPACE</span></span>
+      <span class="nav-logo-sub">Community Based Organizations</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#crisis">The Crisis</a>
+    <a href="#audiences">Solutions</a>
+    <a href="#membership">Membership</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Community Infrastructure Initiative</span>
+    <h1 class="hero-title">Where Faith-Based CBOs<br><em>Anchor Communities</em></h1>
+    <div class="hero-divider"></div>
+    <p class="hero-body">Thousands of church buildings that have anchored American neighborhoods for generations are going dark. At the same time, those neighborhoods face deepening deficits in housing, youth programming, health services, and civic support. These are not two separate problems. They are one problem — and CBO HubSpace is the answer.</p>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-band">
+  <div class="ticker-inner">
+    <span class="ticker-item"><strong>4,000+</strong> Protestant churches closed in 2024 — Lifeway Research</span>
+    <span class="ticker-item"><strong>29%</strong> of Americans now religiously unaffiliated — Pew Research</span>
+    <span class="ticker-item"><strong>100K</strong> estimated church closures — next two decades — National Council of Churches</span>
+    <span class="ticker-item"><strong>2.7 million</strong> church members fall inactive each year</span>
+    <span class="ticker-item"><strong>1 in 3</strong> congregations currently at risk of closure — Ryan Burge, Washington University</span>
+    <span class="ticker-item"><strong>4,000+</strong> Protestant churches closed in 2024 — Lifeway Research</span>
+    <span class="ticker-item"><strong>29%</strong> of Americans now religiously unaffiliated — Pew Research</span>
+    <span class="ticker-item"><strong>100K</strong> estimated church closures — next two decades — National Council of Churches</span>
+    <span class="ticker-item"><strong>2.7 million</strong> church members fall inactive each year</span>
+    <span class="ticker-item"><strong>1 in 3</strong> congregations currently at risk of closure — Ryan Burge, Washington University</span>
+  </div>
+</div>
+
+<!-- THE CRISIS -->
+<section class="pg white" id="crisis">
+  <div class="inner">
+    <span class="s-label red">The Crisis</span>
+    <h2 class="s-title">Why Churches Are Closing</h2>
+    <div class="s-div red"></div>
+    <div class="two-col fu">
+      <div>
+        <div class="s-body">
+          <p>The American religious landscape is undergoing its most significant contraction in modern history. In 2024, Lifeway Research confirmed that more Protestant churches closed than opened for the first time in decades. Projections for 2025 place closures as high as 15,000 in a single year.</p>
+          <p>This is not a single-cause crisis. It is the convergence of demographic decline, cultural disconnection, financial mismanagement, and institutional failure — each compounding the others. The consequences extend far beyond theology. When churches close, communities lose irreplaceable infrastructure at a time when social isolation is already at crisis levels.</p>
+        </div>
+      </div>
+      <ul class="why-list">
+        <li class="why-item">
+          <span class="why-num">01</span>
+          <div>
+            <div class="why-ttl">No Vision, Mission, or Purpose</div>
+            <div class="why-body">Congregations without a clear reason for existence beyond Sunday services cannot attract or retain members across any demographic.</div>
+          </div>
+        </li>
+        <li class="why-item">
+          <span class="why-num">02</span>
+          <div>
+            <div class="why-ttl">Demographic Collapse</div>
+            <div class="why-body">The median age of churchgoers is now approximately 60. The pipeline of future members has fundamentally broken down.</div>
+            <span class="why-data">44% of adults aged 18–29 claim no religious affiliation</span>
+          </div>
+        </li>
+        <li class="why-item">
+          <span class="why-num">03</span>
+          <div>
+            <div class="why-ttl">Cultural Irrelevance</div>
+            <div class="why-body">Shifting lifestyle norms and digital alternatives have eroded the church's role as a social anchor.</div>
+            <span class="why-data">29% of Americans now religiously unaffiliated — Pew Research 2024</span>
+          </div>
+        </li>
+        <li class="why-item">
+          <span class="why-num">04</span>
+          <div>
+            <div class="why-ttl">Financial Mismanagement</div>
+            <div class="why-body">Pastors are trained in theology, not accounting. Aging buildings require maintenance that many congregations cannot fund.</div>
+            <span class="why-data">2.7 million members fall inactive each year</span>
+          </div>
+        </li>
+        <li class="why-item">
+          <span class="why-num">05</span>
+          <div>
+            <div class="why-ttl">Institutional Scandals</div>
+            <div class="why-body">Abuse disclosures, financial impropriety, and leadership failures have permanently severed trust in organized religion for millions of Americans.</div>
+            <span class="why-data">1 in 3 congregations currently at risk of closure</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- SCORECARD CTA -->
+    <div class="scorecard-cta fu">
+      <div class="scorecard-cta-text">
+        <h4>How Sustainable Is Your Congregation?</h4>
+        <p>Our free 5-minute Church Sustainability Scorecard assesses your organization across seven domains — financial health, attendance, demographics, leadership, facilities, mission, and adaptability — and delivers a personalized action plan.</p>
+      </div>
+      <a href="#contact" class="btn-crimson">Take the 5-Minute Test</a>
+    </div>
+  </div>
+</section>
+
+<!-- TENSION -->
+<section class="pg tint">
+  <div class="inner fu">
+    <div class="tension">
+      <p>Thousands of church buildings are going dark. The communities surrounding them face a deepening crisis of unmet need. <em>These are not two separate problems. They are one problem — and they share one solution.</em></p>
+      <div class="tension-sub">The building that anchored your neighborhood for a century is still standing. The families who need housing support, youth programming, health services, and civic space are still there. CBO HubSpace connects the two — restoring purpose to the building and services to the community.</div>
+      <div class="tension-res">CBO HubSpace — Where Faith Communities and Neighborhood Need Meet.</div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE OVERVIEW -->
+<section class="pg white" id="audiences">
+  <div class="inner">
+    <span class="s-label">Who We Serve</span>
+    <h2 class="s-title">Four Audiences. One Mission.</h2>
+    <div class="s-div"></div>
+    <p class="s-body" style="max-width:680px;">CBO HubSpace serves four distinct audiences — each with specific unmet needs that faith facilities are uniquely positioned to address. Select an audience below to explore the full scope of services and partnerships available.</p>
+
+    <div class="audience-grid fu">
+      <div class="aud-card">
+        <span class="num">Audience 01</span>
+        <h3>Church &amp; Ministries</h3>
+        <p>Faith communities facing declining membership and financial pressure discover a sustainable path forward — not through survival strategies, but through a return to their original calling. CBO HubSpace connects congregations with housing programs, youth initiatives, wellness services, and civic organizations that need exactly the space and community trust that churches hold. Service is the strategy.</p>
+        <a href="#contact" class="learn-more">Explore Church Services</a>
+      </div>
+      <div class="aud-card">
+        <span class="num">Audience 02</span>
+        <h3>Community-Based Organizations</h3>
+        <p>CBOs have the mission, the staff, and the community relationships. What they frequently lack is a consistent, affordable, dignified home for their work. CBO HubSpace connects nonprofits and service organizations with faith facilities that are ready to serve as a permanent, reliable base for meetings, programming, training, and community events — in the neighborhoods they already serve.</p>
+        <a href="#contact" class="learn-more">Explore CBO Services</a>
+      </div>
+      <div class="aud-card">
+        <span class="num">Audience 03</span>
+        <h3>Schools &amp; Educational Programs</h3>
+        <p>The school building is essential — and it is not enough. After-school programs are turned away for lack of space. Vocational training programs cannot find accessible locations. CBO HubSpace creates a network of neighborhood learning sites — connecting educational programs with classroom wings, gymnasiums, and activity spaces within faith facilities, located where students already live.</p>
+        <a href="#contact" class="learn-more">Explore Education Services</a>
+      </div>
+      <div class="aud-card">
+        <span class="num">Audience 04</span>
+        <h3>Community</h3>
+        <p>Every initiative CBO HubSpace supports ultimately serves the people who live in the neighborhood. Residents who need stable housing, families navigating systems without advocates, neighbors who want to organize and build. The faith facility at the center of the neighborhood is not a relic — it is a resource that belongs to the community. CBO HubSpace ensures it is activated in service of those who need it most.</p>
+        <a href="#contact" class="learn-more">Explore Community Services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP -->
+<section class="pg offwhite" id="membership">
+  <div class="inner">
+    <span class="s-label">Membership</span>
+    <h2 class="s-title">Transform Your Church Into a CBO Hub</h2>
+    <div class="s-div"></div>
+
+    <div class="membership-promo">
+      <svg width="20" height="20" viewBox="0 0 100 100" fill="none"><polygon points="50,4 93,27.5 93,72.5 50,96 7,72.5 7,27.5" fill="white" opacity=".3"/><polygon points="50,28 67,50 50,72 33,50" fill="white" opacity=".9"/></svg>
+      <p><strong>Limited Time:</strong> Register before April 30, 2026 and receive a Complementary Year of Membership Status — at no charge.</p>
+    </div>
+
+    <div class="two-col wl fu">
+      <div>
+        <div class="s-body">
+          <p>CBO HubSpace membership gives faith communities the tools, network, and strategic support needed to transition from a congregation at risk to a thriving community hub. Membership is structured to be accessible at every income level — because every congregation deserves a path forward.</p>
+          <p>Members gain immediate access to our full network of Community-Based Organizations, schools, housing developers, and civic organizations actively seeking faith-based partners. You bring the building and the mission. We bring the network and the framework.</p>
+        </div>
+
+        <div class="membership-tiers">
+          <div class="tier-card">
+            <span class="s-label">Tier 1</span>
+            <div class="tier-price">$150</div>
+            <span class="tier-range">Annual — Organizations with revenue under $15,000</span>
+            <a href="https://buy.stripe.com/test_14A6oI8MKb2g7147pW2Fa01" target="_blank" class="btn-purple" style="display:block;text-align:center;margin-top:1.2rem;">Join Now</a>
+          </div>
+          <div class="tier-card featured">
+            <span class="s-label" style="color:var(--crimson);">Tier 2</span>
+            <div class="tier-price featured">$500</div>
+            <span class="tier-range">Annual — Organizations with revenue $50,000+</span>
+            <a href="https://buy.stripe.com/test_9B6aEY7IG2vKfxAeSo2Fa02" target="_blank" class="btn-crimson" style="display:block;text-align:center;margin-top:1.2rem;">Join Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <span class="s-label">Membership Benefits</span>
+        <ul class="benefits-list">
+          <li>Detailed organizational assessment of your congregation's sustainability and readiness</li>
+          <li>Sustainability Plan Workshop — weekly sessions to develop your community hub strategy</li>
+          <li>Access to coaching and program development support from experienced community leaders</li>
+          <li>Access to funding through our philanthropic network and grant connections</li>
+          <li>Community engagement tools to activate your building and attract service partners</li>
+          <li>Connect with agencies, CBOs, NGOs, and other faith-based organizations in your region</li>
+          <li>Connect with community members seeking services or looking to volunteer</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="scorecard-cta fu" style="margin-top:2.5rem;">
+      <div class="scorecard-cta-text">
+        <h4>Not Sure Where to Start?</h4>
+        <p>Take the free 5-minute Church Sustainability Scorecard before choosing a membership tier. Your results will identify exactly which areas of support your congregation needs most.</p>
+      </div>
+      <a href="#contact" class="btn-crimson">Take the 5-Minute Test</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="pg white" id="contact">
+  <div class="inner">
+    <span class="s-label">Get Started</span>
+    <h2 class="s-title">Connect With CBO HubSpace</h2>
+    <div class="s-div"></div>
+
+    <div class="contact-grid fu">
+      <div class="form-info">
+        <h4>Why Connect?</h4>
+        <p>CBO HubSpace works with faith communities at every stage — from congregations actively serving their neighborhoods to those exploring what a service-centered model might look like for them.</p>
+        <p>When you submit this form, a CBO HubSpace team member will reach out within 48 hours to discuss your organization's needs, goals, and next steps.</p>
+        <p>There is no cost or obligation associated with an initial conversation.</p>
+        <ul class="form-qualify">
+          <li>We work with congregations of all sizes and denominations</li>
+          <li>Building ownership is not required to participate</li>
+          <li>No existing community programs are required to get started</li>
+          <li>Membership options are available at every income level</li>
+        </ul>
+      </div>
+
+      <div class="form-block">
+        <!-- SUCCESS STATE -->
+        <div id="form-success" style="display:none;text-align:center;padding:3rem 1rem;">
+          <div style="width:3rem;height:3px;background:var(--purple);margin:0 auto 1.5rem;"></div>
+          <h4 style="font-family:var(--font-title);font-size:1.2rem;color:var(--purple);margin-bottom:1rem;">Thank You</h4>
+          <p style="font-size:15px;color:var(--gray-dark);line-height:1.8;">Your information has been received. A CBO HubSpace team member will reach out within 48 hours.</p>
+          <a href="scorecard.html" class="btn-purple" style="display:inline-block;margin-top:1.5rem;">Take the Scorecard</a>
+        </div>
+
+        <!-- ERROR STATE -->
+        <div id="form-error" style="display:none;background:#FFF5F5;border-left:4px solid var(--crimson);padding:1rem 1.2rem;margin-bottom:1.2rem;">
+          <p style="font-size:14px;color:var(--crimson);font-weight:600;">There was a problem submitting your form. Please try again or email us directly.</p>
+        </div>
+
+        <!-- FORM -->
+        <div id="form-fields">
+          <span class="s-label" style="margin-bottom:1.5rem;">Organization Information</span>
+          <div class="form-group"><label>Church Name *</label><input id="f-church" type="text" placeholder="Full legal or operating name"></div>
+          <div class="form-row">
+            <div class="form-group"><label>City</label><input id="f-city" type="text" placeholder="City"></div>
+            <div class="form-group"><label>State</label><input id="f-state" type="text" placeholder="State"></div>
+          </div>
+          <div class="form-group"><label>Denomination</label><input id="f-denom" type="text" placeholder="e.g. Baptist, Non-denominational…"></div>
+          <div class="form-group"><label>Contact Name *</label><input id="f-name" type="text" placeholder="Your full name"></div>
+          <div class="form-row">
+            <div class="form-group"><label>Email *</label><input id="f-email" type="email" placeholder="your@email.com"></div>
+            <div class="form-group"><label>Phone</label><input id="f-phone" type="tel" placeholder="(000) 000-0000"></div>
+          </div>
+          <span class="s-label" style="margin-top:1.5rem;margin-bottom:1rem;">Qualifying Questions</span>
+          <div class="form-group"><label>Are you currently open and holding services?</label>
+            <select id="f-open"><option value="">Select…</option><option>Yes</option><option>No</option></select></div>
+          <div class="form-group"><label>Do you own or lease your building?</label>
+            <select id="f-building"><option value="">Select…</option><option>Own</option><option>Lease</option><option>Other arrangement</option></select></div>
+          <div class="form-group"><label>Approximate annual budget</label>
+            <select id="f-budget"><option value="">Select…</option><option>Under $15,000</option><option>$15,000 – $50,000</option><option>$50,000+</option></select></div>
+          <div class="form-group"><label>Are you currently offering community programs?</label>
+            <select id="f-programs"><option value="">Select…</option><option>Yes</option><option>No</option><option>Planning to</option></select></div>
+          <button id="form-submit" onclick="submitContact()" class="btn-purple" style="width:100%;padding:1rem;margin-top:.5rem;">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOURCES -->
+<section class="pg dark" id="sources">
+  <div class="inner">
+    <span class="s-label light">Research &amp; Sources</span>
+    <h2 class="s-title light">Further Reading</h2>
+    <div class="s-div light"></div>
+    <div class="sources-grid fu">
+      <a class="src-link" href="https://news.lifeway.com/2026/01/13/lifeway-research-finds-church-closures-eclipse-openings-in-the-u-s/" target="_blank"><span class="pub">Lifeway Research</span><span class="ttl">Church Closures Eclipse Openings in the U.S.</span><span class="dt">January 2026</span></a>
+      <a class="src-link" href="https://www.axios.com/2025/10/03/us-churches-close-religious-shift-christians" target="_blank"><span class="pub">Axios</span><span class="ttl">15,000 Churches Could Close Amid Religious Shift</span><span class="dt">October 2025</span></a>
+      <a class="src-link" href="https://www.bu.edu/articles/2025/church-closings/" target="_blank"><span class="pub">Boston University</span><span class="ttl">Why Might a Record Number of Churches Close?</span><span class="dt">November 2025</span></a>
+      <a class="src-link" href="https://www.wbur.org/onpoint/2025/12/22/whats-lost-when-churches-close" target="_blank"><span class="pub">NPR / WBUR On Point</span><span class="ttl">What's Lost When Churches Close</span><span class="dt">December 2025</span></a>
+      <a class="src-link" href="https://www.philanthropy.com/news/churches-close-community-revitalization/" target="_blank"><span class="pub">Chronicle of Philanthropy</span><span class="ttl">Churches Close — Each Could Be a Home for Civic Revival</span><span class="dt">June 2025</span></a>
+      <a class="src-link" href="https://urbanland.uli.org/sacred-space-churches-turn-surplus-land-into-housing" target="_blank"><span class="pub">Urban Land Institute</span><span class="ttl">Sacred Space: Churches Turn Surplus Land into Housing</span><span class="dt">November 2025</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">
+    <svg width="28" height="28" viewBox="0 0 100 100" fill="none"><polygon points="50,4 93,27.5 93,72.5 50,96 7,72.5 7,27.5" fill="#3B0764"/><clipPath id="lhf"><rect x="0" y="0" width="50" height="100"/></clipPath><polygon points="50,4 93,27.5 93,72.5 50,96 7,72.5 7,27.5" fill="#A31621" clip-path="url(#lhf)"/><polygon points="50,28 67,50 50,72 33,50" fill="white" opacity="0.92"/><circle cx="50" cy="50" r="6" fill="#3B0764"/></svg>
+    <span class="foot-logo-text">CBO <span>HUBSPACE</span></span>
+  </div>
+  <p>Where Faith Communities and Neighborhood Need Meet</p>
+  <p>Community Infrastructure Initiative</p>
+</footer>
+
+<!-- Supabase JS client -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// ── Scroll animations ────────────────────────────────────────
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis');}),{threshold:.08});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+
+// ── Supabase config ──────────────────────────────────────────
+// IMPORTANT: Replace these two values with your own from
+// Supabase Dashboard → Project Settings → API
+const SUPABASE_URL  = 'https://qummleodrnuyudauxnpa.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF1bW1sZW9kcm51eXVkYXV4bnBhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2ODYzOTAsImV4cCI6MjA5MTI2MjM5MH0.nlnIYE4h3p-FtiKsIu2otnGdqUKOigUaBVSnx6zC-18';
+const db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+// ── Contact form submission ──────────────────────────────────
+async function submitContact() {
+  const btn = document.getElementById('form-submit');
+  const errBox = document.getElementById('form-error');
+
+  // Collect values
+  const church_name   = document.getElementById('f-church').value.trim();
+  const contact_name  = document.getElementById('f-name').value.trim();
+  const email         = document.getElementById('f-email').value.trim();
+
+  // Basic validation
+  if (!church_name || !contact_name || !email) {
+    errBox.style.display = 'block';
+    errBox.querySelector('p').textContent = 'Please complete all required fields: Church Name, Contact Name, and Email.';
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errBox.style.display = 'block';
+    errBox.querySelector('p').textContent = 'Please enter a valid email address.';
+    return;
+  }
+
+  // Disable button, show loading state
+  btn.textContent = 'Submitting…';
+  btn.disabled = true;
+  errBox.style.display = 'none';
+
+  // Build record
+  const record = {
+    church_name,
+    city:             document.getElementById('f-city').value.trim()     || null,
+    state:            document.getElementById('f-state').value.trim()    || null,
+    denomination:     document.getElementById('f-denom').value.trim()    || null,
+    contact_name,
+    email,
+    phone:            document.getElementById('f-phone').value.trim()    || null,
+    is_open:          document.getElementById('f-open').value            || null,
+    building_status:  document.getElementById('f-building').value        || null,
+    annual_budget:    document.getElementById('f-budget').value          || null,
+    has_programs:     document.getElementById('f-programs').value        || null,
+    source_page:      'index',
+  };
+
+  // Submit to Supabase
+  const { error } = await db.from('contacts').insert(record);
+
+  if (error) {
+    console.error('Supabase error:', error);
+    btn.textContent = 'Submit';
+    btn.disabled = false;
+    errBox.style.display = 'block';
+    errBox.querySelector('p').textContent = 'There was a problem submitting your form. Please try again.';
+    return;
+  }
+
+  // Success — hide form, show confirmation
+  document.getElementById('form-fields').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+}
+</script>
+</body>
+</html>
