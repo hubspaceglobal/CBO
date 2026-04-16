@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greater Life Community Center</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  background: #ffffff;
+  color: #222;
+}
+
+.container {
+  padding: 40px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+h1, h2 {
+  margin-bottom: 10px;
+}
+
+.hero {
+  background: #0c3b2e;
+  color: white;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 40px;
+}
+
+.hero p {
+  max-width: 700px;
+  margin: 20px auto;
+}
+
+.btn {
+  display: inline-block;
+  margin: 10px;
+  padding: 14px 24px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: #0c3b2e;
+  color: white;
+}
+
+.btn-secondary {
+  border: 2px solid #0c3b2e;
+  color: #0c3b2e;
+}
+
+.section {
+  margin-bottom: 60px;
+}
+
+.card {
+  border-left: 4px solid #0c3b2e;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: #f9f9f9;
+}
+
+.grid {
+  display: grid;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+  <h1>GREATER LIFE COMMUNITY CENTER</h1>
+  <p>Azania Wellness Innovation Hub</p>
+
+  <p>Azania Wellness supports providers, educators, and wellness practitioners with access to structured space and a collaborative ecosystem focused on precision wellness.</p>
+
+  <a href="spaces.html" class="btn btn-primary">Explore Spaces</a>
+  <a href="booking.html" class="btn btn-secondary">Request Booking</a>
+</div>
+
+<div class="container">
+
+<div class="section">
+<h2>CBO HUB — GREATER LIFE COMMUNITY CENTER</h2>
+<p>The Greater Life Community Center serves as a hub for coordinated community-based operations supporting providers and organizations improving health outcomes.</p>
+</div>
+
+<div class="section grid grid-2">
+<div class="card">
+<h3>Professional Environment</h3>
+<p>Structured, clean, and credible space for providers.</p>
+</div>
+
+<div class="card">
+<h3>Flexible Space Options</h3>
+<p>Clinical, educational, and program-ready environments.</p>
+</div>
+
+<div class="card">
+<h3>Operational Standards</h3>
+<p>Clear systems for scheduling and shared usage.</p>
+</div>
+
+<div class="card">
+<h3>Support Staff</h3>
+<p>Administrative coordination supporting daily operations.</p>
+</div>
+</div>
+
+<div class="section">
+<h2>Addressing Local Health Disparities</h2>
+<p>Milwaukee (53206) faces high chronic disease rates and limited access to preventative care.</p>
+<p>GLCC provides space, access, and infrastructure for coordinated wellness delivery.</p>
+</div>
+
+<div class="section">
+<h2>Membership</h2>
+<p>Membership provides structured access to space, scheduling priority, and integration into a professional ecosystem.</p>
+<a href="booking.html" class="btn btn-primary">Request Membership</a>
+</div>
+
+</div>
+
+</body>
+</html>
