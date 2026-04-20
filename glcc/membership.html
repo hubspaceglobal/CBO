@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Membership | Greater Life Community Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">Greater Life Community Center</a>
+  <ul class="nav-links">
+    <li><a href="spaces.html">Spaces</a></li>
+    <li><a href="booking.html">Book</a></li>
+    <li><a href="membership.html">Membership</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <p class="hero-eyebrow" style="color:var(--gold);font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:700;margin-bottom:12px;">Azania Wellness Innovation Hub</p>
+  <h1>Membership</h1>
+  <p>Join a professional ecosystem designed for providers committed to sustainable, community-centered practice.</p>
+</div>
+
+<!-- MEMBERSHIP INFO -->
+<div class="section">
+  <p class="section-label">Why Membership</p>
+  <h2>Built for Providers. Designed for Growth.</h2>
+  <div class="gold-bar"></div>
+  <p>Membership provides access to structured space, consistent scheduling, and integration into a professional wellness environment. Members receive priority access to bookable spaces and become part of a coordinated provider ecosystem.</p>
+
+  <div class="grid-2" style="margin-top:32px;">
+    <div class="card">
+      <h3>Allocated Monthly Access</h3>
+      <p>Reserved hours and blocks aligned to your practice needs — no competing for availability.</p>
+    </div>
+    <div class="card">
+      <h3>Priority Scheduling</h3>
+      <p>Members receive first access to prime-time availability before non-member requests are reviewed.</p>
+    </div>
+    <div class="card">
+      <h3>Ecosystem Integration</h3>
+      <p>Connect with providers, educators, and partners operating within the hub.</p>
+    </div>
+    <div class="card">
+      <h3>Operational Support</h3>
+      <p>Administrative infrastructure that supports your daily workflow and scheduling coordination.</p>
+    </div>
+    <div class="card">
+      <h3>Expansion Opportunities</h3>
+      <p>Members gain access to CBO HubSpace partnership opportunities as the facility expands.</p>
+    </div>
+    <div class="card">
+      <h3>Community Impact</h3>
+      <p>Operate within a mission-aligned environment serving Milwaukee's most underserved communities.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MEMBERSHIP REQUEST FORM -->
+<div class="section-alt">
+<div class="section">
+  <p class="section-label">Request Information</p>
+  <h2>Request Membership Information</h2>
+  <div class="gold-bar"></div>
+  <p>Submit your information below. Our team will follow up with membership details, availability, and next steps.</p>
+
+  <div class="form-wrap" style="margin-top:32px;">
+
+    <div class="alert alert-success" id="memberSuccessMsg">
+      Your membership inquiry has been submitted. Our team will be in touch shortly.
+    </div>
+    <div class="alert alert-error" id="memberErrorMsg">
+      There was an issue submitting your request. Please try again.
+    </div>
+
+    <form id="membershipForm" novalidate>
+
+      <div class="form-group">
+        <label for="m_full_name">Full Name *</label>
+        <input type="text" id="m_full_name" name="full_name" required placeholder="Dr. Jane Smith">
+      </div>
+
+      <div class="form-group">
+        <label for="m_organization">Organization / Practice Name</label>
+        <input type="text" id="m_organization" name="organization" placeholder="Smith Wellness Practice">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="m_email">Email *</label>
+          <input type="email" id="m_email" name="email" required placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label for="m_phone">Phone</label>
+          <input type="tel" id="m_phone" name="phone" placeholder="(414) 000-0000">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="m_provider_type">Provider Type *</label>
+        <select id="m_provider_type" name="provider_type" required>
+          <option value="">— Select —</option>
+          <option>Physician / MD / DO</option>
+          <option>Nurse Practitioner</option>
+          <option>Therapist / Counselor</option>
+          <option>Wellness Coach</option>
+          <option>Educator / Trainer</option>
+          <option>Organization / Nonprofit</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="m_interest">Primary Interest *</label>
+        <select id="m_interest" name="primary_interest" required>
+          <option value="">— Select —</option>
+          <option>Private Office (Monthly)</option>
+          <option>Clinical Space (Recurring Blocks)</option>
+          <option>Classroom / Training Space</option>
+          <option>Movement Studio</option>
+          <option>Multiple Spaces</option>
+          <option>Expansion / Partnership</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="m_notes">Additional Notes</label>
+        <textarea id="m_notes" name="notes" placeholder="Tell us about your practice and what you are looking for..."></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-blue" style="width:100%;padding:16px;" id="memberSubmitBtn">
+        Submit Membership Inquiry
+      </button>
+
+    </form>
+  </div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Greater Life Community Center</div>
+      <p style="font-size:14px;color:rgba(255,255,255,0.6);margin-bottom:4px;">2432 N Teutonia Ave</p>
+      <p style="font-size:14px;color:rgba(255,255,255,0.6);margin-bottom:4px;">Milwaukee, WI 53206</p>
+      <p style="font-size:14px;color:rgba(255,255,255,0.6);">
+        <a href="https://greaterlifecenter.org" style="color:var(--gold);text-decoration:none;">greaterlifecenter.org</a>
+      </p>
+    </div>
+    <div>
+      <div class="footer-brand">Navigation</div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="spaces.html">Explore Spaces</a></li>
+        <li><a href="booking.html">Request Booking</a></li>
+        <li><a href="membership.html">Membership</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 Greater Life Community Center. Azania Wellness Innovation Hub.</div>
+</footer>
+
+<script src="supabase.js"></script>
+<script>
+document.getElementById('membershipForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const btn = document.getElementById('memberSubmitBtn');
+  const successMsg = document.getElementById('memberSuccessMsg');
+  const errorMsg = document.getElementById('memberErrorMsg');
+
+  successMsg.style.display = 'none';
+  errorMsg.style.display = 'none';
+
+  if (!this.checkValidity()) {
+    this.reportValidity();
+    return;
+  }
+
+  btn.textContent = 'Submitting...';
+  btn.disabled = true;
+
+  const data = {
+    full_name: document.getElementById('m_full_name').value.trim(),
+    organization: document.getElementById('m_organization').value.trim(),
+    email: document.getElementById('m_email').value.trim(),
+    phone: document.getElementById('m_phone').value.trim(),
+    provider_type: document.getElementById('m_provider_type').value,
+    primary_interest: document.getElementById('m_interest').value,
+    notes: document.getElementById('m_notes').value.trim(),
+    submitted_at: new Date().toISOString()
+  };
+
+  try {
+    await insertRow('membership_requests', data);
+    successMsg.style.display = 'block';
+    this.reset();
+    window.scrollTo({ top: successMsg.offsetTop - 80, behavior: 'smooth' });
+  } catch (err) {
+    console.error(err);
+    errorMsg.style.display = 'block';
+  } finally {
+    btn.textContent = 'Submit Membership Inquiry';
+    btn.disabled = false;
+  }
+});
+</script>
+
+</body>
+</html>
