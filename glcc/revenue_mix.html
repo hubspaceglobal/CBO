@@ -1,1 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GLCC Revenue Mix Analysis — 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark-blue:   #1F3864;
+    --mid-blue:    #2E75B6;
+    --light-blue:  #D6E4F0;
+    --accent:      #C55A11;
+    --green:       #375623;
+    --light-green: #E2EFDA;
+    --gray1:       #F5F5F5;
+    --gray2:       #D9D9D9;
+    --muted:       #666;
+    --black:       #1A1A1A;
+    --white:       #FFFFFF;
+
+    /* stream colors */
+    --c-space:      #2E75B6;
+    --c-training:   #1F3864;
+    --c-fiscal:     #C55A11;
+    --c-membership: #375623;
+    --c-grants:     #7B7B7B;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--gray1);
+    color: var(--black);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  /* ─── TOOLBAR ─────────────────────────────────────────────── */
+  .toolbar {
+    background: var(--dark-blue);
+    padding: 12px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,.3);
+  }
+  .toolbar-brand {
+    color: var(--white);
+    font-family: 'Libre Baskerville', serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .03em;
+  }
+  .toolbar-brand span { color: #8AB8E0; font-weight: 400; }
+  .toolbar-actions { display: flex; gap: 10px; align-items: center; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 9px 18px;
+    border: none; border-radius: 4px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px; font-weight: 600;
+    cursor: pointer; transition: all .18s;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .btn-primary {
+    background: var(--accent); color: var(--white);
+  }
+  .btn-primary:hover { background: #a84a0a; }
+  .btn-secondary {
+    background: rgba(255,255,255,.12); color: var(--white);
+    border: 1px solid rgba(255,255,255,.25);
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,.22); }
+  .btn-outline {
+    background: transparent; color: var(--mid-blue);
+    border: 1.5px solid var(--mid-blue);
+    font-size: 12px; padding: 7px 14px;
+  }
+  .btn-outline:hover { background: var(--light-blue); }
+
+  .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+  /* ─── UPLOAD PANEL ────────────────────────────────────────── */
+  .upload-panel {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray2);
+    padding: 0 32px;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height .3s ease, padding .3s;
+  }
+  .upload-panel.open { max-height: 200px; padding: 20px 32px; }
+  .upload-panel-inner {
+    display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start;
+  }
+  .upload-card {
+    flex: 1; min-width: 200px;
+    border: 1.5px solid var(--gray2);
+    border-radius: 6px; padding: 16px;
+    background: var(--gray1);
+  }
+  .upload-card h4 {
+    font-size: 13px; font-weight: 700; color: var(--dark-blue);
+    margin-bottom: 6px;
+  }
+  .upload-card p { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+  .upload-card .btn { font-size: 12px; padding: 7px 12px; }
+
+  /* ─── WRAPPER ─────────────────────────────────────────────── */
+  .wrapper {
+    max-width: 1100px; margin: 0 auto; padding: 32px 24px 64px;
+  }
+
+  /* ─── PAGE HEADER ─────────────────────────────────────────── */
+  .page-header {
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid var(--dark-blue);
+  }
+  .page-header-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .page-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 26px; font-weight: 700;
+    color: var(--dark-blue); line-height: 1.2;
+  }
+  .page-subtitle {
+    font-size: 14px; color: var(--muted); margin-top: 4px;
+  }
+  .target-badge {
+    background: var(--dark-blue); color: var(--white);
+    padding: 10px 20px; border-radius: 4px;
+    font-size: 13px; font-weight: 700;
+    text-align: center; line-height: 1.4;
+    flex-shrink: 0;
+  }
+  .target-badge span { display: block; font-size: 20px; font-family: 'Libre Baskerville', serif; }
+
+  /* ─── KPI ROW ─────────────────────────────────────────────── */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px; margin-bottom: 28px;
+  }
+  @media (max-width: 800px) {
+    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+  }
+  .kpi-card {
+    background: var(--white);
+    border-top: 4px solid var(--stream-color, var(--mid-blue));
+    border-radius: 0 0 4px 4px;
+    padding: 14px 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.07);
+  }
+  .kpi-label { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
+  .kpi-value { font-family: 'Libre Baskerville', serif; font-size: 22px; font-weight: 700; color: var(--dark-blue); line-height: 1; }
+  .kpi-sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+  /* ─── GRID LAYOUT ─────────────────────────────────────────── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 20px; }
+  @media (max-width: 700px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+
+  /* ─── CHART CARDS ─────────────────────────────────────────── */
+  .card {
+    background: var(--white);
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.08);
+    overflow: hidden;
+  }
+  .card-header {
+    background: var(--dark-blue);
+    padding: 12px 20px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .card-header h3 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 14px; font-weight: 700; color: var(--white);
+  }
+  .card-header span { font-size: 11px; color: #8AB8E0; }
+  .card-body { padding: 20px; }
+
+  /* ─── SVG CHARTS ──────────────────────────────────────────── */
+  svg { display: block; width: 100%; overflow: visible; }
+
+  /* ─── DONUT ───────────────────────────────────────────────── */
+  .donut-wrap {
+    display: flex; align-items: center; gap: 24px;
+    flex-wrap: wrap;
+  }
+  .donut-svg { flex: 0 0 200px; }
+  .donut-legend { flex: 1; min-width: 160px; }
+  .legend-row {
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 10px; font-size: 13px;
+  }
+  .legend-dot { width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; }
+  .legend-name { flex: 1; font-weight: 600; }
+  .legend-pct { font-family: 'Libre Baskerville', serif; font-weight: 700; color: var(--dark-blue); }
+  .legend-amt { font-size: 11px; color: var(--muted); }
+
+  /* ─── DATA TABLE ──────────────────────────────────────────── */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .data-table th {
+    background: var(--dark-blue); color: var(--white);
+    padding: 8px 12px; text-align: left;
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+  }
+  .data-table th:not(:first-child) { text-align: right; }
+  .data-table td { padding: 8px 12px; border-bottom: 1px solid var(--gray2); vertical-align: middle; }
+  .data-table td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+  .data-table tr:nth-child(even) td { background: var(--gray1); }
+  .data-table tr.total-row td {
+    background: var(--accent) !important; color: var(--white);
+    font-weight: 700; border: none;
+  }
+  .stream-dot {
+    display: inline-block; width: 10px; height: 10px;
+    border-radius: 2px; margin-right: 6px; vertical-align: middle;
+  }
+  .risk-badge {
+    display: inline-block;
+    padding: 2px 7px; border-radius: 10px;
+    font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+  }
+  .risk-low    { background: var(--light-green); color: var(--green); }
+  .risk-med    { background: #FFF3E0; color: #7B5000; }
+  .risk-high   { background: #FDECEA; color: #8B1A1A; }
+
+  /* ─── BUILD CHART (line) ──────────────────────────────────── */
+  .chart-area { position: relative; }
+
+  /* ─── SECTION LABEL ───────────────────────────────────────── */
+  .section-label {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 16px; font-weight: 700; color: var(--dark-blue);
+    margin: 32px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--light-blue);
+  }
+
+  /* ─── INSIGHTS BOX ────────────────────────────────────────── */
+  .insights {
+    background: var(--light-blue);
+    border-left: 4px solid var(--mid-blue);
+    border-radius: 0 4px 4px 0;
+    padding: 16px 20px; margin-bottom: 20px;
+  }
+  .insights h4 { font-size: 13px; font-weight: 700; color: var(--dark-blue); margin-bottom: 8px; }
+  .insights ul { padding-left: 18px; }
+  .insights li { font-size: 13px; margin-bottom: 5px; color: var(--black); }
+  .insights li strong { color: var(--dark-blue); }
+
+  /* ─── SEQUENCING TABLE ────────────────────────────────────── */
+  .seq-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .seq-table th {
+    background: var(--mid-blue); color: var(--white);
+    padding: 8px 14px; text-align: left; font-size: 11px;
+    font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+  }
+  .seq-table td { padding: 9px 14px; border-bottom: 1px solid var(--gray2); vertical-align: top; }
+  .seq-table tr:nth-child(even) td { background: var(--gray1); }
+  .phase-tag {
+    display: inline-block; padding: 2px 8px; border-radius: 3px;
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    background: var(--dark-blue); color: var(--white); white-space: nowrap;
+  }
+
+  /* ─── FOOTER ──────────────────────────────────────────────── */
+  .doc-footer {
+    margin-top: 40px; padding-top: 16px;
+    border-top: 2px solid var(--dark-blue);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    font-size: 11px; color: var(--muted);
+  }
+
+  /* ─── PRINT ───────────────────────────────────────────────── */
+  @media print {
+    body { background: white; font-size: 11px; }
+    .toolbar, .upload-panel { display: none !important; }
+    .wrapper { max-width: none; padding: 20px; }
+    .card { box-shadow: none; border: 1px solid #ccc; }
+    .grid-2, .grid-3 { page-break-inside: avoid; }
+    .section-label { margin-top: 20px; }
+    .page-title { font-size: 20px; }
+    .kpi-value { font-size: 18px; }
+    @page { margin: 18mm; size: letter landscape; }
+  }
+
+  /* ─── TOOLTIP ─────────────────────────────────────────────── */
+  .tooltip {
+    position: fixed; background: var(--dark-blue); color: var(--white);
+    padding: 7px 12px; border-radius: 4px; font-size: 12px; font-weight: 600;
+    pointer-events: none; opacity: 0; transition: opacity .15s;
+    z-index: 999; white-space: nowrap;
+  }
+  .tooltip.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- TOOLBAR -->
+<div class="toolbar">
+  <div class="toolbar-brand">
+    GLCC <span>/ Revenue Mix Dashboard 2026</span>
+  </div>
+  <div class="toolbar-actions">
+    <button class="btn btn-secondary" onclick="toggleUpload()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+      Upload to Cloud
+    </button>
+    <button class="btn btn-primary" onclick="window.print()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Print / Save PDF
+    </button>
+  </div>
+</div>
+
+<!-- UPLOAD PANEL -->
+<div class="upload-panel" id="uploadPanel">
+  <div class="upload-panel-inner">
+    <div class="upload-card">
+      <h4>Google Drive</h4>
+      <p>Save this dashboard and both Word documents directly to your Drive folder.</p>
+      <a href="https://drive.google.com/drive/my-drive" target="_blank" class="btn btn-outline">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        Open Google Drive
+      </a>
+    </div>
+    <div class="upload-card">
+      <h4>Microsoft OneDrive / SharePoint</h4>
+      <p>Upload the .docx files and this HTML dashboard to your OneDrive or SharePoint site.</p>
+      <a href="https://onedrive.live.com" target="_blank" class="btn btn-outline">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        Open OneDrive
+      </a>
+    </div>
+    <div class="upload-card">
+      <h4>Dropbox</h4>
+      <p>Store all GLCC planning documents in a shared Dropbox folder for team access.</p>
+      <a href="https://www.dropbox.com/home" target="_blank" class="btn btn-outline">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        Open Dropbox
+      </a>
+    </div>
+    <div class="upload-card">
+      <h4>Save This Page</h4>
+      <p>Right-click anywhere on this page and choose "Save As" to download the HTML file for sharing.</p>
+      <button class="btn btn-outline" onclick="savePage()">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download HTML
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- TOOLTIP -->
+<div class="tooltip" id="tooltip"></div>
+
+<!-- MAIN -->
+<div class="wrapper" id="mainContent">
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header-top">
+      <div>
+        <div class="page-title">Revenue Mix Analysis</div>
+        <div class="page-subtitle">Greater Life Community Center &nbsp;|&nbsp; 40,000 SF &nbsp;|&nbsp; 501(c)(3) &nbsp;|&nbsp; Milwaukee, WI 53206 &nbsp;|&nbsp; May 2026 – April 2027</div>
+      </div>
+      <div class="target-badge">
+        Monthly Target<span>$30,000</span>Annual: $360,000
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI ROW -->
+  <div class="kpi-row">
+    <div class="kpi-card" style="--stream-color: var(--c-space)">
+      <div class="kpi-label">Space + Hosting</div>
+      <div class="kpi-value">$9K</div>
+      <div class="kpi-sub">30% of mix &nbsp;·&nbsp; Low risk</div>
+    </div>
+    <div class="kpi-card" style="--stream-color: var(--c-training)">
+      <div class="kpi-label">Training / Research</div>
+      <div class="kpi-value">$7K</div>
+      <div class="kpi-sub">23% of mix &nbsp;·&nbsp; Low–Med risk</div>
+    </div>
+    <div class="kpi-card" style="--stream-color: var(--c-fiscal)">
+      <div class="kpi-label">Fiscal Sponsorship</div>
+      <div class="kpi-value">$7K</div>
+      <div class="kpi-sub">23% of mix &nbsp;·&nbsp; Medium risk</div>
+    </div>
+    <div class="kpi-card" style="--stream-color: var(--c-membership)">
+      <div class="kpi-label">Membership</div>
+      <div class="kpi-value">$3K</div>
+      <div class="kpi-sub">10% of mix &nbsp;·&nbsp; Low risk</div>
+    </div>
+    <div class="kpi-card" style="--stream-color: var(--c-grants)">
+      <div class="kpi-label">Grants (Suppl.)</div>
+      <div class="kpi-value">$4.5K</div>
+      <div class="kpi-sub">14% of mix &nbsp;·&nbsp; Med–High risk</div>
+    </div>
+  </div>
+
+  <!-- ROW 1: DONUT + LINE CHART -->
+  <div class="grid-2">
+
+    <!-- DONUT -->
+    <div class="card">
+      <div class="card-header">
+        <h3>Revenue Mix — Month 12 Target</h3>
+        <span>$30,500 / month</span>
+      </div>
+      <div class="card-body">
+        <div class="donut-wrap">
+          <svg class="donut-svg" viewBox="0 0 200 200">
+            <!-- segments: space 30%, training 23%, fiscal 23%, membership 10%, grants 14% -->
+            <!-- cx=100 cy=100 r=72 circumference=452.4 -->
+            <circle cx="100" cy="100" r="72" fill="none" stroke="#e8e8e8" stroke-width="36"/>
+            <!-- Space 30% = 135.7 -->
+            <circle cx="100" cy="100" r="72" fill="none" stroke="var(--c-space)" stroke-width="36"
+              stroke-dasharray="135.7 316.7" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
+            <!-- Training 23% = 104.1 offset=-135.7 -->
+            <circle cx="100" cy="100" r="72" fill="none" stroke="var(--c-training)" stroke-width="36"
+              stroke-dasharray="104.1 348.3" stroke-dashoffset="-135.7" transform="rotate(-90 100 100)"/>
+            <!-- Fiscal 23% = 104.1 offset=-239.8 -->
+            <circle cx="100" cy="100" r="72" fill="none" stroke="var(--c-fiscal)" stroke-width="36"
+              stroke-dasharray="104.1 348.3" stroke-dashoffset="-239.8" transform="rotate(-90 100 100)"/>
+            <!-- Membership 10% = 45.2 offset=-343.9 -->
+            <circle cx="100" cy="100" r="72" fill="none" stroke="var(--c-membership)" stroke-width="36"
+              stroke-dasharray="45.2 407.2" stroke-dashoffset="-343.9" transform="rotate(-90 100 100)"/>
+            <!-- Grants 14% = 63.3 offset=-389.1 -->
+            <circle cx="100" cy="100" r="72" fill="none" stroke="var(--c-grants)" stroke-width="36"
+              stroke-dasharray="63.3 389.1" stroke-dashoffset="-389.1" transform="rotate(-90 100 100)"/>
+            <!-- center -->
+            <text x="100" y="95" text-anchor="middle" font-family="Libre Baskerville,serif" font-size="20" font-weight="700" fill="#1F3864">$30.5K</text>
+            <text x="100" y="113" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#666">per month</text>
+          </svg>
+          <div class="donut-legend">
+            <div class="legend-row">
+              <div class="legend-dot" style="background:var(--c-space)"></div>
+              <span class="legend-name">Space + Hosting</span>
+              <span class="legend-pct">30%</span>
+            </div>
+            <div class="legend-amt" style="margin:-6px 0 8px 20px; color:var(--muted)">$9,000 / month</div>
+            <div class="legend-row">
+              <div class="legend-dot" style="background:var(--c-training)"></div>
+              <span class="legend-name">Training / Research</span>
+              <span class="legend-pct">23%</span>
+            </div>
+            <div class="legend-amt" style="margin:-6px 0 8px 20px; color:var(--muted)">$7,000 / month</div>
+            <div class="legend-row">
+              <div class="legend-dot" style="background:var(--c-fiscal)"></div>
+              <span class="legend-name">Fiscal Sponsorship</span>
+              <span class="legend-pct">23%</span>
+            </div>
+            <div class="legend-amt" style="margin:-6px 0 8px 20px; color:var(--muted)">$7,000 / month</div>
+            <div class="legend-row">
+              <div class="legend-dot" style="background:var(--c-membership)"></div>
+              <span class="legend-name">Membership</span>
+              <span class="legend-pct">10%</span>
+            </div>
+            <div class="legend-amt" style="margin:-6px 0 8px 20px; color:var(--muted)">$3,000 / month</div>
+            <div class="legend-row">
+              <div class="legend-dot" style="background:var(--c-grants)"></div>
+              <span class="legend-name">Grants (Suppl.)</span>
+              <span class="legend-pct">14%</span>
+            </div>
+            <div class="legend-amt" style="margin:-6px 0 8px 20px; color:var(--muted)">$4,500 / month</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LINE CHART: Monthly Build -->
+    <div class="card">
+      <div class="card-header">
+        <h3>12-Month Revenue Build — $0 to $30K+</h3>
+        <span>All streams combined</span>
+      </div>
+      <div class="card-body">
+        <svg id="lineChart" viewBox="0 0 520 230" style="height:230px">
+          <!-- grid lines & labels rendered by JS -->
+        </svg>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ROW 2: STACKED BAR + SUMMARY TABLE -->
+  <div class="grid-2">
+
+    <!-- STACKED BAR -->
+    <div class="card">
+      <div class="card-header">
+        <h3>Stream Contribution by Quarter</h3>
+        <span>Stacked monthly average</span>
+      </div>
+      <div class="card-body">
+        <svg id="barChart" viewBox="0 0 480 220" style="height:220px"></svg>
+      </div>
+    </div>
+
+    <!-- RISK / TIMING TABLE -->
+    <div class="card">
+      <div class="card-header">
+        <h3>Stream Summary — Risk &amp; Timing</h3>
+        <span>Full activation targets</span>
+      </div>
+      <div class="card-body" style="padding:0">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Stream</th>
+              <th>Mo. Target</th>
+              <th>Mix %</th>
+              <th>Risk</th>
+              <th>Full Rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="stream-dot" style="background:var(--c-space)"></span>Space + Hosting</td>
+              <td>$8K–$10K</td><td>27–33%</td>
+              <td><span class="risk-badge risk-low">Low</span></td>
+              <td>Mo. 5–6</td>
+            </tr>
+            <tr>
+              <td><span class="stream-dot" style="background:var(--c-training)"></span>Training / Research</td>
+              <td>$6K–$8K</td><td>20–27%</td>
+              <td><span class="risk-badge risk-med">Low–Med</span></td>
+              <td>Mo. 7–8</td>
+            </tr>
+            <tr>
+              <td><span class="stream-dot" style="background:var(--c-fiscal)"></span>Fiscal Sponsorship</td>
+              <td>$6K–$8K</td><td>20–27%</td>
+              <td><span class="risk-badge risk-med">Medium</span></td>
+              <td>Mo. 8–9</td>
+            </tr>
+            <tr>
+              <td><span class="stream-dot" style="background:var(--c-membership)"></span>Membership</td>
+              <td>$2.5K–$3.5K</td><td>8–12%</td>
+              <td><span class="risk-badge risk-low">Low</span></td>
+              <td>Mo. 6–7</td>
+            </tr>
+            <tr>
+              <td><span class="stream-dot" style="background:var(--c-grants)"></span>Grants (Suppl.)</td>
+              <td>$3K–$6K</td><td>10–20%</td>
+              <td><span class="risk-badge risk-high">Med–High</span></td>
+              <td>Mo. 9–12</td>
+            </tr>
+            <tr class="total-row">
+              <td>TOTAL</td>
+              <td>$28K–$35K</td><td>100%</td>
+              <td>—</td>
+              <td>Mo. 10–12</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- INSIGHTS -->
+  <div class="insights">
+    <h4>Three Structural Conclusions</h4>
+    <ul>
+      <li><strong>Space fees are the anchor.</strong> 168 hours of room use/month across 4 room types at blended rates generates $12,000+. That is roughly 2 hours per room per weekday — a low utilization bar for 40,000 SF. Evenings and weekends are the highest-demand periods; price at the standard rate, not community rate.</li>
+      <li><strong>Fiscal sponsorship is most powerful as a combined offer.</strong> 10% fee alone builds slowly. When a sponsored project also rents space, a single $80K/year project generates $15,800 combined. Recruit projects that will use the building, not just pass funds through remotely.</li>
+      <li><strong>Grants are supplemental — not structural.</strong> The $30K/month target should be achievable entirely from earned income by Month 11–12. Any grant revenue received goes to margin, program capacity, or operating reserves. Treating grants as core operating revenue creates structural fragility.</li>
+    </ul>
+  </div>
+
+  <!-- SEQUENCING -->
+  <div class="section-label">Activation Sequencing — 3-Person Team</div>
+  <div class="card">
+    <div class="card-body" style="padding:0">
+      <table class="seq-table">
+        <thead><tr><th>Timeframe</th><th>Priority Actions</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="phase-tag">Week 1–2</span></td>
+            <td>Formalize MCW office use fee (existing relationship → immediate contract). Publish room rates on website and CBOHub. Launch membership enrollment.</td>
+          </tr>
+          <tr>
+            <td><span class="phase-tag">Week 3–4</span></td>
+            <td>Draft fiscal sponsorship MOU template. Identify 2–3 warm CBO/faith-based leads. Send to legal review. Set up SAM.gov/UEI registration.</td>
+          </tr>
+          <tr>
+            <td><span class="phase-tag">Month 2</span></td>
+            <td>Execute first 1–2 recurring room rental contracts. Sign first fiscal sponsorship MOU. Enroll first 10–15 members across tiers.</td>
+          </tr>
+          <tr>
+            <td><span class="phase-tag">Month 3–4</span></td>
+            <td>Initiate academic site agreements with MCW (rotation fees) and UWM (practicum fees). Submit first county/DHS grant applications.</td>
+          </tr>
+          <tr>
+            <td><span class="phase-tag">Month 4–6</span></td>
+            <td>Scale to 5–8 fiscal sponsorship projects. Begin workforce training partnerships with MATC and DHS. Receive first grant awards.</td>
+          </tr>
+          <tr>
+            <td><span class="phase-tag">Month 7–12</span></td>
+            <td>Activate research site contract via MCW CTSI. Scale all streams to full-activation targets. Begin FQHC Look-Alike feasibility review. Initiate FDA site registration process.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <span>Greater Life Community Center &nbsp;·&nbsp; 2432 N. Teutonia Ave., Milwaukee, WI 53206 &nbsp;·&nbsp; info@greaterlifecenter.org &nbsp;·&nbsp; 414-562-1110</span>
+    <span>Confidential — Internal Planning Document &nbsp;·&nbsp; April 2026</span>
+  </div>
+
+</div><!-- /wrapper -->
+
+<script>
+// ─── DATA ──────────────────────────────────────────────────────────────────
+const monthly = [
+  { mo:1,  space:500,  train:0,    fiscal:0,    mem:200,  grants:0    },
+  { mo:2,  space:1200, train:0,    fiscal:0,    mem:500,  grants:0    },
+  { mo:3,  space:2500, train:500,  fiscal:500,  mem:800,  grants:0    },
+  { mo:4,  space:4000, train:1500, fiscal:1500, mem:1200, grants:0    },
+  { mo:5,  space:5000, train:2500, fiscal:2500, mem:1500, grants:0    },
+  { mo:6,  space:6000, train:3500, fiscal:3500, mem:1800, grants:1000 },
+  { mo:7,  space:7000, train:4500, fiscal:4500, mem:2000, grants:2000 },
+  { mo:8,  space:7500, train:5500, fiscal:5500, mem:2200, grants:2500 },
+  { mo:9,  space:8000, train:6000, fiscal:6000, mem:2500, grants:3000 },
+  { mo:10, space:8500, train:6500, fiscal:6500, mem:2800, grants:4000 },
+  { mo:11, space:9000, train:7000, fiscal:7000, mem:3000, grants:4500 },
+  { mo:12, space:9500, train:7500, fiscal:7500, mem:3200, grants:5000 },
+];
+
+const colors = {
+  space:    '#2E75B6',
+  training: '#1F3864',
+  fiscal:   '#C55A11',
+  membership:'#375623',
+  grants:   '#7B7B7B',
+};
+
+// ─── LINE CHART ────────────────────────────────────────────────────────────
+function drawLineChart() {
+  const svg = document.getElementById('lineChart');
+  const W = 520, H = 230, px = 52, py = 20, pb = 36, pr = 16;
+  const cw = W - px - pr, ch = H - py - pb;
+  const maxVal = 35000;
+  const totals = monthly.map(d => d.space + d.train + d.fiscal + d.mem + d.grants);
+
+  let html = '';
+
+  // grid
+  [0, 10000, 20000, 30000].forEach(v => {
+    const y = py + ch - (v / maxVal) * ch;
+    html += `<line x1="${px}" y1="${y}" x2="${W-pr}" y2="${y}" stroke="#E0E0E0" stroke-width="1"/>`;
+    html += `<text x="${px-6}" y="${y+4}" text-anchor="end" font-family="Source Sans 3,sans-serif" font-size="9" fill="#999">$${v/1000}K</text>`;
+  });
+  // target line
+  const tY = py + ch - (30000 / maxVal) * ch;
+  html += `<line x1="${px}" y1="${tY}" x2="${W-pr}" y2="${tY}" stroke="#C55A11" stroke-width="1.5" stroke-dasharray="5,3"/>`;
+  html += `<text x="${W-pr+4}" y="${tY+4}" font-family="Source Sans 3,sans-serif" font-size="9" fill="#C55A11" font-weight="700">$30K</text>`;
+
+  // stacked areas
+  const streams = ['space','train','fiscal','membership','grants'];
+  const streamKeys = ['space','train','fiscal','mem','grants'];
+  const streamColors = [colors.space, colors.training, colors.fiscal, colors.membership, colors.grants];
+
+  // build cumulative points
+  for (let si = streams.length - 1; si >= 0; si--) {
+    let areaPoints = '';
+    let linePoints = '';
+    for (let i = 0; i < monthly.length; i++) {
+      const d = monthly[i];
+      const x = px + (i / (monthly.length - 1)) * cw;
+      let cum = 0;
+      for (let j = 0; j <= si; j++) cum += d[streamKeys[j]];
+      const y = py + ch - (cum / maxVal) * ch;
+      linePoints += `${x},${y} `;
+    }
+    // area bottom = 0 line for si=0, or previous stream's line
+    let areaBottom = '';
+    if (si === 0) {
+      areaBottom = `${px + cw},${py + ch} ${px},${py + ch}`;
+    } else {
+      for (let i = monthly.length - 1; i >= 0; i--) {
+        const d = monthly[i];
+        const x = px + (i / (monthly.length - 1)) * cw;
+        let cum = 0;
+        for (let j = 0; j < si; j++) cum += d[streamKeys[j]];
+        const y = py + ch - (cum / maxVal) * ch;
+        areaBottom += `${x},${y} `;
+      }
+    }
+    areaPoints = linePoints.trim() + ' ' + areaBottom.trim();
+    html += `<polygon points="${areaPoints}" fill="${streamColors[si]}" opacity="0.18"/>`;
+    html += `<polyline points="${linePoints}" fill="none" stroke="${streamColors[si]}" stroke-width="2"/>`;
+  }
+
+  // total line
+  let totalLine = '';
+  monthly.forEach((d, i) => {
+    const x = px + (i / (monthly.length - 1)) * cw;
+    const tot = d.space + d.train + d.fiscal + d.mem + d.grants;
+    const y = py + ch - (tot / maxVal) * ch;
+    totalLine += `${x},${y} `;
+  });
+  html += `<polyline points="${totalLine}" fill="none" stroke="#1A1A1A" stroke-width="2.5"/>`;
+
+  // dots + month labels
+  monthly.forEach((d, i) => {
+    const x = px + (i / (monthly.length - 1)) * cw;
+    const tot = d.space + d.train + d.fiscal + d.mem + d.grants;
+    const y = py + ch - (tot / maxVal) * ch;
+    html += `<circle cx="${x}" cy="${y}" r="4" fill="white" stroke="#1A1A1A" stroke-width="2"
+      class="dot" data-val="${tot}" data-mo="${d.mo}" style="cursor:pointer"/>`;
+    html += `<text x="${x}" y="${H-4}" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#999">Mo.${d.mo}</text>`;
+  });
+
+  svg.innerHTML = html;
+
+  // tooltip
+  svg.querySelectorAll('.dot').forEach(dot => {
+    dot.addEventListener('mouseenter', e => {
+      const tip = document.getElementById('tooltip');
+      tip.textContent = `Month ${dot.dataset.mo}: $${Number(dot.dataset.val).toLocaleString()}`;
+      tip.classList.add('show');
+    });
+    dot.addEventListener('mousemove', e => {
+      const tip = document.getElementById('tooltip');
+      tip.style.left = (e.clientX + 12) + 'px';
+      tip.style.top  = (e.clientY - 28) + 'px';
+    });
+    dot.addEventListener('mouseleave', () => {
+      document.getElementById('tooltip').classList.remove('show');
+    });
+  });
+}
+
+// ─── STACKED BAR CHART ────────────────────────────────────────────────────
+function drawBarChart() {
+  const svg = document.getElementById('barChart');
+  const W = 480, H = 220, px = 52, py = 16, pb = 36, pr = 16;
+  const cw = W - px - pr, ch = H - py - pb;
+  const maxVal = 35000;
+
+  // quarterly averages
+  const quarters = [
+    { label: 'Q1 Mo 1–3',   data: avg([0,1,2]) },
+    { label: 'Q2 Mo 4–6',   data: avg([3,4,5]) },
+    { label: 'Q3 Mo 7–9',   data: avg([6,7,8]) },
+    { label: 'Q4 Mo 10–12', data: avg([9,10,11]) },
+  ];
+
+  function avg(idxs) {
+    const keys = ['space','train','fiscal','mem','grants'];
+    const res = {};
+    keys.forEach(k => { res[k] = idxs.reduce((s,i) => s + monthly[i][k], 0) / idxs.length; });
+    return res;
+  }
+
+  const streamKeys  = ['space','train','fiscal','mem','grants'];
+  const streamColors = [colors.space, colors.training, colors.fiscal, colors.membership, colors.grants];
+  const barW = (cw / quarters.length) * 0.6;
+  const barGap = cw / quarters.length;
+
+  let html = '';
+
+  // grid
+  [0,10000,20000,30000].forEach(v => {
+    const y = py + ch - (v / maxVal) * ch;
+    html += `<line x1="${px}" y1="${y}" x2="${W-pr}" y2="${y}" stroke="#E0E0E0" stroke-width="1"/>`;
+    html += `<text x="${px-6}" y="${y+4}" text-anchor="end" font-family="Source Sans 3,sans-serif" font-size="9" fill="#999">$${v/1000}K</text>`;
+  });
+  // target
+  const tY = py + ch - (30000 / maxVal) * ch;
+  html += `<line x1="${px}" y1="${tY}" x2="${W-pr}" y2="${tY}" stroke="#C55A11" stroke-width="1.5" stroke-dasharray="5,3"/>`;
+
+  quarters.forEach((q, qi) => {
+    const bx = px + qi * barGap + (barGap - barW) / 2;
+    let cumY = py + ch;
+    streamKeys.forEach((k, si) => {
+      const val = q.data[k];
+      const barH = (val / maxVal) * ch;
+      const y = cumY - barH;
+      html += `<rect x="${bx}" y="${y}" width="${barW}" height="${barH}"
+        fill="${streamColors[si]}" opacity="0.88"
+        class="bar" data-val="${Math.round(val)}" data-stream="${k}" data-q="${q.label}"
+        style="cursor:pointer"/>`;
+      cumY -= barH;
+    });
+    // total label
+    const tot = streamKeys.reduce((s,k) => s + q.data[k], 0);
+    const totalY = py + ch - (tot / maxVal) * ch - 5;
+    html += `<text x="${bx + barW/2}" y="${totalY}" text-anchor="middle"
+      font-family="Libre Baskerville,serif" font-size="10" font-weight="700" fill="#1A1A1A">$${Math.round(tot/1000)}K</text>`;
+    // x label
+    html += `<text x="${bx + barW/2}" y="${H - 4}" text-anchor="middle"
+      font-family="Source Sans 3,sans-serif" font-size="9" fill="#555">${q.label}</text>`;
+  });
+
+  svg.innerHTML = html;
+
+  const streamNames = { space:'Space+Hosting', train:'Training/Research', fiscal:'Fiscal Sponsor', mem:'Membership', grants:'Grants' };
+
+  svg.querySelectorAll('.bar').forEach(bar => {
+    bar.addEventListener('mouseenter', e => {
+      const tip = document.getElementById('tooltip');
+      tip.textContent = `${bar.dataset.q} · ${streamNames[bar.dataset.stream]}: $${Number(bar.dataset.val).toLocaleString()}/mo avg`;
+      tip.classList.add('show');
+    });
+    bar.addEventListener('mousemove', e => {
+      const tip = document.getElementById('tooltip');
+      tip.style.left = (e.clientX + 12) + 'px';
+      tip.style.top  = (e.clientY - 28) + 'px';
+    });
+    bar.addEventListener('mouseleave', () => {
+      document.getElementById('tooltip').classList.remove('show');
+    });
+  });
+}
+
+// ─── CONTROLS ─────────────────────────────────────────────────────────────
+function toggleUpload() {
+  document.getElementById('uploadPanel').classList.toggle('open');
+}
+
+function savePage() {
+  const blob = new Blob([document.documentElement.outerHTML], { type: 'text/html' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'GLCC_Revenue_Dashboard_2026.html';
+  a.click();
+}
+
+// ─── INIT ──────────────────────────────────────────────────────────────────
+drawLineChart();
+drawBarChart();
+</script>
+</body>
+</html>
 
