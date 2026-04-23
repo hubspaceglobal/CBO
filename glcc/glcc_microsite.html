@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GLCC | Strategic Platform</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--navy:#0D1F3C;
+--blue:#2B5F8E;
+--teal:#3A7D8C;
+--gray:#6B7B8D;
+--amber:#D4A843;
+--white:#F5F7FA;
+}
+
+*{box-sizing:border-box;}
+
+body{
+margin:0;
+font-family:'Inter',sans-serif;
+background:var(--white);
+color:#1a1a1a;
+}
+
+/* NAV */
+.nav{
+position:fixed;
+top:0;
+width:100%;
+background:var(--navy);
+color:white;
+display:flex;
+justify-content:space-between;
+padding:16px 32px;
+z-index:100;
+}
+
+.nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-size:13px;
+}
+
+/* HERO */
+.hero{
+height:100vh;
+background:var(--navy);
+color:white;
+display:flex;
+align-items:center;
+padding:80px 60px;
+}
+
+.hero h1{
+font-family:'Barlow Condensed';
+font-size:64px;
+margin:0;
+line-height:1.1;
+}
+
+.hero p{
+max-width:500px;
+margin-top:20px;
+color:#cbd5e1;
+}
+
+/* SECTION */
+.section{
+padding:100px 60px;
+max-width:1200px;
+margin:auto;
+}
+
+.section-title{
+font-family:'Barlow Condensed';
+font-size:36px;
+color:var(--navy);
+margin-bottom:30px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+/* CARD */
+.card{
+background:white;
+padding:24px;
+border-left:4px solid var(--amber);
+box-shadow:0 6px 20px rgba(0,0,0,0.05);
+}
+
+/* KPI */
+.kpi{
+font-size:42px;
+font-family:'Barlow Condensed';
+color:var(--navy);
+}
+
+/* STRIP */
+.strip{
+background:var(--navy);
+color:white;
+padding:80px 60px;
+text-align:center;
+}
+
+.strip h2{
+font-family:'Barlow Condensed';
+font-size:42px;
+}
+
+/* TIMELINE */
+.timeline{
+border-left:3px solid var(--amber);
+padding-left:20px;
+}
+
+.timeline div{
+margin-bottom:30px;
+}
+
+/* FOOTER */
+.footer{
+background:var(--navy);
+color:white;
+padding:40px;
+text-align:center;
+font-size:13px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<div class="nav">
+<div><strong>GLCC</strong></div>
+<div>
+<a href="#model">Model</a>
+<a href="#revenue">Revenue</a>
+<a href="#plan">Plan</a>
+<a href="#impact">Impact</a>
+</div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+<div>
+<h1>Where<br>Generations Connect</h1>
+<p>
+A 40,000 SF community platform in Milwaukee designed to integrate healthcare,
+research, and community programming into a single revenue-generating ecosystem.
+</p>
+</div>
+</section>
+
+<!-- MODEL -->
+<section class="section" id="model">
+<div class="section-title">The Model</div>
+
+<div class="grid">
+<div class="card">
+<h3>Crossroads Infrastructure</h3>
+<p>GLCC functions as a physical and programmatic hub where institutions meet community.</p>
+</div>
+
+<div class="card">
+<h3>Embedded Partnerships</h3>
+<p>Academic, clinical, and nonprofit partners operate directly inside the facility.</p>
+</div>
+
+<div class="card">
+<h3>Multi-Stream Revenue</h3>
+<p>No dependency on a single funding source. Earned income + institutional contracts drive sustainability.</p>
+</div>
+</div>
+</section>
+
+<!-- REVENUE -->
+<section class="section" id="revenue">
+<div class="section-title">Revenue Architecture</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="kpi">$9K</div>
+<p>Space + Program Hosting</p>
+</div>
+
+<div class="card">
+<div class="kpi">$7K</div>
+<p>Training / Research Contracts</p>
+</div>
+
+<div class="card">
+<div class="kpi">$7K</div>
+<p>Fiscal Sponsorship</p>
+</div>
+
+<div class="card">
+<div class="kpi">$3K</div>
+<p>Membership</p>
+</div>
+
+</div>
+
+<p style="margin-top:30px; color:var(--gray);">
+Target: <strong>$30,000/month by Month 12</strong>
+</p>
+</section>
+
+<!-- STRATEGIC INSIGHT -->
+<section class="strip">
+<h2>Earned Income First. Grants Second.</h2>
+<p>GLCC is designed to operate sustainably without relying on unstable federal funding.</p>
+</section>
+
+<!-- PLAN -->
+<section class="section" id="plan">
+<div class="section-title">12-Month Plan</div>
+
+<div class="timeline">
+
+<div>
+<strong>Q1 — Foundation</strong>
+<p>Infrastructure, agreements, and initial partnerships.</p>
+</div>
+
+<div>
+<strong>Q2 — Activation</strong>
+<p>Launch revenue streams and membership model.</p>
+</div>
+
+<div>
+<strong>Q3 — Growth</strong>
+<p>Scale partnerships and institutional contracts.</p>
+</div>
+
+<div>
+<strong>Q4 — Scale</strong>
+<p>Achieve full $30K/month run rate and expand.</p>
+</div>
+
+</div>
+</section>
+
+<!-- IMPACT -->
+<section class="section" id="impact">
+<div class="section-title">Why This Works</div>
+
+<div class="grid">
+
+<div class="card">
+<h3>Location Advantage</h3>
+<p>Located in 53206 — one of the most studied health disparity areas in the U.S.</p>
+</div>
+
+<div class="card">
+<h3>Institutional Demand</h3>
+<p>Universities and agencies need real community-based environments.</p>
+</div>
+
+<div class="card">
+<h3>Scalable Model</h3>
+<p>Replicable across other cities with similar demographics.</p>
+</div>
+
+</div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+Greater Life Community Center • Milwaukee, WI • Confidential Strategic Platform
+</div>
+
+</body>
+</html>
