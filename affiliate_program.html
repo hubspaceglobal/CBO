@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CBO Hub — Affiliate Program</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --plum:       #2D0A4E;
+    --violet:     #5B1FAD;
+    --amethyst:   #7B3FCC;
+    --lilac:      #C084FC;
+    --blush:      #F3EAFF;
+    --crimson:    #BE123C;
+    --ivory:      #FAF7F5;
+    --charcoal:   #1A1025;
+    --mid:        #6B5B80;
+    --rule:       rgba(123,63,204,0.18);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--charcoal);
+    color: var(--ivory);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE TEXTURE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 4rem;
+    background: rgba(26,16,37,0.72);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .nav-logo img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+  }
+
+  .nav-wordmark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--ivory);
+  }
+
+  .nav-wordmark span {
+    color: var(--lilac);
+  }
+
+  .nav-cta {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    background: var(--lilac);
+    padding: 0.6rem 1.6rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.22s, transform 0.18s;
+  }
+
+  .nav-cta:hover {
+    background: #d8a4ff;
+    transform: translateY(-1px);
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 9rem 2rem 6rem;
+    overflow: hidden;
+  }
+
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+  }
+
+  .orb-1 {
+    width: 600px; height: 600px;
+    top: -120px; left: -160px;
+    background: radial-gradient(circle, rgba(91,31,173,0.55) 0%, transparent 70%);
+    animation: drift 12s ease-in-out infinite alternate;
+  }
+
+  .orb-2 {
+    width: 500px; height: 500px;
+    bottom: -80px; right: -100px;
+    background: radial-gradient(circle, rgba(190,18,60,0.28) 0%, transparent 70%);
+    animation: drift 16s ease-in-out infinite alternate-reverse;
+  }
+
+  .orb-3 {
+    width: 350px; height: 350px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(123,63,204,0.25) 0%, transparent 70%);
+    animation: pulse-orb 8s ease-in-out infinite;
+  }
+
+  @keyframes drift {
+    from { transform: translate(0, 0); }
+    to   { transform: translate(40px, 30px); }
+  }
+
+  @keyframes pulse-orb {
+    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+    50%       { opacity: 1;   transform: translate(-50%, -50%) scale(1.15); }
+  }
+
+  .hero-eyebrow {
+    position: relative;
+    z-index: 1;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--lilac);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-eyebrow::before,
+  .hero-eyebrow::after {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 1px;
+    background: var(--amethyst);
+    opacity: 0.6;
+  }
+
+  .hero h1 {
+    position: relative;
+    z-index: 1;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 8vw, 7rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--ivory);
+    max-width: 900px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--lilac);
+  }
+
+  .hero-sub {
+    position: relative;
+    z-index: 1;
+    margin-top: 2rem;
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: rgba(250,247,245,0.65);
+    max-width: 580px;
+    line-height: 1.8;
+  }
+
+  .hero-actions {
+    position: relative;
+    z-index: 1;
+    margin-top: 3rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--charcoal);
+    background: linear-gradient(135deg, var(--lilac) 0%, var(--amethyst) 100%);
+    padding: 0.95rem 2.8rem;
+    border-radius: 2px;
+    transition: filter 0.22s, transform 0.18s, box-shadow 0.22s;
+    box-shadow: 0 8px 32px rgba(123,63,204,0.35);
+  }
+
+  .btn-primary:hover {
+    filter: brightness(1.12);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 48px rgba(123,63,204,0.45);
+  }
+
+  .btn-ghost {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--lilac);
+    border: 1px solid rgba(192,132,252,0.35);
+    padding: 0.95rem 2.8rem;
+    border-radius: 2px;
+    transition: border-color 0.22s, background 0.22s, transform 0.18s;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--lilac);
+    background: rgba(192,132,252,0.08);
+    transform: translateY(-2px);
+  }
+
+  /* ─── SCROLL INDICATOR ─── */
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(250,247,245,0.3);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, rgba(192,132,252,0.6), transparent);
+    animation: scroll-drop 2s ease-in-out infinite;
+  }
+
+  @keyframes scroll-drop {
+    0%   { transform: scaleY(0); transform-origin: top; }
+    50%  { transform: scaleY(1); transform-origin: top; }
+    51%  { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* ─── SECTION WRAPPER ─── */
+  section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .container {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+  }
+
+  /* ─── DIVIDER ─── */
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--rule), transparent);
+    margin: 0 auto;
+  }
+
+  /* ─── HOW IT WORKS ─── */
+  .how {
+    padding: 9rem 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(45,10,78,0.3) 50%, transparent 100%);
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--amethyst);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.6rem);
+    font-weight: 300;
+    line-height: 1.12;
+    color: var(--ivory);
+    max-width: 640px;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--lilac);
+  }
+
+  .section-body {
+    font-size: 1rem;
+    color: rgba(250,247,245,0.6);
+    max-width: 560px;
+    line-height: 1.85;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    margin-top: 5rem;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .step {
+    background: var(--charcoal);
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .step::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--violet), var(--lilac));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .step:hover { background: rgba(91,31,173,0.08); }
+  .step:hover::before { transform: scaleX(1); }
+
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    font-weight: 300;
+    line-height: 1;
+    color: rgba(123,63,204,0.12);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.04em;
+  }
+
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--ivory);
+    margin-bottom: 0.75rem;
+  }
+
+  .step-body {
+    font-size: 0.9rem;
+    color: rgba(250,247,245,0.55);
+    line-height: 1.8;
+  }
+
+  /* ─── ADVANTAGES ─── */
+  .advantages {
+    padding: 9rem 0;
+  }
+
+  .adv-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+    margin-top: 5rem;
+  }
+
+  .adv-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .adv-item {
+    display: grid;
+    grid-template-columns: 2px 1fr;
+    gap: 2rem;
+    padding: 2.25rem 0;
+    border-bottom: 1px solid var(--rule);
+    transition: gap 0.25s;
+    cursor: default;
+  }
+
+  .adv-item:first-child { border-top: 1px solid var(--rule); }
+
+  .adv-item:hover { gap: 2.5rem; }
+
+  .adv-bar {
+    width: 2px;
+    background: linear-gradient(to bottom, var(--violet), var(--lilac));
+    border-radius: 1px;
+    min-height: 100%;
+    align-self: stretch;
+    transition: background 0.3s;
+  }
+
+  .adv-item:hover .adv-bar {
+    background: linear-gradient(to bottom, var(--crimson), var(--lilac));
+  }
+
+  .adv-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--ivory);
+    margin-bottom: 0.45rem;
+  }
+
+  .adv-desc {
+    font-size: 0.88rem;
+    color: rgba(250,247,245,0.5);
+    line-height: 1.8;
+  }
+
+  /* ─── STAT PANEL ─── */
+  .stat-panel {
+    position: sticky;
+    top: 7rem;
+  }
+
+  .stat-card {
+    background: linear-gradient(145deg, rgba(91,31,173,0.18) 0%, rgba(45,10,78,0.35) 100%);
+    border: 1px solid rgba(123,63,204,0.25);
+    border-radius: 4px;
+    padding: 3rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::after {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(123,63,204,0.2) 0%, transparent 70%);
+  }
+
+  .stat-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--lilac);
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(250,247,245,0.5);
+  }
+
+  .stat-note {
+    font-size: 0.82rem;
+    color: rgba(250,247,245,0.35);
+    margin-top: 0.75rem;
+    line-height: 1.7;
+  }
+
+  .fee-chart-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lilac);
+    text-decoration: none;
+    margin-top: 1.5rem;
+    transition: gap 0.2s;
+  }
+
+  .fee-chart-link:hover { gap: 0.85rem; }
+
+  .fee-chart-link svg { flex-shrink: 0; }
+
+  /* ─── MISSION STRIPE ─── */
+  .mission {
+    padding: 7rem 0;
+    background: linear-gradient(135deg, rgba(91,31,173,0.2) 0%, rgba(45,10,78,0.5) 100%);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .mission-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .mission-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--ivory);
+  }
+
+  .mission-quote::before {
+    content: '\201C';
+    display: block;
+    font-size: 6rem;
+    line-height: 0.6;
+    color: var(--amethyst);
+    opacity: 0.4;
+    margin-bottom: 0.5rem;
+  }
+
+  .mission-detail {
+    font-size: 0.95rem;
+    color: rgba(250,247,245,0.55);
+    line-height: 1.9;
+  }
+
+  .mission-detail p + p { margin-top: 1.25rem; }
+
+  /* ─── USE OF PROCEEDS ─── */
+  .proceeds {
+    padding: 9rem 0;
+  }
+
+  .proceeds-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 4rem;
+    background: var(--rule);
+  }
+
+  .proceed-card {
+    background: var(--charcoal);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .proceed-icon {
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(123,63,204,0.35);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .proceed-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--lilac);
+    fill: none;
+    stroke-width: 1.5;
+  }
+
+  .proceed-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--ivory);
+    margin-bottom: 0.6rem;
+  }
+
+  .proceed-desc {
+    font-size: 0.88rem;
+    color: rgba(250,247,245,0.5);
+    line-height: 1.8;
+  }
+
+  /* ─── CTA SECTION ─── */
+  .cta-section {
+    padding: 10rem 0;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(91,31,173,0.4) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 50% at 80% 100%, rgba(190,18,60,0.2) 0%, transparent 70%);
+  }
+
+  .cta-frame {
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgba(192,132,252,0.2);
+    border-radius: 4px;
+    padding: 6rem 4rem;
+    max-width: 860px;
+    margin: 0 auto;
+    background: rgba(26,16,37,0.5);
+    backdrop-filter: blur(8px);
+  }
+
+  .cta-frame::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 4px;
+    background: linear-gradient(135deg, rgba(123,63,204,0.4), transparent 50%, rgba(190,18,60,0.2));
+    z-index: -1;
+  }
+
+  .cta-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amethyst);
+    border: 1px solid rgba(123,63,204,0.35);
+    padding: 0.4rem 1.2rem;
+    border-radius: 100px;
+    margin-bottom: 2rem;
+  }
+
+  .cta-frame h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 5vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ivory);
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-frame h2 em {
+    font-style: italic;
+    color: var(--lilac);
+  }
+
+  .cta-frame p {
+    font-size: 1rem;
+    color: rgba(250,247,245,0.55);
+    max-width: 520px;
+    margin: 0 auto 3rem;
+    line-height: 1.8;
+  }
+
+  .cta-subtext {
+    margin-top: 1.5rem;
+    font-size: 0.78rem;
+    color: rgba(250,247,245,0.3);
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 3rem 0;
+  }
+
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: rgba(250,247,245,0.4);
+    letter-spacing: 0.06em;
+  }
+
+  .footer-brand span { color: var(--amethyst); }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    color: rgba(250,247,245,0.25);
+    letter-spacing: 0.06em;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.75s ease, transform 0.75s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.45s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .adv-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .stat-panel { position: static; }
+    .mission-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .proceeds-grid { grid-template-columns: 1fr; }
+    .cta-frame { padding: 4rem 2rem; }
+    .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="1000184927.png" alt="CBO Hub logo" onerror="this.style.display='none'">
+    <span class="nav-wordmark">CBO <span>Hub</span></span>
+  </div>
+  <a href="#become-member" class="nav-cta">Become a Member</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-orb orb-1"></div>
+  <div class="hero-orb orb-2"></div>
+  <div class="hero-orb orb-3"></div>
+
+  <div class="hero-eyebrow">Affiliate Program</div>
+
+  <h1>Build Community.<br><em>Generate Revenue.</em><br>Advance the Mission.</h1>
+
+  <p class="hero-sub">
+    CBO Hub's affiliate program empowers churches and faith-based organizations to cultivate their own community networks while earning referral income — income that returns directly to the people they serve.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#become-member" class="btn-primary">Become a Member</a>
+    <a href="https://cbohub.theartisanhub.space/affiliate_chart.html" target="_blank" class="btn-ghost">View Fee Chart</a>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    Discover
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">The Process</p>
+      <h2 class="section-title">A straightforward path to <em>affiliate status</em></h2>
+      <p class="section-body">Membership at CBO Hub is the gateway. Once enrolled, your congregation becomes an affiliate network with income-generating potential from day one.</p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step reveal reveal-delay-1">
+        <div class="step-num">01</div>
+        <div class="step-title">Join CBO Hub</div>
+        <p class="step-body">Your church or organization enrolls as a CBO Hub member, gaining immediate access to low-cost programs, services, and the affiliate framework.</p>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-num">02</div>
+        <div class="step-title">Activate Affiliate Status</div>
+        <p class="step-body">Member churches are automatically recognized as affiliates. You receive a dedicated pipeline to sign up additional CBO Hub members within your community.</p>
+      </div>
+      <div class="step reveal reveal-delay-3">
+        <div class="step-num">03</div>
+        <div class="step-title">Earn Referral Fees</div>
+        <p class="step-body">Each qualified member you bring into the platform generates a referral fee for your organization, structured transparently in the Affiliate Fee Chart.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ADVANTAGES -->
+<section class="advantages">
+  <div class="container">
+    <div class="adv-layout">
+      <div>
+        <div class="reveal">
+          <p class="section-label">Program Advantages</p>
+          <h2 class="section-title">Designed around your <em>congregation's</em> interests</h2>
+        </div>
+
+        <div class="adv-list">
+          <div class="adv-item reveal reveal-delay-1">
+            <div class="adv-bar"></div>
+            <div>
+              <div class="adv-title">Dual-Access Pricing</div>
+              <p class="adv-desc">CBO Hub serves both members and non-members, but enrolled affiliates and their congregants receive preferential member pricing across all programs and services.</p>
+            </div>
+          </div>
+
+          <div class="adv-item reveal reveal-delay-2">
+            <div class="adv-bar"></div>
+            <div>
+              <div class="adv-title">Aligned Coaching</div>
+              <p class="adv-desc">Every referred member receives individual coaching alongside the sponsoring church — ensuring program alignment, accountability, and shared mission integrity from the outset.</p>
+            </div>
+          </div>
+
+          <div class="adv-item reveal reveal-delay-3">
+            <div class="adv-bar"></div>
+            <div>
+              <div class="adv-title">Community Stewardship Foundation</div>
+              <p class="adv-desc">CBO Hub's suite of low-cost programs is built specifically to provide sustainable infrastructure for community stewardship — reducing the operational burden on faith-based organizations.</p>
+            </div>
+          </div>
+
+          <div class="adv-item reveal reveal-delay-4">
+            <div class="adv-bar"></div>
+            <div>
+              <div class="adv-title">Transparent Earning Structure</div>
+              <p class="adv-desc">The Affiliate Fee Chart clearly delineates referral compensation at each tier — no hidden conditions, no ambiguous terms. Your earning potential is fully visible from enrollment.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAT PANEL -->
+      <div class="stat-panel reveal reveal-delay-2">
+        <div class="stat-card">
+          <div class="stat-value">$0</div>
+          <div class="stat-label">Hidden Fees or Overhead</div>
+          <p class="stat-note">All programs are structured at low cost. Your referral income is yours to direct — toward church operations, member scholarships, or program subsidies.</p>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-value">3</div>
+          <div class="stat-label">Approved Uses of Referral Income</div>
+          <p class="stat-note">Church operating expenses — Member scholarships — Program subsidies for qualifying congregants.</p>
+          <a href="https://cbohub.theartisanhub.space/affiliate_chart.html" target="_blank" class="fee-chart-link">
+            View full fee chart
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-value">1:1</div>
+          <div class="stat-label">Coaching Per Member</div>
+          <p class="stat-note">Each individual you refer receives dedicated coaching, creating measurable outcomes and community-level accountability.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- MISSION STRIPE -->
+<section class="mission">
+  <div class="container">
+    <div class="mission-inner">
+      <div class="reveal">
+        <blockquote class="mission-quote">
+          Coaching is delivered so that the mission remains aligned.
+        </blockquote>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="mission-detail">
+          <p>CBO Hub does not operate as a passive referral network. Every member your organization enrolls receives structured coaching delivered in coordination with your church — creating a unified direction rather than fragmented participation.</p>
+          <p>This alignment model ensures that revenue generation and mission integrity operate in parallel, not in tension. Your church grows its community impact while building a revenue stream that reinvests directly into that community.</p>
+          <p>Both member and non-member pipelines are available to affiliates, giving you flexibility in outreach while maintaining the pricing advantages that belong exclusively to enrolled members.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USE OF PROCEEDS -->
+<section class="proceeds">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Designated Use of Proceeds</p>
+      <h2 class="section-title">Revenue that serves the <em>community</em></h2>
+      <p class="section-body">Referral fees earned through the affiliate program are intended for direct community benefit. Three approved designations ensure funds remain mission-aligned.</p>
+    </div>
+
+    <div class="proceeds-grid">
+      <div class="proceed-card reveal reveal-delay-1">
+        <div class="proceed-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+        </div>
+        <div class="proceed-title">Church Operating Expenses</div>
+        <p class="proceed-desc">Apply referral income to facility costs, administrative overhead, ministry operations, or any qualified organizational expense necessary to sustain church functions.</p>
+      </div>
+
+      <div class="proceed-card reveal reveal-delay-2">
+        <div class="proceed-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <div class="proceed-title">Member Scholarships</div>
+        <p class="proceed-desc">Fund scholarship programs that provide qualified congregants with access to CBO Hub services and educational programming at reduced or no cost.</p>
+      </div>
+
+      <div class="proceed-card reveal reveal-delay-3">
+        <div class="proceed-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <div class="proceed-title">Program Subsidies</div>
+        <p class="proceed-desc">Subsidize participation in CBO Hub programs for members who face financial barriers — expanding community access and reinforcing the stewardship mission.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CTA -->
+<section class="cta-section" id="become-member">
+  <div class="cta-bg"></div>
+  <div class="container">
+    <div class="cta-frame reveal">
+      <div class="cta-badge">Begin Your Application</div>
+      <h2>Ready to become<br>a <em>CBO Hub Affiliate</em>?</h2>
+      <p>Join a growing network of faith-based organizations generating sustainable referral income while deepening community impact. Enrollment opens your pipeline immediately.</p>
+      <a href="https://cbohub.theartisanhub.space/affiliate_chart.html" class="btn-primary" target="_blank">Become a Member</a>
+      <p class="cta-subtext">Membership required for affiliate status &nbsp;&mdash;&nbsp; Review the fee chart for full earning details</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">CBO <span>Hub</span></div>
+      <div class="footer-copy">&copy; 2025 CBO Hub &nbsp;&mdash;&nbsp; All rights reserved</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Intersection Observer for scroll reveals
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Nav background intensify on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      nav.style.background = 'rgba(26,16,37,0.92)';
+    } else {
+      nav.style.background = 'rgba(26,16,37,0.72)';
+    }
+  });
+</script>
+</body>
+</html>
