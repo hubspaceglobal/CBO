@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CBO Communities — CBO Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Syne:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --crimson:      #9B1239;
+    --crimson-mid:  #C0163F;
+    --crimson-lit:  #E83060;
+    --base:         #0E0509;
+    --plum:         #2D0A4E;
+    --violet:       #6227B0;
+    --amethyst:     #8B5CF6;
+    --lilac:        #C4B5FD;
+    --ivory:        #FFF5F7;
+    --warm-white:   rgba(255,245,247,0.92);
+    --muted:        rgba(255,245,247,0.45);
+    --faint:        rgba(255,245,247,0.18);
+    --rule:         rgba(192,22,63,0.22);
+    --rule-v:       rgba(139,92,246,0.2);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--base);
+    color: var(--ivory);
+    font-family: 'Syne', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── GLOBAL CRIMSON WASH (60% opacity over base) ─── */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(155,18,57,0.60);
+    pointer-events: none;
+    z-index: 0;
+    mix-blend-mode: multiply;
+  }
+
+  /* ─── GRAIN ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── AMBIENT LIGHTING ─── */
+  .scene {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .scene::before {
+    content: '';
+    position: absolute;
+    top: -20%; left: -10%;
+    width: 70vw; height: 70vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139,92,246,0.22) 0%, transparent 65%);
+  }
+
+  .scene::after {
+    content: '';
+    position: absolute;
+    bottom: -20%; right: -10%;
+    width: 60vw; height: 60vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(192,22,63,0.35) 0%, transparent 65%);
+  }
+
+  /* ─── ALL CONTENT ABOVE OVERLAY ─── */
+  nav, main, footer, .hero, section { position: relative; z-index: 1; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 4rem;
+    background: rgba(14,5,9,0.55);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .nav-logo {
+    width: 40px; height: 40px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(192,22,63,0.4));
+  }
+
+  .nav-name {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--ivory);
+  }
+
+  .nav-name span { color: var(--lilac); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  .nav-link {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover { color: var(--ivory); }
+
+  .nav-cta {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ivory);
+    background: linear-gradient(135deg, var(--crimson) 0%, var(--crimson-mid) 100%);
+    padding: 0.6rem 1.6rem;
+    border-radius: 2px;
+    text-decoration: none;
+    box-shadow: 0 4px 24px rgba(192,22,63,0.4);
+    transition: filter 0.2s, transform 0.15s;
+  }
+
+  .nav-cta:hover { filter: brightness(1.15); transform: translateY(-1px); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 9rem 2rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Decorative ring behind logo */
+  .hero-ring {
+    position: absolute;
+    width: 480px; height: 480px;
+    border-radius: 50%;
+    border: 1px solid rgba(192,22,63,0.18);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ring-breathe 8s ease-in-out infinite;
+  }
+
+  .hero-ring:nth-child(2) {
+    width: 640px; height: 640px;
+    border-color: rgba(139,92,246,0.1);
+    animation-delay: 2s;
+  }
+
+  .hero-ring:nth-child(3) {
+    width: 820px; height: 820px;
+    border-color: rgba(192,22,63,0.07);
+    animation-delay: 4s;
+  }
+
+  @keyframes ring-breathe {
+    0%, 100% { opacity: 0.6; transform: translate(-50%,-50%) scale(1); }
+    50%       { opacity: 1;   transform: translate(-50%,-50%) scale(1.03); }
+  }
+
+  .hero-logo-wrap {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-logo {
+    width: 110px; height: 110px;
+    object-fit: contain;
+    filter: drop-shadow(0 16px 48px rgba(192,22,63,0.5)) drop-shadow(0 4px 12px rgba(139,92,246,0.3));
+    animation: logo-float 7s ease-in-out infinite;
+  }
+
+  @keyframes logo-float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    33%       { transform: translateY(-10px) rotate(0.5deg); }
+    66%       { transform: translateY(-5px) rotate(-0.5deg); }
+  }
+
+  .hero-kicker {
+    position: relative;
+    z-index: 2;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--crimson-lit);
+    margin-bottom: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .hero-kicker::before,
+  .hero-kicker::after {
+    content: '';
+    display: block;
+    width: 40px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--crimson-mid));
+  }
+
+  .hero-kicker::after {
+    background: linear-gradient(90deg, var(--crimson-mid), transparent);
+  }
+
+  .hero h1 {
+    position: relative;
+    z-index: 2;
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 300;
+    line-height: 1.06;
+    color: var(--ivory);
+    letter-spacing: -0.01em;
+    max-width: 860px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--lilac);
+  }
+
+  .hero-sub {
+    position: relative;
+    z-index: 2;
+    margin-top: 2rem;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 600px;
+    line-height: 1.9;
+  }
+
+  .hero-actions {
+    position: relative;
+    z-index: 2;
+    margin-top: 3rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-crimson {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ivory);
+    background: linear-gradient(135deg, var(--crimson) 0%, var(--crimson-mid) 100%);
+    padding: 1rem 2.8rem;
+    border-radius: 2px;
+    text-decoration: none;
+    box-shadow: 0 8px 40px rgba(192,22,63,0.45), inset 0 1px 0 rgba(255,255,255,0.1);
+    transition: filter 0.22s, transform 0.15s, box-shadow 0.22s;
+  }
+
+  .btn-crimson:hover {
+    filter: brightness(1.18);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 56px rgba(192,22,63,0.55);
+  }
+
+  .btn-ghost-crimson {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,245,247,0.65);
+    border: 1px solid rgba(192,22,63,0.4);
+    padding: 1rem 2.8rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+
+  .btn-ghost-crimson:hover {
+    border-color: var(--crimson-mid);
+    color: var(--ivory);
+    background: rgba(192,22,63,0.1);
+  }
+
+  /* ─── SCROLL INDICATOR ─── */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--faint);
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 44px;
+    background: linear-gradient(to bottom, rgba(192,22,63,0.7), transparent);
+    animation: drop-line 2.2s ease-in-out infinite;
+  }
+
+  @keyframes drop-line {
+    0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+    49%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+    50%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+    100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    position: relative;
+    z-index: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--rule), rgba(139,92,246,0.15), var(--rule), transparent);
+    margin: 0;
+  }
+
+  /* ─── SECTION SHELL ─── */
+  .section {
+    position: relative;
+    z-index: 1;
+    padding: 8rem 0;
+  }
+
+  .container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 3rem;
+  }
+
+  /* ─── EYEBROW ─── */
+  .eyebrow {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--crimson-lit);
+    margin-bottom: 1rem;
+  }
+
+  /* ─── SECTION TITLE ─── */
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.1rem, 4vw, 3.4rem);
+    font-weight: 300;
+    line-height: 1.12;
+    color: var(--ivory);
+    margin-bottom: 1.2rem;
+  }
+
+  .section-title em { font-style: italic; color: var(--lilac); }
+
+  .section-body {
+    font-size: 0.97rem;
+    color: var(--muted);
+    max-width: 580px;
+    line-height: 1.9;
+  }
+
+  /* ─── OVERVIEW SECTION ─── */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7rem;
+    align-items: center;
+    margin-top: 5rem;
+  }
+
+  .overview-text p + p { margin-top: 1.25rem; }
+
+  .overview-text p {
+    font-size: 0.97rem;
+    color: var(--muted);
+    line-height: 1.9;
+  }
+
+  .overview-text p strong {
+    color: var(--ivory);
+    font-weight: 500;
+  }
+
+  /* ─── COMMUNITY TYPES ─── */
+  .types-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    background: rgba(14,5,9,0.5);
+    backdrop-filter: blur(12px);
+  }
+
+  .type-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.35rem 1.75rem;
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.22s;
+    cursor: default;
+  }
+
+  .type-row:last-child { border-bottom: none; }
+
+  .type-row:hover { background: rgba(192,22,63,0.1); }
+
+  .type-icon {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(192,22,63,0.35);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    background: rgba(192,22,63,0.08);
+    transition: border-color 0.22s, background 0.22s;
+  }
+
+  .type-row:hover .type-icon {
+    border-color: var(--crimson-mid);
+    background: rgba(192,22,63,0.18);
+  }
+
+  .type-icon svg {
+    width: 16px; height: 16px;
+    stroke: var(--crimson-lit);
+    fill: none;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .type-label {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--ivory);
+    letter-spacing: 0.02em;
+  }
+
+  .type-desc {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.15rem;
+  }
+
+  /* ─── PROCESS SECTION ─── */
+  .process-section {
+    background: linear-gradient(180deg, rgba(14,5,9,0.6) 0%, rgba(45,10,78,0.18) 50%, rgba(14,5,9,0.6) 100%);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .process-header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  .process-header .section-body {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  /* ─── STEP CARDS ─── */
+  .steps-container {
+    position: relative;
+  }
+
+  /* vertical spine */
+  .steps-container::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--rule), rgba(139,92,246,0.2), var(--rule), transparent);
+    transform: translateX(-50%);
+  }
+
+  .step-card {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 0;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  .step-card:nth-child(odd) .step-content {
+    grid-column: 1;
+    text-align: right;
+    padding-right: 3.5rem;
+  }
+
+  .step-card:nth-child(odd) .step-center { grid-column: 2; }
+  .step-card:nth-child(odd) .step-spacer { grid-column: 3; }
+
+  .step-card:nth-child(even) .step-spacer {
+    grid-column: 1;
+  }
+
+  .step-card:nth-child(even) .step-center { grid-column: 2; }
+
+  .step-card:nth-child(even) .step-content {
+    grid-column: 3;
+    text-align: left;
+    padding-left: 3.5rem;
+  }
+
+  .step-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 0.2rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .step-node {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--crimson) 0%, var(--crimson-mid) 100%);
+    border: 2px solid rgba(255,245,247,0.15);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 0 6px rgba(192,22,63,0.12), 0 4px 24px rgba(192,22,63,0.35);
+    flex-shrink: 0;
+  }
+
+  .step-num-label {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--ivory);
+    line-height: 1;
+  }
+
+  .step-content {
+    padding-top: 0.4rem;
+  }
+
+  .step-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--ivory);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+
+  .step-body {
+    font-size: 0.86rem;
+    color: var(--muted);
+    line-height: 1.85;
+    max-width: 360px;
+  }
+
+  .step-card:nth-child(odd) .step-body { margin-left: auto; }
+
+  .step-tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--crimson-lit);
+    border: 1px solid rgba(232,48,96,0.3);
+    padding: 0.2rem 0.65rem;
+    border-radius: 100px;
+    margin-bottom: 0.65rem;
+  }
+
+  /* ─── ADVANTAGES SECTION ─── */
+  .adv-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 4.5rem;
+    background: var(--rule);
+  }
+
+  .adv-card {
+    background: rgba(14,5,9,0.7);
+    backdrop-filter: blur(12px);
+    padding: 2.75rem 2.25rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .adv-card:hover { background: rgba(155,18,57,0.15); }
+
+  .adv-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--crimson), var(--amethyst));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .adv-card:hover::before { transform: scaleX(1); }
+
+  .adv-num {
+    font-family: 'Fraunces', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    line-height: 1;
+    color: rgba(192,22,63,0.12);
+    margin-bottom: 1.5rem;
+  }
+
+  .adv-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--ivory);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+
+  .adv-body {
+    font-size: 0.83rem;
+    color: var(--muted);
+    line-height: 1.85;
+  }
+
+  /* ─── MISSION QUOTE BAND ─── */
+  .quote-band {
+    padding: 7rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quote-band::before {
+    content: '\201C';
+    position: absolute;
+    top: -1rem; left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Fraunces', serif;
+    font-size: 18rem;
+    line-height: 1;
+    color: rgba(192,22,63,0.06);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .quote-text {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ivory);
+    max-width: 860px;
+    margin: 0 auto;
+    line-height: 1.45;
+    position: relative;
+    z-index: 1;
+  }
+
+  .quote-text em { font-style: normal; color: var(--lilac); }
+
+  .quote-attr {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 2.5rem;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    position: relative;
+    z-index: 1;
+  }
+
+  .quote-attr::before,
+  .quote-attr::after {
+    content: '';
+    display: block;
+    width: 32px; height: 1px;
+    background: var(--rule);
+  }
+
+  /* ─── CTA SECTION ─── */
+  .cta-section {
+    padding: 8rem 0 10rem;
+    position: relative;
+    text-align: center;
+  }
+
+  .cta-box {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 6rem 4rem;
+    border: 1px solid rgba(192,22,63,0.25);
+    border-radius: 6px;
+    background: rgba(14,5,9,0.5);
+    backdrop-filter: blur(16px);
+    overflow: hidden;
+  }
+
+  .cta-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 0%, rgba(192,22,63,0.2) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 50% at 100% 100%, rgba(139,92,246,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* shimmering border */
+  .cta-box::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, rgba(192,22,63,0.45), transparent 40%, rgba(139,92,246,0.25) 70%, transparent);
+    z-index: -1;
+  }
+
+  .cta-badge {
+    display: inline-block;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--crimson-lit);
+    border: 1px solid rgba(232,48,96,0.3);
+    padding: 0.35rem 1.1rem;
+    border-radius: 100px;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-box h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.2rem, 4.5vw, 4rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ivory);
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-box h2 em { font-style: italic; color: var(--lilac); }
+
+  .cta-box p {
+    font-size: 0.95rem;
+    color: var(--muted);
+    max-width: 520px;
+    margin: 0 auto 3rem;
+    line-height: 1.85;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-note {
+    margin-top: 1.5rem;
+    font-size: 0.72rem;
+    color: var(--faint);
+    letter-spacing: 0.05em;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--rule);
+    padding: 2.5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-brand {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgba(255,245,247,0.3);
+  }
+
+  .footer-brand span { color: rgba(139,92,246,0.6); }
+
+  .footer-copy {
+    font-size: 0.7rem;
+    color: rgba(255,245,247,0.2);
+    letter-spacing: 0.06em;
+  }
+
+  /* ─── REVEAL ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-d2 { transition-delay: 0.22s; }
+  .reveal-d3 { transition-delay: 0.34s; }
+  .reveal-d4 { transition-delay: 0.46s; }
+  .reveal-d5 { transition-delay: 0.58s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .overview-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .adv-grid { grid-template-columns: 1fr; }
+    .steps-container::before { display: none; }
+    .step-card {
+      display: block;
+      padding-left: 4rem;
+      position: relative;
+      margin-bottom: 3rem;
+    }
+    .step-card .step-spacer { display: none; }
+    .step-card .step-center {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .step-card .step-content { text-align: left; padding: 0; }
+    .step-card .step-body { margin-left: 0; max-width: 100%; }
+    .cta-box { padding: 4rem 2rem; }
+    footer { flex-direction: column; gap: 0.75rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="scene"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <img src="1000184927.png" alt="CBO Hub" class="nav-logo" onerror="this.style.display='none'">
+    <span class="nav-name">CBO <span>Hub</span></span>
+  </div>
+  <div class="nav-links">
+    <a href="cbo-affiliate.html" class="nav-link">Affiliate Program</a>
+    <a href="affiliate_chart.html" class="nav-link">Fee Chart</a>
+    <a href="cbohub.theartisanhub.space/cbo_communities" class="nav-link">CBO Communities</a>
+  </div>
+  <a href="#become-member" class="nav-cta">Become a Member</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-ring"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-ring"></div>
+
+  <div class="hero-logo-wrap">
+    <img src="1000184927.png" alt="CBO Hub" class="hero-logo" onerror="this.style.display='none'">
+  </div>
+
+  <div class="hero-kicker">CBO Hub &mdash; Communities Program</div>
+
+  <h1>Building <em>active</em> and<br>sustainable communities.</h1>
+
+  <p class="hero-sub">
+    CBO Hub extends church resources and capacity to serve — matching organizations with underserved populations through a collaborative network of academic institutions, philanthropic bodies, public agencies, and non-profit partners.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#become-member" class="btn-crimson">Become a Member</a>
+    <a href="#process" class="btn-ghost-crimson">View the Process</a>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    Learn More
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- OVERVIEW -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <p class="eyebrow">Program Overview</p>
+      <h2 class="section-title">What is a <em>CBO Community?</em></h2>
+    </div>
+
+    <div class="overview-grid">
+      <div class="overview-text reveal reveal-d1">
+        <p>CBO Hub offers capacity building programs designed to extend the reach of church resources — enabling congregations to serve their local neighborhoods at greater scale and with greater consistency.</p>
+        <p>Our purpose is singular: to <strong>build active and sustainable CBO communities</strong> by connecting faith-based organizations with the institutional partners and service infrastructure they need.</p>
+        <p>Reaching underserved populations is difficult. Systems are fragmented. Resources exist but remain disconnected from the people who need them most. CBO Communities resolve this by creating structured collaboration between the organizations already embedded in these neighborhoods.</p>
+        <p>As a <strong>CBO Host</strong>, your church becomes the anchor — equipping members to serve local neighborhoods through an organized network of community-based organizations working in coordination.</p>
+      </div>
+
+      <div class="reveal reveal-d2">
+        <p class="eyebrow" style="margin-bottom:1.5rem;">CBO Community Members Include</p>
+        <div class="types-panel">
+          <div class="type-row">
+            <div class="type-icon">
+              <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <div>
+              <div class="type-label">Academic Institutions</div>
+              <div class="type-desc">Universities, colleges, and community schools</div>
+            </div>
+          </div>
+          <div class="type-row">
+            <div class="type-icon">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <div>
+              <div class="type-label">Philanthropic Organizations</div>
+              <div class="type-desc">Foundations and grant-making bodies</div>
+            </div>
+          </div>
+          <div class="type-row">
+            <div class="type-icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            </div>
+            <div>
+              <div class="type-label">Public Agencies</div>
+              <div class="type-desc">Government bodies and municipal services</div>
+            </div>
+          </div>
+          <div class="type-row">
+            <div class="type-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <div>
+              <div class="type-label">Non-Profit Agencies</div>
+              <div class="type-desc">Mission-aligned service and advocacy organizations</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROCESS -->
+<section class="section process-section" id="process">
+  <div class="container">
+    <div class="process-header reveal">
+      <p class="eyebrow">The CBO Member Process</p>
+      <h2 class="section-title">Five steps from enrollment<br>to <em>active community.</em></h2>
+      <p class="section-body">Each step is sequenced to build on the last — from honest internal assessment to a fully operational community network serving your local neighborhood.</p>
+    </div>
+
+    <div class="steps-container">
+
+      <!-- STEP 1 -->
+      <div class="step-card reveal">
+        <div class="step-content">
+          <span class="step-tag">Step One</span>
+          <h3 class="step-title">Assessment</h3>
+          <p class="step-body">Take the structured assessment to identify your organization's current strengths and gaps. Honest evaluation at this stage ensures the sustainability plan is grounded in operational reality rather than aspiration.</p>
+        </div>
+        <div class="step-center">
+          <div class="step-node"><span class="step-num-label">1</span></div>
+        </div>
+        <div class="step-spacer"></div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="step-card reveal reveal-d1">
+        <div class="step-spacer"></div>
+        <div class="step-center">
+          <div class="step-node"><span class="step-num-label">2</span></div>
+        </div>
+        <div class="step-content">
+          <span class="step-tag">Step Two</span>
+          <h3 class="step-title">Sustainability Plan</h3>
+          <p class="step-body">Define what is operationally necessary to sustain your location for the next three years. This plan becomes the financial and programmatic foundation upon which your service strategy is built.</p>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="step-card reveal reveal-d2">
+        <div class="step-content">
+          <span class="step-tag">Step Three</span>
+          <h3 class="step-title">Service Plan</h3>
+          <p class="step-body">Select a primary offering based on your location and the greatest unmet need in the community you serve. Determine whether you will extend your own capacity or host an organization with existing service infrastructure.</p>
+        </div>
+        <div class="step-center">
+          <div class="step-node"><span class="step-num-label">3</span></div>
+        </div>
+        <div class="step-spacer"></div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="step-card reveal reveal-d3">
+        <div class="step-spacer"></div>
+        <div class="step-center">
+          <div class="step-node"><span class="step-num-label">4</span></div>
+        </div>
+        <div class="step-content">
+          <span class="step-tag">Step Four</span>
+          <h3 class="step-title">Build Your CBO Community</h3>
+          <p class="step-body">Invite CBO Partners to serve as your service provider or anchor. These partners collaborate directly with your church to deliver critical services — operating as an extension of your mission, not in spite of it.</p>
+        </div>
+      </div>
+
+      <!-- STEP 5 -->
+      <div class="step-card reveal reveal-d4">
+        <div class="step-content">
+          <span class="step-tag">Step Five</span>
+          <h3 class="step-title">Capacitate Members</h3>
+          <p class="step-body">Equip congregation members to serve local neighborhoods through CBO Community collaboration and available resources. Members with first-hand knowledge of local conditions serve as trusted ambassadors — expanding program reach through credibility and proximity.</p>
+        </div>
+        <div class="step-center">
+          <div class="step-node"><span class="step-num-label">5</span></div>
+        </div>
+        <div class="step-spacer"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ADVANTAGES -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <p class="eyebrow">Program Advantages</p>
+      <h2 class="section-title">Why CBO Communities<br>delivers where others <em>do not.</em></h2>
+    </div>
+
+    <div class="adv-grid">
+      <div class="adv-card reveal reveal-d1">
+        <div class="adv-num">01</div>
+        <h3 class="adv-title">Proximity as Infrastructure</h3>
+        <p class="adv-body">Church members who live and work in the neighborhoods being served carry irreplaceable local knowledge. CBO Communities turn that proximity into a strategic asset, not an afterthought.</p>
+      </div>
+      <div class="adv-card reveal reveal-d2">
+        <div class="adv-num">02</div>
+        <h3 class="adv-title">Structured Collaboration</h3>
+        <p class="adv-body">Rather than informal partnerships, CBO Communities creates formal coordination frameworks between churches, public agencies, philanthropic bodies, and service organizations — reducing duplication and increasing service reach.</p>
+      </div>
+      <div class="adv-card reveal reveal-d3">
+        <div class="adv-num">03</div>
+        <h3 class="adv-title">Capacity Without Overhead</h3>
+        <p class="adv-body">Churches can choose to host organizations with existing capacity rather than build services from scratch. This model extends impact without requiring proportional growth in staff, facilities, or budget.</p>
+      </div>
+      <div class="adv-card reveal reveal-d1">
+        <div class="adv-num">04</div>
+        <h3 class="adv-title">3-Year Sustainability Framework</h3>
+        <p class="adv-body">The mandatory Sustainability Plan ensures every participating church enters the network with a realistic operating horizon — protecting the community from organizations that cannot sustain their commitments.</p>
+      </div>
+      <div class="adv-card reveal reveal-d2">
+        <div class="adv-num">05</div>
+        <h3 class="adv-title">Need-Driven Service Design</h3>
+        <p class="adv-body">Service plans are built from assessed local need rather than organizational preference. This ensures resources flow toward the actual gaps in each specific community — not generic program templates.</p>
+      </div>
+      <div class="adv-card reveal reveal-d3">
+        <div class="adv-num">06</div>
+        <h3 class="adv-title">Trusted Ambassador Network</h3>
+        <p class="adv-body">Capacitated members become community ambassadors — bridging the trust deficit that prevents underserved populations from engaging with institutional services, even those designed to help them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- QUOTE BAND -->
+<section class="quote-band">
+  <div class="container">
+    <blockquote class="quote-text reveal">
+      Members who live in the local area have <em>first-hand knowledge</em> of local needs and serve as trusted ambassadors for the programs you offer.
+    </blockquote>
+    <div class="quote-attr reveal reveal-d1">CBO Communities &mdash; Program Principles</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<section class="cta-section" id="become-member">
+  <div class="container">
+    <div class="cta-box reveal">
+      <div class="cta-badge">Begin Your Application</div>
+      <h2>Become a <em>CBO Host</em><br>for your community.</h2>
+      <p>Membership activates your church's role in the CBO Communities network — opening access to partner organizations, program frameworks, capacity-building tools, and a structured pathway to sustainable community service.</p>
+      <div class="cta-actions">
+        <a href="https://cbohub.theartisanhub.space/cbo_communities" class="btn-crimson">Become a Member</a>
+        <a href="cbo-affiliate.html" class="btn-ghost-crimson">View Affiliate Program</a>
+      </div>
+      <p class="cta-note">Membership required for CBO Host status &nbsp;&mdash;&nbsp; Assessment completed upon enrollment</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">CBO <span>Hub</span></div>
+  <div class="footer-copy">&copy; 2025 CBO Hub &mdash; Communities Program</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const els = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(el => obs.observe(el));
+
+  // Nav transparency on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.background = window.scrollY > 80
+      ? 'rgba(14,5,9,0.82)'
+      : 'rgba(14,5,9,0.55)';
+  }, { passive: true });
+</script>
+</body>
+</html>
