@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CBO Hub — Affiliate Fee Chart</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:        #1E0A3C;
+    --plum:       #3D1278;
+    --violet:     #6227B0;
+    --mid:        #8B5CF6;
+    --lilac:      #C4B5FD;
+    --blush:      #EDE9FE;
+    --petal:      #F5F0FF;
+    --frost:      #FDFCFF;
+    --crimson:    #BE123C;
+    --rule:       rgba(98,39,176,0.12);
+    --rule-soft:  rgba(98,39,176,0.06);
+    --shadow-sm:  0 2px 12px rgba(62,18,120,0.08);
+    --shadow-md:  0 8px 40px rgba(62,18,120,0.13);
+    --shadow-lg:  0 20px 80px rgba(62,18,120,0.18);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--petal);
+    color: var(--ink);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── GRAIN OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── BACKGROUND GEOMETRY ─── */
+  .bg-geometry {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .bg-geometry::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 65%);
+  }
+
+  .bg-geometry::after {
+    content: '';
+    position: absolute;
+    bottom: -150px; left: -150px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196,181,253,0.18) 0%, transparent 65%);
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(245,240,255,0.82);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--rule);
+    padding: 1rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .nav-logo-wrap {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 2px;
+  }
+
+  .nav-logo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .nav-wordmark {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--plum);
+    letter-spacing: 0.04em;
+  }
+
+  .nav-wordmark span { color: var(--mid); }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  .nav-pill {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: white;
+    background: var(--violet);
+    padding: 0.5rem 1.4rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .nav-pill:hover { background: var(--plum); transform: translateY(-1px); }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 4rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: end;
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+
+  .hero-kicker {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-kicker::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1.5px;
+    background: var(--lilac);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--violet);
+  }
+
+  .hero-sub {
+    margin-top: 1.25rem;
+    font-size: 0.95rem;
+    color: rgba(30,10,60,0.55);
+    max-width: 520px;
+    line-height: 1.85;
+  }
+
+  /* ─── LOGO DISPLAY ─── */
+  .hero-logo {
+    width: 140px;
+    height: 140px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 12px 40px rgba(98,39,176,0.2));
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* ─── CALCULATOR BAND ─── */
+  .calc-band {
+    position: relative;
+    z-index: 1;
+    max-width: 1240px;
+    margin: 1rem auto 0;
+    padding: 0 4rem 4rem;
+  }
+
+  .calc-card {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 2.5rem 3rem;
+    box-shadow: var(--shadow-md);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .calc-label-group h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--plum);
+    margin-bottom: 0.4rem;
+  }
+
+  .calc-label-group p {
+    font-size: 0.82rem;
+    color: rgba(30,10,60,0.45);
+    line-height: 1.7;
+  }
+
+  .calc-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .slider-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .calc-count {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 400;
+    color: var(--violet);
+    min-width: 90px;
+    text-align: right;
+    line-height: 1;
+  }
+
+  .calc-unit {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--lilac);
+    margin-top: 0.35rem;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, var(--violet) 0%, var(--violet) var(--pct, 10%), var(--blush) var(--pct, 10%), var(--blush) 100%);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    border: 2.5px solid var(--violet);
+    box-shadow: 0 2px 12px rgba(98,39,176,0.25);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+    box-shadow: 0 4px 20px rgba(98,39,176,0.35);
+  }
+
+  .slider-ticks {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2px;
+  }
+
+  .slider-ticks span {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: rgba(30,10,60,0.35);
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── TABLE SECTION ─── */
+  .table-section {
+    position: relative;
+    z-index: 1;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 4rem 8rem;
+  }
+
+  .table-wrap {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--rule);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+
+  /* ─── TABLE HEADER ─── */
+  .table-header {
+    display: grid;
+    grid-template-columns: 2.2fr 1fr 1fr 1.1fr 1.4fr;
+    background: var(--ink);
+    padding: 0;
+  }
+
+  .th {
+    padding: 1.1rem 1.25rem;
+    font-size: 0.64rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    border-right: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.15rem;
+  }
+
+  .th:last-child { border-right: none; }
+
+  .th strong {
+    display: block;
+    color: white;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+  }
+
+  .th.highlight {
+    background: rgba(139,92,246,0.2);
+    border-right-color: rgba(139,92,246,0.3);
+  }
+
+  .th.highlight strong { color: var(--lilac); }
+
+  /* ─── CATEGORY HEADER ─── */
+  .cat-header {
+    display: grid;
+    grid-template-columns: 2.2fr 1fr 1fr 1.1fr 1.4fr;
+    background: var(--blush);
+    border-top: 1px solid var(--rule);
+  }
+
+  .cat-label {
+    padding: 0.6rem 1.25rem;
+    font-size: 0.63rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--violet);
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .cat-label::before {
+    content: '';
+    width: 16px;
+    height: 1.5px;
+    background: var(--mid);
+    flex-shrink: 0;
+  }
+
+  /* ─── TABLE ROW ─── */
+  .table-row {
+    display: grid;
+    grid-template-columns: 2.2fr 1fr 1fr 1.1fr 1.4fr;
+    border-top: 1px solid var(--rule-soft);
+    transition: background 0.18s;
+  }
+
+  .table-row:hover { background: var(--petal); }
+
+  .table-row:hover .td.earn-col { background: rgba(139,92,246,0.06); }
+
+  .td {
+    padding: 1.1rem 1.25rem;
+    font-size: 0.88rem;
+    color: var(--ink);
+    border-right: 1px solid var(--rule-soft);
+    display: flex;
+    align-items: center;
+  }
+
+  .td:last-child { border-right: none; }
+
+  .td.offering-name {
+    font-weight: 400;
+    color: var(--plum);
+  }
+
+  .td.offering-name small {
+    display: block;
+    font-size: 0.72rem;
+    color: rgba(30,10,60,0.4);
+    font-weight: 300;
+    margin-top: 0.1rem;
+  }
+
+  .td.price {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: rgba(30,10,60,0.5);
+    font-feature-settings: "tnum";
+  }
+
+  .td.member-price {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--plum);
+    font-feature-settings: "tnum";
+  }
+
+  .td.fee-col {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--violet);
+    font-feature-settings: "tnum";
+  }
+
+  .td.earn-col {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--violet);
+    font-feature-settings: "tnum";
+    background: rgba(139,92,246,0.04);
+    transition: background 0.18s, color 0.18s;
+    border-right: none;
+  }
+
+  .earn-val {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .earn-main {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--violet);
+  }
+
+  .earn-bar-wrap {
+    height: 3px;
+    background: var(--blush);
+    border-radius: 2px;
+    margin-top: 0.3rem;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .earn-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--mid), var(--lilac));
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+
+  /* ─── SAVINGS BADGE ─── */
+  .save-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.63rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--crimson);
+    background: rgba(190,18,60,0.08);
+    padding: 0.2rem 0.5rem;
+    border-radius: 100px;
+    margin-left: 0.6rem;
+    flex-shrink: 0;
+  }
+
+  /* ─── TOTALS ROW ─── */
+  .totals-row {
+    display: grid;
+    grid-template-columns: 2.2fr 1fr 1fr 1.1fr 1.4fr;
+    background: var(--ink);
+    border-top: 2px solid rgba(139,92,246,0.4);
+  }
+
+  .totals-row .td {
+    color: white;
+    font-weight: 500;
+    border-right-color: rgba(255,255,255,0.08);
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+  }
+
+  .totals-row .td.earn-col {
+    background: rgba(139,92,246,0.25);
+    color: var(--lilac);
+  }
+
+  .totals-row .earn-main { color: var(--lilac); font-size: 1.1rem; }
+
+  /* ─── FOOTNOTE BAND ─── */
+  .footnote-band {
+    position: relative;
+    z-index: 1;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 4rem 3rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .footnote-card {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 1.75rem 2rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .fn-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--blush);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .fn-icon svg {
+    width: 18px; height: 18px;
+    stroke: var(--violet);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .fn-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--plum);
+    margin-bottom: 0.4rem;
+  }
+
+  .fn-body {
+    font-size: 0.8rem;
+    color: rgba(30,10,60,0.5);
+    line-height: 1.75;
+  }
+
+  /* ─── CTA ─── */
+  .cta-block {
+    position: relative;
+    z-index: 1;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 4rem 7rem;
+  }
+
+  .cta-inner {
+    background: linear-gradient(135deg, var(--plum) 0%, var(--violet) 60%, rgba(139,92,246,0.8) 100%);
+    border-radius: 14px;
+    padding: 4.5rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-inner::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: 200px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .cta-inner::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .cta-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 400;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-text h2 em { font-style: italic; color: var(--lilac); }
+
+  .cta-text p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+    max-width: 480px;
+    line-height: 1.8;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-white {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--plum);
+    background: white;
+    padding: 0.9rem 2.2rem;
+    border-radius: 6px;
+    white-space: nowrap;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    transition: transform 0.18s, box-shadow 0.18s;
+  }
+
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.25); }
+
+  .btn-outline-white {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: rgba(255,255,255,0.75);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 0.9rem 2.2rem;
+    border-radius: 6px;
+    white-space: nowrap;
+    text-align: center;
+    transition: border-color 0.18s, color 0.18s;
+  }
+
+  .btn-outline-white:hover { border-color: rgba(255,255,255,0.6); color: white; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--rule);
+    padding: 2.5rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: rgba(30,10,60,0.35);
+  }
+
+  .footer-brand span { color: var(--mid); }
+
+  .footer-copy {
+    font-size: 0.72rem;
+    color: rgba(30,10,60,0.3);
+    letter-spacing: 0.06em;
+  }
+
+  /* ─── REVEAL ANIMATIONS ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-d2 { transition-delay: 0.2s; }
+  .reveal-d3 { transition-delay: 0.3s; }
+
+  @media (max-width: 960px) {
+    nav, .hero, .calc-band, .table-section, .footnote-band, .cta-block, footer {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+    .hero { grid-template-columns: 1fr; }
+    .hero-logo { display: none; }
+    .calc-card { grid-template-columns: 1fr; }
+    .footnote-band { grid-template-columns: 1fr; }
+    .cta-inner { grid-template-columns: 1fr; }
+    .table-wrap { overflow-x: auto; }
+    .table-header, .table-row, .cat-header, .totals-row {
+      min-width: 720px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-geometry"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo-wrap">
+      <img src="1000184927.png" alt="CBO Hub" onerror="this.style.display='none'">
+    </div>
+    <span class="nav-wordmark">CBO <span>Hub</span></span>
+  </div>
+  <div class="nav-right">
+    <span class="nav-label">Affiliate Program</span>
+    <a href="#join" class="nav-pill">Become a Member</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero reveal">
+  <div>
+    <div class="hero-kicker">Affiliate Fee Chart</div>
+    <h1>Your <em>earning potential,</em><br>fully transparent.</h1>
+    <p class="hero-sub">Every program, every referral fee, every revenue projection — laid out in full. Use the calculator below to model what your affiliate income could look like at scale.</p>
+  </div>
+  <img src="1000184927.png" alt="CBO Hub" class="hero-logo" onerror="this.style.display='none'">
+</div>
+
+<!-- CALCULATOR -->
+<div class="calc-band reveal reveal-d1">
+  <div class="calc-card">
+    <div class="calc-label-group">
+      <h3>Earnings Calculator</h3>
+      <p>Slide to model your referral volume. The table updates in real time to reflect projected income across all program offerings.</p>
+    </div>
+    <div class="calc-controls">
+      <div class="slider-row">
+        <div>
+          <div class="calc-count" id="refCount">1</div>
+          <div class="calc-unit">Referrals</div>
+        </div>
+        <input type="range" id="refSlider" min="0" max="7" value="0" step="1">
+      </div>
+      <div class="slider-ticks">
+        <span>1</span><span>5</span><span>10</span><span>25</span><span>50</span><span>100</span><span>500</span><span>1,000</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TABLE -->
+<div class="table-section reveal reveal-d2">
+  <div class="table-wrap">
+
+    <!-- HEADER -->
+    <div class="table-header">
+      <div class="th"><strong>Offering</strong>Program / Service</div>
+      <div class="th"><strong>Non-Member</strong>Standard Rate</div>
+      <div class="th"><strong>Member / Affiliate</strong>Discounted Rate</div>
+      <div class="th"><strong>Your Fee</strong>Per Referral</div>
+      <div class="th highlight"><strong>Projected Income</strong>At current volume</div>
+    </div>
+
+    <!-- ── MEMBERSHIP ── -->
+    <div class="cat-header"><div class="cat-label">Membership</div></div>
+
+    <div class="table-row">
+      <div class="td offering-name">Small Church Membership<small>Single congregation, foundational access</small></div>
+      <div class="td price">$150</div>
+      <div class="td member-price">$125 <span class="save-badge">Save $25</span></div>
+      <div class="td fee-col">$25</div>
+      <div class="td earn-col"><div class="earn-val"><span class="earn-main" data-fee="25">$25</span><div class="earn-bar-wrap"><div class="earn-bar" data-fee="25" data-max="25000" style="width:0%"></div></div></div></div>
+    </div>
+
+    <div class="table-row">
+      <div class="td offering-name">Standard Membership<small>Full organizational membership</small></div>
+      <div class="td price">$500</div>
+      <div class="td member-price">$425 <span class="save-badge">Save $75</span></div>
+      <div class="td fee-col">$75</div>
+      <div class="td earn-col"><div class="earn-val"><span class="earn-main" data-fee="75">$75</span><div class="earn-bar-wrap"><div class="earn-bar" data-fee="75" data-max="75000" style="width:0%"></div></div></div></div>
+    </div>
+
+    <!-- ── 2 COACHING SESSIONS ── -->
+    <div class="cat-header"><div class="cat-label">Coaching — 2 Sessions</div></div>
+
+    <div class="table-row">
+      <div class="td offering-name">2 Sessions / Month<small>Monthly coaching enrollment</small></div>
+      <div class="td price">$150</div>
+      <div class="td member-price">$125 <span class="save-badge">Save $25</span></div>
+      <div class="td fee-col">$25</div>
+      <div class="td earn-col"><div class="earn-val"><span class="earn-main" data-fee="25">$25</span><div class="earn-bar-wrap"><div class="earn-bar" data-fee="25" data-max="25000" style="width:0%"></div></div></div></div>
+    </div>
+
+    <div class="table-row">
+      <div class="td offering-name">2 Sessions / Annual<small>Annual coaching package</small></div>
+      <div class="td price">$1,500</div>
+      <div class="td member-price">$1,300 <span class="save-badge">Save $200</span></div>
+      <div class="td fee-col">$200</div>
+      <div class="td earn-col"><div class="earn-val"><span class="earn-main" data-fee="200">$200</span><div class="earn-bar-wrap"><div class="earn-bar" data-fee="200" data-max="200000" style="width:0%"></div></div></div></div>
+    </div>
+
+    <!-- ── 4 COACHING SESSIONS ── -->
+    <div class="cat-header"><div class="cat-label">Coaching — 4 Sessions</div></div>
+
+    <div class="table-row">
+      <div class="td offering-name">4 Sessions / Month<small>Monthly coaching enrollment</small></div>
+      <div class="td price">$200</div>
+      <div class="td member-price">$175 <span class="save-badge">Save $25</span></div>
+      <div class="td fee-col">$25</div>
+      <div class="td earn-col"><div class="earn-val"><span class="earn-main" data-fee="25">$25</span><div class="earn-bar-wrap"><div class="earn-bar" data-fee="25" data-max="25000" style="width:0%"></div></div></div></div>
+    </div>
+
+    <div class="table-row">
+      <div class="td offering-name">4 Sessions / Annual<small>Annual coaching package</small></div>
+      <div class="td price">$2,000</div>
+      <div class="td member-price">$1,800 <span class="save-badge">Save $200</span></div>
+      <div class="td fee-col">$200</div>
+      <div class="td earn-col"><div class="earn-val"><span class="earn-main" data-fee="200">$200</span><div class="earn-bar-wrap"><div class="earn-bar" data-fee="200" data-max="200000" style="width:0%"></div></div></div></div>
+    </div>
+
+    <!-- ── CERTIFICATION ── -->
+    <div class="cat-header"><div class="cat-label">Certification</div></div>
+
+    <div class="table-row">
+      <div class="td offering-name">Church Administration Certification<small>Full professional certification program</small></div>
+      <div class="td price">$2,500</div>
+      <div class="td member-price">$2,250 <span class="save-badge">Save $250</span></div>
+      <div class="td fee-col">$250</div>
+      <div class="td earn-col"><div class="earn-val"><span class="earn-main" data-fee="250">$250</span><div class="earn-bar-wrap"><div class="earn-bar" data-fee="250" data-max="250000" style="width:0%"></div></div></div></div>
+    </div>
+
+    <!-- ── BUSINESS DEVELOPMENT ── -->
+    <div class="cat-header"><div class="cat-label">Business Development</div></div>
+
+    <div class="table-row">
+      <div class="td offering-name">Regenerative Business Development<small>Comprehensive RBD program, individual</small></div>
+      <div class="td price">$10,000</div>
+      <div class="td member-price">$7,500 <span class="save-badge">Save $2,500</span></div>
+      <div class="td fee-col">$2,500</div>
+      <div class="td earn-col"><div class="earn-val"><span class="earn-main" data-fee="2500">$2,500</span><div class="earn-bar-wrap"><div class="earn-bar" data-fee="2500" data-max="2500000" style="width:0%"></div></div></div></div>
+    </div>
+
+    <div class="table-row">
+      <div class="td offering-name">RBD Bulk Enrollment<small>15-participant group package</small></div>
+      <div class="td price">$7,500</div>
+      <div class="td member-price">$5,000 <span class="save-badge">Save $2,500</span></div>
+      <div class="td fee-col">$2,500</div>
+      <div class="td earn-col"><div class="earn-val"><span class="earn-main" data-fee="2500">$2,500</span><div class="earn-bar-wrap"><div class="earn-bar" data-fee="2500" data-max="2500000" style="width:0%"></div></div></div></div>
+    </div>
+
+    <!-- TOTALS -->
+    <div class="totals-row">
+      <div class="td" style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.35);font-weight:500;">Maximum Combined Potential<br><span style="color:rgba(255,255,255,0.2);font-size:0.6rem;">All programs, single referral volume</span></div>
+      <div class="td"></div>
+      <div class="td"></div>
+      <div class="td" style="color:rgba(255,255,255,0.5);font-size:0.78rem;">$5,775 / referral</div>
+      <div class="td earn-col"><div class="earn-val"><span class="earn-main" id="totalEarn">$5,775</span><div class="earn-bar-wrap"><div class="earn-bar" style="width:100%;background:linear-gradient(90deg,#8B5CF6,#C4B5FD)"></div></div></div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTNOTES -->
+<div class="footnote-band">
+  <div class="footnote-card reveal reveal-d1">
+    <div class="fn-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    </div>
+    <div class="fn-title">Member Pricing is Exclusive</div>
+    <p class="fn-body">Discounted rates apply only to enrolled CBO Hub members. Non-member pricing applies to all other participants, creating a clear incentive for your congregation to join.</p>
+  </div>
+  <div class="footnote-card reveal reveal-d2">
+    <div class="fn-icon">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    </div>
+    <div class="fn-title">Fees Are Per Enrollment</div>
+    <p class="fn-body">Referral fees are earned at the point of each qualified enrollment. Annual coaching packages generate $200 per referral — significantly accelerating income at volume.</p>
+  </div>
+  <div class="footnote-card reveal reveal-d3">
+    <div class="fn-icon">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </div>
+    <div class="fn-title">Proceeds Serve Your Mission</div>
+    <p class="fn-body">Affiliate income may be applied to church operating expenses, member scholarships, or program subsidies — keeping revenue circulating within the community you serve.</p>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-block reveal" id="join">
+  <div class="cta-inner">
+    <div class="cta-text">
+      <h2>Ready to activate your<br><em>affiliate pipeline?</em></h2>
+      <p>Membership is the gateway. Once enrolled, your church becomes an affiliate and your referral income pipeline opens immediately — with coaching and alignment provided from day one.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="#" class="btn-white">Become a Member</a>
+      <a href="cbo-affiliate.html" class="btn-outline-white">Program Overview</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">CBO <span>Hub</span></div>
+  <div class="footer-copy">&copy; 2025 CBO Hub &mdash; Affiliate Program</div>
+</footer>
+
+<script>
+  // ─── DATA ───────────────────────────────────────────
+  const steps   = [1, 5, 10, 25, 50, 100, 500, 1000];
+  const totalFee = 25 + 75 + 25 + 200 + 25 + 200 + 250 + 2500 + 2500; // 5800 — but RBD and bulk differ
+
+  const slider  = document.getElementById('refSlider');
+  const counter = document.getElementById('refCount');
+  const earnMains = document.querySelectorAll('.earn-main[data-fee]');
+  const earnBars  = document.querySelectorAll('.earn-bar[data-fee]');
+  const totalEl   = document.getElementById('totalEarn');
+
+  function fmt(n) {
+    if (n >= 1_000_000) return '$' + (n/1_000_000).toFixed(n % 1_000_000 === 0 ? 0 : 1) + 'M';
+    if (n >= 1_000)     return '$' + n.toLocaleString();
+    return '$' + n;
+  }
+
+  function update() {
+    const idx = parseInt(slider.value);
+    const vol = steps[idx];
+    const pct = (idx / (steps.length - 1)) * 100;
+
+    // slider fill
+    slider.style.setProperty('--pct', pct + '%');
+    counter.textContent = vol.toLocaleString();
+
+    // update earn cells
+    earnMains.forEach(el => {
+      const fee = parseInt(el.dataset.fee);
+      el.textContent = fmt(fee * vol);
+    });
+
+    earnBars.forEach(el => {
+      const fee   = parseInt(el.dataset.fee);
+      const max   = parseInt(el.dataset.max);  // max at 1000 refs
+      const curr  = fee * vol;
+      const pctW  = Math.min(100, (curr / max) * 100);
+      el.style.width = pctW + '%';
+    });
+
+    // total row: sum of all unique fees (5,775 unique, listing both coaching annual/monthly)
+    const fees   = Array.from(earnMains).map(el => parseInt(el.dataset.fee));
+    const total  = fees.reduce((a, b) => a + b, 0) * vol;
+    totalEl.textContent = fmt(total);
+  }
+
+  slider.addEventListener('input', update);
+
+  // initial paint
+  slider.style.setProperty('--pct', '0%');
+
+  // ─── REVEAL ─────────────────────────────────────────
+  const revealEls = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  revealEls.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
