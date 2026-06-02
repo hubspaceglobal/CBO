@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CBO HubSpace — Apply for Free</title>
+<meta name="description" content="Apply for free to CBO HubSpace fiscal sponsorship and grant proposal services. One application, endless possibilities.">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+@font-face { font-family: 'Conthrax'; src: url('https://fonts.cdnfonts.com/s/15068/conthrax-sb.woff') format('woff'); }
+:root{
+  --white:#FFFFFF; --black:#0A0A0A; --gray-dark:#3D3D3D; --gray-mid:#6B6B6B;
+  --gray-light:#E5E5E5; --gray-bg:#F8F8F8; --purple:#3B0764;
+  --purple-tint:#F3EEFF; --crimson:#A31621; --lav:#D4B8F0;
+  --font-title:'Conthrax','Orbitron',sans-serif; --font-body:'Montserrat',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--gray-bg);color:var(--black);font-family:var(--font-body);font-size:17px;line-height:1.7;overflow-x:hidden;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--purple);border-bottom:3px solid var(--crimson);display:flex;align-items:center;justify-content:space-between;padding:.8rem 3rem;}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nav-logo img{width:42px;height:42px;display:block;}
+.nav-logo-text{display:flex;flex-direction:column;line-height:1.1;}
+.nav-logo-name{font-family:var(--font-title);font-size:1rem;color:var(--white);letter-spacing:.08em;}
+.nav-logo-name span{color:var(--lav);}
+.nav-logo-sub{font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45);}
+.nav-links{display:flex;gap:1.8rem;align-items:center;}
+.nav-links a{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--lav);}
+.nav-cta{padding:.6rem 1.2rem;background:var(--crimson);color:#fff!important;}
+
+.head{padding:8.5rem 1.5rem 2.5rem;background:linear-gradient(180deg,var(--purple-tint),var(--gray-bg));text-align:center;border-bottom:3px solid var(--purple);}
+.head img{width:88px;margin:0 auto 1rem;display:block;filter:drop-shadow(0 10px 24px rgba(59,7,100,.22));}
+.head .eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--purple);display:block;margin-bottom:.6rem;}
+.head h1{font-family:var(--font-title);font-size:clamp(1.6rem,3.5vw,2.6rem);color:var(--purple);line-height:1.12;}
+.head h1 em{color:var(--crimson);font-style:normal;}
+.head p{max-width:620px;margin:1rem auto 0;color:var(--gray-dark);font-size:1rem;}
+
+.wrap{max-width:760px;margin:-1rem auto 4rem;padding:0 1.2rem;}
+.card{background:var(--white);border:1px solid var(--gray-light);border-top:5px solid var(--purple);padding:2.6rem 2.4rem;}
+
+.s-label{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--purple);display:block;margin:1.8rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid var(--gray-light);}
+.s-label:first-of-type{margin-top:0;}
+.fg{margin-bottom:1.1rem;}
+.fg label{display:block;font-size:13px;font-weight:600;color:var(--gray-dark);margin-bottom:.4rem;letter-spacing:.02em;}
+.req{color:var(--crimson);}
+.fg input,.fg select,.fg textarea{width:100%;padding:.8rem .9rem;border:1px solid var(--gray-light);background:#fff;font-family:var(--font-body);font-size:15px;color:var(--black);transition:border .2s;border-radius:4px;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--purple);}
+.fg textarea{resize:vertical;min-height:110px;}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.help{font-size:12px;color:var(--gray-mid);margin-top:.35rem;}
+
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:.3rem;}
+.check{display:flex;align-items:flex-start;gap:.55rem;background:var(--gray-bg);border:1px solid var(--gray-light);padding:.7rem .85rem;border-radius:4px;cursor:pointer;transition:all .15s;}
+.check:hover{border-color:var(--purple);}
+.check input{width:auto;margin-top:.2rem;accent-color:var(--purple);}
+.check span{font-size:14px;color:var(--gray-dark);}
+
+.btn-submit{width:100%;padding:1.05rem;background:var(--crimson);color:#fff;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s;margin-top:1.4rem;}
+.btn-submit:hover{background:#7a1019;}
+.btn-submit:disabled{opacity:.6;cursor:not-allowed;}
+
+.errbox{display:none;background:#FFF5F5;border-left:4px solid var(--crimson);padding:1rem 1.2rem;margin-bottom:1.4rem;}
+.errbox p{font-size:14px;color:var(--crimson);font-weight:600;}
+
+.success{display:none;text-align:center;padding:1rem;}
+.success .mark{width:64px;height:64px;border-radius:50%;background:var(--purple-tint);display:flex;align-items:center;justify-content:center;margin:0 auto 1.4rem;}
+.success .mark svg{width:30px;height:30px;}
+.success h2{font-family:var(--font-title);font-size:1.5rem;color:var(--purple);margin-bottom:1rem;}
+.success p{font-size:15px;color:var(--gray-dark);line-height:1.8;max-width:520px;margin:0 auto .9rem;}
+.success .pay-note{background:var(--purple-tint);border-radius:6px;padding:1rem 1.2rem;font-size:14px;color:var(--purple);font-weight:600;margin-top:1.2rem;}
+.success a{margin-top:1.6rem;display:inline-block;}
+
+.btn-purple{display:inline-block;padding:.9rem 2rem;background:var(--purple);color:#fff;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:2px solid var(--purple);}
+
+.note{background:var(--purple-tint);border-left:4px solid var(--purple);padding:1rem 1.2rem;margin-bottom:1.6rem;font-size:13.5px;color:var(--purple);line-height:1.6;}
+.note strong{font-weight:700;}
+
+footer{background:#1c0233;padding:2.4rem 3rem;text-align:center;}
+.foot-logo{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:.7rem;}
+.foot-logo img{width:28px;height:28px;}
+.foot-logo-text{font-family:var(--font-title);color:#fff;font-size:.95rem;letter-spacing:.06em;}
+.foot-logo-text span{color:var(--lav);}
+footer p{color:rgba(255,255,255,.5);font-size:12px;margin-top:.2rem;}
+
+@media(max-width:620px){.row,.checks{grid-template-columns:1fr;}nav{padding:.7rem 1.2rem;}.nav-links a:not(.nav-cta){display:none;}.card{padding:1.8rem 1.3rem;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="cbo_logo.png" alt="CBO HubSpace logo">
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">CBO <span>HUBSPACE</span></span>
+      <span class="nav-logo-sub">Application</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="fiscal_sponsorship.html">Fiscal Sponsorship</a>
+    <a href="grant_proposal.html">Grant Proposals</a>
+    <a href="fiscal_apply.html" class="nav-cta active">Apply</a>
+  </div>
+</nav>
+
+<header class="head">
+  <img src="cbo_logo.png" alt="CBO HubSpace mosaic mark">
+  <span class="eyebrow">Apply for Free</span>
+  <h1>Your Mission Deserves Funding.<br><em>One Application, Endless Possibilities.</em></h1>
+  <p>There's no cost to apply. Tell us about your organization and the grant you're pursuing — we'll confirm your service track and quote before any work begins.</p>
+</header>
+
+<div class="wrap">
+  <div class="card">
+
+    <!-- SUCCESS -->
+    <div class="success" id="success">
+      <div class="mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#3B0764" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </div>
+      <h2>Application Received</h2>
+      <p>Thank you for applying to CBO HubSpace. A confirmation has been sent to your email, and our team is reviewing your submission now.</p>
+      <p>We'll be in touch to confirm your service track and the proposal support level needed.</p>
+      <div class="pay-note">Once your application is approved, a secure payment link will be sent to you manually within <strong>24–48 hours</strong>. You only pay after approval.</div>
+      <a href="index.html" class="btn-purple">Back to Home</a>
+    </div>
+
+    <!-- FORM -->
+    <form id="appform" novalidate>
+      <div class="note">
+        <strong>Members-only submission:</strong> CBO HubSpace submits proposals on behalf of members only. Non-members receive full proposal preparation support but submit their own proposals. You can indicate your interest in membership below.
+      </div>
+
+      <div class="errbox" id="errbox"><p></p></div>
+
+      <span class="s-label">Service You're Applying For</span>
+      <div class="fg">
+        <label>Which service? <span class="req">*</span></label>
+        <select id="f-service">
+          <option value="">Select a service...</option>
+          <option>Fiscal Sponsorship</option>
+          <option>Grant Proposal Submission</option>
+          <option>Not sure — recommend for me</option>
+        </select>
+      </div>
+
+      <span class="s-label">About You</span>
+      <div class="fg">
+        <label>Applicant Name <span class="req">*</span></label>
+        <input id="f-name" type="text" placeholder="Your full name">
+      </div>
+      <div class="row">
+        <div class="fg"><label>Phone</label><input id="f-phone" type="tel" placeholder="(000) 000-0000"></div>
+        <div class="fg"><label>Email Address <span class="req">*</span></label><input id="f-email" type="email" placeholder="you@email.com"></div>
+      </div>
+
+      <span class="s-label">About Your Organization</span>
+      <div class="fg"><label>Company / Organization Name</label><input id="f-company" type="text" placeholder="Organization name"></div>
+      <div class="row">
+        <div class="fg">
+          <label>Do you have a company website?</label>
+          <select id="f-haswebsite"><option value="">Select...</option><option>Yes</option><option>No</option></select>
+        </div>
+        <div class="fg" id="websiteWrap" style="display:none;">
+          <label>Company Website URL</label>
+          <input id="f-website" type="url" placeholder="https://...">
+        </div>
+      </div>
+      <div class="fg"><label>Company Address</label><input id="f-address" type="text" placeholder="Street, City, State, ZIP"></div>
+      <div class="row">
+        <div class="fg">
+          <label>Are you a registered 501(c)(3)?</label>
+          <select id="f-501c3"><option value="">Select...</option><option>Yes</option><option>No</option></select>
+        </div>
+        <div class="fg">
+          <label>Annual Income</label>
+          <select id="f-income"><option value="">Select...</option><option>0 – $50k</option><option>$50k – $100k</option><option>$100k – $250k</option></select>
+        </div>
+      </div>
+
+      <span class="s-label">About the Grant</span>
+      <div class="row">
+        <div class="fg"><label>Name of Funder</label><input id="f-funder" type="text" placeholder="Foundation / agency name"></div>
+        <div class="fg"><label>Name of Grant</label><input id="f-grant" type="text" placeholder="Grant / program title"></div>
+      </div>
+      <div class="row">
+        <div class="fg"><label>Grant Deadline</label><input id="f-deadline" type="date"></div>
+        <div class="fg"><label>Link to grant application or funder website</label><input id="f-grantlink" type="url" placeholder="https://..."></div>
+      </div>
+
+      <span class="s-label">Your Mission</span>
+      <div class="fg">
+        <label>Mission Statement</label>
+        <textarea id="f-mission" placeholder="Briefly describe your organization's mission and the community you serve..."></textarea>
+      </div>
+
+      <div class="fg">
+        <label>Which program(s) are you applying for? <span class="help">(select all that apply)</span></label>
+        <div class="checks">
+          <label class="check"><input type="checkbox" name="program" value="Skills Training"><span>Skills Training</span></label>
+          <label class="check"><input type="checkbox" name="program" value="Career Development"><span>Career Development</span></label>
+          <label class="check"><input type="checkbox" name="program" value="Community Health"><span>Community Health</span></label>
+          <label class="check"><input type="checkbox" name="program" value="Housing"><span>Housing</span></label>
+          <label class="check"><input type="checkbox" name="program" value="Economic Development"><span>Economic Development</span></label>
+          <label class="check"><input type="checkbox" name="program" value="Environmental Stewardship"><span>Environmental Stewardship</span></label>
+          <label class="check"><input type="checkbox" name="program" value="Art and Culture"><span>Art and Culture</span></label>
+        </div>
+      </div>
+
+      <span class="s-label">Membership</span>
+      <div class="fg">
+        <label>Interested in CBO HubSpace membership?</label>
+        <select id="f-membership"><option value="">Select...</option><option>Yes</option><option>No</option></select>
+        <p class="help">Members get their proposals submitted on their behalf by our team.</p>
+      </div>
+
+      <button type="submit" class="btn-submit" id="submitBtn">Submit Application</button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-logo">
+    <img src="cbo_logo.png" alt="CBO HubSpace logo">
+    <span class="foot-logo-text">CBO <span>HUBSPACE</span></span>
+  </div>
+  <p>Where Faith Communities and Neighborhood Need Meet</p>
+</footer>
+
+<script>
+const SUPABASE_URL = 'https://qummleodrnuyudauxnpa.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF1bW1sZW9kcm51eXVkYXV4bnBhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2ODYzOTAsImV4cCI6MjA5MTI2MjM5MH0.nlnIYE4h3p-FtiKsIu2otnGdqUKOigUaBVSnx6zC-18';
+
+// Toggle website URL field
+document.getElementById('f-haswebsite').addEventListener('change', function(){
+  document.getElementById('websiteWrap').style.display = (this.value === 'Yes') ? 'block' : 'none';
+});
+
+document.getElementById('appform').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  const errBox = document.getElementById('errbox');
+  const showErr = (msg)=>{ errBox.style.display='block'; errBox.querySelector('p').textContent=msg; errBox.scrollIntoView({behavior:'smooth',block:'center'}); };
+
+  const applicant_name = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const service_type = document.getElementById('f-service').value;
+
+  if (!service_type){ return showErr('Please select which service you are applying for.'); }
+  if (!applicant_name || !email){ return showErr('Please complete the required fields: Applicant Name and Email Address.'); }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ return showErr('Please enter a valid email address.'); }
+
+  const programs = Array.from(document.querySelectorAll('input[name="program"]:checked')).map(c=>c.value);
+
+  const record = {
+    applicant_name,
+    email,
+    phone: document.getElementById('f-phone').value.trim() || null,
+    company_name: document.getElementById('f-company').value.trim() || null,
+    has_website: document.getElementById('f-haswebsite').value || null,
+    company_website: document.getElementById('f-haswebsite').value === 'Yes' ? (document.getElementById('f-website').value.trim() || null) : null,
+    company_address: document.getElementById('f-address').value.trim() || null,
+    is_501c3: document.getElementById('f-501c3').value || null,
+    annual_income: document.getElementById('f-income').value || null,
+    funder_name: document.getElementById('f-funder').value.trim() || null,
+    grant_name: document.getElementById('f-grant').value.trim() || null,
+    grant_deadline: document.getElementById('f-deadline').value || null,
+    grant_link: document.getElementById('f-grantlink').value.trim() || null,
+    mission_statement: document.getElementById('f-mission').value.trim() || null,
+    programs: programs.length ? programs : null,
+    interested_in_membership: document.getElementById('f-membership').value || null,
+    service_type,
+    source_page: 'fiscal_apply'
+  };
+
+  btn.textContent = 'Submitting...';
+  btn.disabled = true;
+  errBox.style.display = 'none';
+
+  try {
+    // 1) Save to Supabase
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/fiscal_applications`, {
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'apikey':SUPABASE_ANON_KEY,
+        'Authorization':`Bearer ${SUPABASE_ANON_KEY}`,
+        'Prefer':'return=minimal'
+      },
+      body: JSON.stringify(record)
+    });
+    if (!res.ok){ throw new Error(await res.text()); }
+
+    // 2) Trigger email notifications (best-effort — won't block success)
+    try {
+      await fetch(`${SUPABASE_URL}/functions/v1/send-fiscal-email`, {
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json',
+          'apikey':SUPABASE_ANON_KEY,
+          'Authorization':`Bearer ${SUPABASE_ANON_KEY}`
+        },
+        body: JSON.stringify(record)
+      });
+    } catch(mailErr){ console.warn('Email notification skipped:', mailErr); }
+
+    // Success UI
+    document.getElementById('appform').style.display = 'none';
+    document.getElementById('success').style.display = 'block';
+    window.scrollTo({top:0, behavior:'smooth'});
+
+  } catch(err){
+    console.error('Submit error:', err);
+    btn.textContent = 'Submit Application';
+    btn.disabled = false;
+    showErr('There was a problem submitting your application. Please try again or email hubspace@theartisanhub.space.');
+  }
+});
+</script>
+
+</body>
+</html>

@@ -160,6 +160,28 @@ footer{background:var(--purple);border-top:3px solid var(--crimson);padding:2.5r
 .foot-logo-text span{color:#D4B8F0;}
 footer p{font-size:12px;color:rgba(255,255,255,.35);font-weight:300;}
 
+/* FUNDING (Fiscal Sponsorship + Grant Proposals) */
+.fund-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin:2.4rem 0;}
+.fund-stat{border-top:3px solid #D4B8F0;padding-top:1rem;}
+.fund-stat .num{font-family:var(--font-title);font-size:1.9rem;color:#D4B8F0;display:block;line-height:1;}
+.fund-stat .lbl{font-size:12px;font-weight:600;color:rgba(255,255,255,.78);margin-top:.45rem;display:block;line-height:1.4;}
+.fund-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.4rem;}
+.fund-card{background:var(--white);border:1px solid var(--gray-light);border-top:4px solid var(--purple);padding:2rem;display:flex;flex-direction:column;}
+.fund-card .num{font-family:var(--font-title);font-size:.85rem;color:var(--purple);letter-spacing:.1em;margin-bottom:.6rem;display:block;}
+.fund-card h3{font-family:var(--font-title);font-size:1.15rem;color:var(--purple);margin-bottom:.8rem;line-height:1.2;}
+.fund-card p{font-size:15px;color:var(--gray-dark);line-height:1.7;margin-bottom:1.2rem;}
+.fund-card .fcta{margin-top:auto;}
+.fund-logo{width:120px;height:120px;float:right;margin:-.5rem 0 1rem 1.2rem;filter:drop-shadow(0 10px 26px rgba(59,7,100,.22));}
+
+/* AFFILIATE + PRICE CHART */
+.split-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.4rem;}
+.split-card{background:var(--white);border:1px solid var(--gray-light);border-left:4px solid var(--crimson);padding:2rem;}
+.split-card h3{font-family:var(--font-title);font-size:1.15rem;color:var(--purple);margin-bottom:.7rem;}
+.split-card p{font-size:15px;color:var(--gray-dark);line-height:1.7;margin-bottom:1.2rem;}
+.split-card ul{list-style:none;margin:0 0 1.4rem;}
+.split-card ul li{position:relative;padding-left:1.3rem;font-size:14px;color:var(--gray-dark);margin-bottom:.5rem;line-height:1.5;}
+.split-card ul li::before{content:"";position:absolute;left:0;top:.5em;width:6px;height:6px;background:var(--crimson);transform:rotate(45deg);}
+
 /* ANIMATIONS */
 .fu{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;}
 .fu.vis{opacity:1;transform:translateY(0);}
@@ -170,7 +192,9 @@ footer p{font-size:12px;color:rgba(255,255,255,.35);font-weight:300;}
   .nav-links{gap:1rem;}
   .pg{padding:3.5rem 1.5rem;}
   .hero{padding:6rem 1.5rem 3.5rem;}
-  .two-col,.two-col.wl,.two-col.wr,.audience-grid,.membership-tiers,.contact-grid,.sources-grid,.crisis-stats{grid-template-columns:1fr;}
+  .two-col,.two-col.wl,.two-col.wr,.audience-grid,.membership-tiers,.contact-grid,.sources-grid,.crisis-stats,.fund-grid,.split-grid{grid-template-columns:1fr;}
+  .fund-stats{grid-template-columns:repeat(2,1fr);}
+  .fund-logo{float:none;display:block;margin:0 0 1rem;}
   footer{flex-direction:column;text-align:center;padding:2rem 1.5rem;}
 }
 @media(max-width:560px){.nav-links{display:none;}}
@@ -197,6 +221,8 @@ footer p{font-size:12px;color:rgba(255,255,255,.35);font-weight:300;}
   <div class="nav-links">
     <a href="#crisis">The Crisis</a>
     <a href="#audiences">Solutions</a>
+    <a href="#funding">Funding</a>
+    <a href="#affiliate">Affiliate</a>
     <a href="#membership">Membership</a>
     <a href="#contact">Contact</a>
   </div>
@@ -343,6 +369,46 @@ footer p{font-size:12px;color:rgba(255,255,255,.35);font-weight:300;}
   </div>
 </section>
 
+<!-- FUNDING / FISCAL SPONSORSHIP -->
+<section class="pg dark" id="funding">
+  <div class="inner">
+    <span class="s-label light">Fiscal Sponsorship &amp; Grant Services</span>
+    <h2 class="s-title light">Your Mission Deserves Funding.<br>One Application, Endless Possibilities.</h2>
+    <div class="s-div light"></div>
+    <p class="s-body" style="color:rgba(255,255,255,.8);max-width:760px;">Access grant funding under our 501(c)(3) umbrella and let our team build winning proposals on your behalf. One free application opens the door to fiscal sponsorship and full-service grant writing — purpose-built for organizations serving underserved communities.</p>
+
+    <div class="fund-stats fu">
+      <div class="fund-stat"><span class="num">83%</span><span class="lbl">Grant Success Rate</span></div>
+      <div class="fund-stat"><span class="num">$15M+</span><span class="lbl">Raised for Communities</span></div>
+      <div class="fund-stat"><span class="num">300+</span><span class="lbl">Participants Served</span></div>
+      <div class="fund-stat"><span class="num">1M+</span><span class="lbl">People Impacted</span></div>
+    </div>
+
+    <div class="fund-grid fu">
+      <div class="fund-card">
+        <span class="num">Service 01</span>
+        <h3>Fiscal Sponsorship</h3>
+        <p>Pursue grants, sponsorships, and tax-deductible donations under our nonprofit umbrella — no need to form your own 501(c)(3). Flat fees for projects under $25k (proposal prep included), with per-cycle pricing for larger programs.</p>
+        <div class="fcta"><a href="fiscal_sponsorship.html" class="learn-more" style="color:#D4B8F0;border-color:#D4B8F0;">Explore Fiscal Sponsorship</a></div>
+      </div>
+      <div class="fund-card">
+        <span class="num">Service 02</span>
+        <h3>Grant Proposal Submission</h3>
+        <p>Three tiers of proposal support matched to complexity — Package Prep (10 business days), Alignment (30 days), and Development (45 days). We submit on behalf of members; non-members get a complete, submission-ready package.</p>
+        <div class="fcta"><a href="grant_proposal.html" class="learn-more" style="color:#D4B8F0;border-color:#D4B8F0;">Explore Grant Proposals</a></div>
+      </div>
+    </div>
+
+    <div class="scorecard-cta fu" style="margin-top:2.5rem;background:var(--crimson);">
+      <div class="scorecard-cta-text">
+        <h4>Ready to fund your mission?</h4>
+        <p>There's no cost to apply. Tell us about your grant and we'll confirm your service track and quote before any work begins.</p>
+      </div>
+      <a href="fiscal_apply.html" class="btn-outline" style="background:#fff;">Apply for Free</a>
+    </div>
+  </div>
+</section>
+
 <!-- MEMBERSHIP -->
 <section class="pg offwhite" id="membership">
   <div class="inner">
@@ -398,6 +464,74 @@ footer p{font-size:12px;color:rgba(255,255,255,.35);font-weight:300;}
         <p>Take the free 5-minute Church Sustainability Assessment before choosing a membership tier. Your results will identify exactly which areas of support your congregation needs most.</p>
       </div>
       <a href="scorecard.html" class="btn-crimson">Take The Assessment</a>
+    </div>
+  </div>
+</section>
+
+<!-- AFFILIATE PROGRAMS -->
+<section class="pg white" id="affiliate">
+  <div class="inner">
+    <span class="s-label">Affiliate Programs</span>
+    <h2 class="s-title">Build Community. Generate Revenue.</h2>
+    <div class="s-div"></div>
+    <p class="s-body" style="max-width:760px;">Become a CBO HubSpace affiliate and turn your congregation's interests into sustainable revenue. Our affiliate program connects faith communities with vetted partners and products that serve your neighborhood — while creating a new income stream for your mission.</p>
+
+    <div class="split-grid fu">
+      <div class="split-card">
+        <h3>The Affiliate Program</h3>
+        <p>A straightforward path to affiliate status, designed around your congregation's interests and community needs.</p>
+        <ul>
+          <li>Revenue that serves the community you already know</li>
+          <li>Partner offerings aligned to your congregation's values</li>
+          <li>A simple onboarding path to affiliate status</li>
+          <li>Transparent, supported, and built for faith communities</li>
+        </ul>
+        <a href="affiliate_program.html" class="btn-purple">Explore the Affiliate Program</a>
+      </div>
+      <div class="split-card">
+        <h3>Why Affiliate With CBO HubSpace</h3>
+        <p>Affiliation diversifies your income while deepening your community impact — no building ownership or existing programs required to get started.</p>
+        <ul>
+          <li>New, recurring revenue for your ministry or organization</li>
+          <li>Access to our network of community partners</li>
+          <li>Full transparency on earning potential</li>
+          <li>Support at every step of the journey</li>
+        </ul>
+        <a href="affiliate_program.html" class="btn-outline">Become an Affiliate</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE CHART -->
+<section class="pg tint" id="pricing">
+  <div class="inner">
+    <span class="s-label">Price Chart</span>
+    <h2 class="s-title">Your Earning Potential, Fully Transparent</h2>
+    <div class="s-div"></div>
+    <p class="s-body" style="max-width:760px;">No guesswork. Our affiliate fee chart lays out exactly how affiliates earn — tier by tier — so you can see your potential before you commit. Pair it with membership tiers and fiscal sponsorship flat fees for a complete picture of working with CBO HubSpace.</p>
+
+    <div class="split-grid fu">
+      <div class="split-card" style="border-left-color:var(--purple);">
+        <h3>Affiliate Fee Chart</h3>
+        <p>A fully transparent breakdown of affiliate earning potential across every tier.</p>
+        <ul>
+          <li>Clear, tiered earning structure</li>
+          <li>No hidden fees — everything in writing</li>
+          <li>See your potential before you activate</li>
+        </ul>
+        <a href="affiliate_pricing_chart.html" class="btn-purple">View the Full Price Chart</a>
+      </div>
+      <div class="split-card" style="border-left-color:var(--purple);">
+        <h3>Membership &amp; Services Pricing</h3>
+        <p>Simple, accessible pricing across membership and funding services.</p>
+        <ul>
+          <li>Membership: $150/yr (under $15k) &middot; $500/yr ($50k+)</li>
+          <li>Fiscal sponsorship: $50 flat (grants &lt;$10k) &middot; $250 flat ($10k–$25k)</li>
+          <li>Grant proposals: tiered by complexity — apply free for a quote</li>
+        </ul>
+        <a href="fiscal_apply.html" class="btn-outline">Apply for Free</a>
+      </div>
     </div>
   </div>
 </section>

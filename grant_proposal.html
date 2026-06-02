@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CBO HubSpace — Grant Proposal Submission Service</title>
+<meta name="description" content="Three tiers of grant proposal support from CBO HubSpace — Package Prep, Alignment, and Development — matched to the complexity of your funding pursuit.">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+@font-face { font-family: 'Conthrax'; src: url('https://fonts.cdnfonts.com/s/15068/conthrax-sb.woff') format('woff'); }
+:root{
+  --white:#FFFFFF; --black:#0A0A0A; --gray-dark:#3D3D3D; --gray-mid:#6B6B6B;
+  --gray-light:#E5E5E5; --gray-bg:#F8F8F8; --purple:#3B0764;
+  --purple-tint:#F3EEFF; --crimson:#A31621; --lav:#D4B8F0;
+  --font-title:'Conthrax','Orbitron',sans-serif; --font-body:'Montserrat',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--white);color:var(--black);font-family:var(--font-body);font-size:17px;line-height:1.75;overflow-x:hidden;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--purple);border-bottom:3px solid var(--crimson);display:flex;align-items:center;justify-content:space-between;padding:.8rem 3rem;}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nav-logo img{width:42px;height:42px;display:block;}
+.nav-logo-text{display:flex;flex-direction:column;line-height:1.1;}
+.nav-logo-name{font-family:var(--font-title);font-size:1rem;color:var(--white);letter-spacing:.08em;}
+.nav-logo-name span{color:var(--lav);}
+.nav-logo-sub{font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45);}
+.nav-links{display:flex;gap:1.8rem;align-items:center;}
+.nav-links a{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--lav);}
+.nav-cta{padding:.6rem 1.2rem;background:var(--crimson);color:#fff!important;}
+.nav-cta:hover{background:#7a1019;}
+
+.hero{padding:8.5rem 3rem 4rem;background:linear-gradient(180deg,var(--purple-tint),var(--white));border-bottom:4px solid var(--purple);}
+.hero-inner{max-width:860px;margin:0 auto;text-align:center;}
+.hero-art img{width:120px;margin:0 auto 1.4rem;display:block;filter:drop-shadow(0 12px 30px rgba(59,7,100,.25));}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--purple);margin-bottom:1.2rem;display:block;}
+.hero-title{font-family:var(--font-title);font-size:clamp(1.9rem,4vw,3rem);color:var(--purple);line-height:1.12;margin-bottom:1rem;}
+.hero-title em{color:var(--crimson);font-style:normal;}
+.hero-divider{width:3rem;height:3px;background:var(--crimson);margin:1.4rem auto 1.6rem;}
+.hero-body{font-size:1.08rem;color:var(--gray-dark);line-height:1.85;margin:0 auto 1.8rem;max-width:680px;}
+
+.btn-crimson{display:inline-block;padding:.95rem 2.1rem;background:var(--crimson);color:#fff;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:background .2s;}
+.btn-crimson:hover{background:#7a1019;}
+.btn-purple{display:inline-block;padding:.85rem 1.8rem;background:var(--purple);color:#fff;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:2px solid var(--purple);cursor:pointer;transition:background .2s;}
+.btn-purple:hover{background:#2a0548;}
+
+.pg{padding:5rem 3rem;}
+.pg.white{background:var(--white);}
+.pg.offwhite{background:var(--gray-bg);}
+.pg.tint{background:var(--purple-tint);}
+.inner{max-width:1080px;margin:0 auto;}
+.s-label{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--purple);margin-bottom:.7rem;display:block;}
+.s-title{font-family:var(--font-title);font-size:clamp(1.6rem,3vw,2.4rem);color:var(--purple);line-height:1.15;margin-bottom:.4rem;}
+.s-div{width:3rem;height:3px;background:var(--purple);margin:1.2rem 0 2rem;}
+.s-body{font-size:17px;color:var(--gray-dark);line-height:1.85;}
+
+/* TIERS */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:2.6rem;align-items:stretch;}
+.tier{background:var(--white);border:1px solid var(--gray-light);border-top:5px solid var(--purple);padding:2.1rem 1.9rem;display:flex;flex-direction:column;}
+.tier.feature{border-top-color:var(--crimson);box-shadow:0 18px 44px rgba(59,7,100,.12);}
+.tier .step-no{font-family:var(--font-title);font-size:.8rem;letter-spacing:.12em;color:var(--crimson);margin-bottom:.5rem;display:block;}
+.tier h3{font-family:var(--font-title);font-size:1.3rem;color:var(--purple);margin-bottom:.3rem;}
+.tier .turn{display:inline-block;background:var(--purple-tint);color:var(--purple);font-size:12px;font-weight:700;letter-spacing:.05em;padding:.35rem .8rem;border-radius:30px;margin:.5rem 0 1.1rem;}
+.tier .lead{font-size:14px;color:var(--gray-dark);line-height:1.7;margin-bottom:1.1rem;}
+.tier ul{list-style:none;margin-bottom:1.4rem;}
+.tier ul li{position:relative;padding-left:1.4rem;font-size:14px;color:var(--gray-dark);margin-bottom:.6rem;line-height:1.5;}
+.tier ul li::before{content:"";position:absolute;left:0;top:.5em;width:7px;height:7px;background:var(--crimson);transform:rotate(45deg);}
+.tier .foot{margin-top:auto;}
+.tier .foot a{width:100%;text-align:center;}
+
+/* NOTE */
+.note{background:var(--purple);border-left:6px solid var(--crimson);padding:2rem 2.2rem;margin-top:2.6rem;}
+.note h4{font-family:var(--font-title);font-size:1.05rem;color:#fff;margin-bottom:.7rem;}
+.note p{font-size:15px;color:rgba(255,255,255,.82);line-height:1.75;}
+.note em{color:var(--lav);font-style:normal;font-weight:700;}
+
+.cta-band{background:var(--purple);padding:3.4rem 3rem;text-align:center;}
+.cta-band h2{font-family:var(--font-title);font-size:clamp(1.5rem,3vw,2.2rem);color:#fff;margin-bottom:.7rem;}
+.cta-band p{color:rgba(255,255,255,.78);font-size:1rem;max-width:640px;margin:0 auto 1.8rem;}
+
+footer{background:#1c0233;padding:2.6rem 3rem;text-align:center;}
+.foot-logo{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:.8rem;}
+.foot-logo img{width:30px;height:30px;}
+.foot-logo-text{font-family:var(--font-title);color:#fff;font-size:1rem;letter-spacing:.06em;}
+.foot-logo-text span{color:var(--lav);}
+footer p{color:rgba(255,255,255,.5);font-size:12px;letter-spacing:.04em;margin-top:.2rem;}
+
+@media(max-width:880px){.tiers{grid-template-columns:1fr;}nav{padding:.7rem 1.2rem;}}
+@media(max-width:620px){.nav-links{gap:.9rem;}.nav-links a:not(.nav-cta){display:none;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="cbo_logo.png" alt="CBO HubSpace logo">
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">CBO <span>HUBSPACE</span></span>
+      <span class="nav-logo-sub">Grant Proposals</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="fiscal_sponsorship.html">Fiscal Sponsorship</a>
+    <a href="grant_proposal.html" class="active">Grant Proposals</a>
+    <a href="fiscal_apply.html" class="nav-cta">Apply for Free</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-art"><img src="cbo_logo.png" alt="CBO HubSpace mosaic mark"></div>
+    <span class="hero-eyebrow">Grant Proposal Submission Service</span>
+    <h1 class="hero-title">Winning Proposals, <em>Built to Fund Your Mission</em></h1>
+    <div class="hero-divider"></div>
+    <p class="hero-body">Three levels of support, matched to the complexity of your pursuit — not the size of your grant. Whether you need a polished package or a proposal built from the ground up, our 83% success rate works for you.</p>
+    <a href="fiscal_apply.html" class="btn-crimson">Apply for Free</a>
+  </div>
+</section>
+
+<!-- TIERS -->
+<section class="pg white">
+  <div class="inner">
+    <span class="s-label">Choose Your Level</span>
+    <h2 class="s-title">Three tiers of proposal support</h2>
+    <div class="s-div"></div>
+    <p class="s-body" style="max-width:760px;">Tiers are based on the complexity of the service required — how much of the proposal we build with you — so you only pay for the support you actually need.</p>
+
+    <div class="tiers">
+      <!-- Tier 1 -->
+      <div class="tier">
+        <span class="step-no">TIER 01</span>
+        <h3>Package Prep</h3>
+        <span class="turn">Turnaround · 10 business days</span>
+        <p class="lead">You have your narrative and materials ready — we assemble, polish, and format a submission-ready package.</p>
+        <ul>
+          <li>Review &amp; organization of your existing materials</li>
+          <li>Formatting to funder requirements &amp; guidelines</li>
+          <li>Budget and attachment assembly</li>
+          <li>Final compliance check before submission</li>
+        </ul>
+        <div class="foot"><a href="fiscal_apply.html" class="btn-purple">Apply for Free</a></div>
+      </div>
+
+      <!-- Tier 2 (feature) -->
+      <div class="tier feature">
+        <span class="step-no">TIER 02</span>
+        <h3>Alignment</h3>
+        <span class="turn">Turnaround · 30 days</span>
+        <p class="lead">You have the pieces, but they need to be sharpened and aligned to the funder's priorities and scoring.</p>
+        <ul>
+          <li>Everything in Package Prep</li>
+          <li>Funder research &amp; priority alignment</li>
+          <li>Narrative editing &amp; strengthening</li>
+          <li>Logic model &amp; outcomes refinement</li>
+          <li>Budget alignment to program goals</li>
+        </ul>
+        <div class="foot"><a href="fiscal_apply.html" class="btn-purple">Apply for Free</a></div>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="tier">
+        <span class="step-no">TIER 03</span>
+        <h3>Development</h3>
+        <span class="turn">Turnaround · 45 days</span>
+        <p class="lead">Full-service development — we build the proposal with you from concept to a complete, competitive submission.</p>
+        <ul>
+          <li>Everything in Alignment</li>
+          <li>Full narrative writing &amp; storytelling</li>
+          <li>Program design &amp; theory of change support</li>
+          <li>Complete budget development</li>
+          <li>Supporting documents &amp; data sourcing</li>
+        </ul>
+        <div class="foot"><a href="fiscal_apply.html" class="btn-purple">Apply for Free</a></div>
+      </div>
+    </div>
+
+    <div class="note">
+      <h4>Members-Only Submission</h4>
+      <p>CBO HubSpace submits completed proposals on behalf of <em>members only</em>. Non-members receive their finished proposal package and submit it themselves. The right tier — and, for programs, the proposal support level — is confirmed with you upon application. Payment links are sent manually within 24–48 hours after approval.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <h2>Not sure which tier fits?</h2>
+  <p>Apply for free and tell us about your grant. We'll recommend the right level of support and confirm your quote before any work begins.</p>
+  <a href="fiscal_apply.html" class="btn-crimson">Apply for Free</a>
+</section>
+
+<footer>
+  <div class="foot-logo">
+    <img src="cbo_logo.png" alt="CBO HubSpace logo">
+    <span class="foot-logo-text">CBO <span>HUBSPACE</span></span>
+  </div>
+  <p>Where Faith Communities and Neighborhood Need Meet</p>
+  <p>Community Infrastructure Initiative</p>
+</footer>
+
+</body>
+</html>

@@ -143,6 +143,57 @@ create policy "Authenticated can delete members"
   using (true);
 
 -- ============================================================
+-- TABLE 4: fiscal_applications
+-- Source: Fiscal Sponsorship / Grant Proposal application form
+--         on fiscal_apply.html
+-- ============================================================
+create table if not exists fiscal_applications (
+  id                      uuid default uuid_generate_v4() primary key,
+  created_at              timestamptz default now() not null,
+  applicant_name          text not null,
+  phone                   text,
+  email                   text not null,
+  company_name            text,
+  has_website             text,          -- 'Yes' | 'No'
+  company_website         text,          -- URL when has_website = 'Yes'
+  company_address         text,
+  is_501c3                text,          -- 'Yes' | 'No'
+  annual_income           text,          -- '0 – $50k' | '$50k – $100k' | '$100k – $250k'
+  funder_name             text,
+  grant_name              text,
+  grant_deadline          date,
+  grant_link              text,
+  mission_statement       text,
+  programs                text[],        -- ['skills training','career development', ...]
+  interested_in_membership text,         -- 'Yes' | 'No'
+  service_type            text,          -- 'Fiscal Sponsorship' | 'Grant Proposal Submission'
+  source_page             text default 'fiscal_apply'
+);
+
+-- Row Level Security
+alter table fiscal_applications enable row level security;
+
+create policy "Public can insert fiscal applications"
+  on fiscal_applications for insert
+  to anon
+  with check (true);
+
+create policy "Authenticated can read fiscal applications"
+  on fiscal_applications for select
+  to authenticated
+  using (true);
+
+create policy "Authenticated can update fiscal applications"
+  on fiscal_applications for update
+  to authenticated
+  using (true);
+
+create policy "Authenticated can delete fiscal applications"
+  on fiscal_applications for delete
+  to authenticated
+  using (true);
+
+-- ============================================================
 -- USEFUL VIEWS FOR REPORTING
 -- ============================================================
 
