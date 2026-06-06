@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CBO HubSpace — Affiliate Program</title>
+<meta name="description" content="Become a CBO HubSpace affiliate — build your CBO Hub, connect with community partners, and earn referral fees while advancing the mission.">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+@font-face { font-family: 'Conthrax'; src: url('https://fonts.cdnfonts.com/s/15068/conthrax-sb.woff') format('woff'); }
+:root{
+  --white:#FFFFFF; --black:#0A0A0A; --gray-dark:#3D3D3D; --gray-mid:#6B6B6B;
+  --gray-light:#E5E5E5; --gray-bg:#F8F8F8; --purple:#3B0764;
+  --purple-tint:#F3EEFF; --crimson:#A31621; --lav:#D4B8F0;
+  --font-title:'Conthrax','Orbitron',sans-serif; --font-body:'Montserrat',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--white);color:var(--black);font-family:var(--font-body);font-size:17px;line-height:1.75;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--purple);border-bottom:3px solid var(--crimson);display:flex;align-items:center;justify-content:space-between;padding:.8rem 3rem;}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nav-logo img{width:42px;height:42px;display:block;}
+.nav-logo-text{display:flex;flex-direction:column;line-height:1.1;}
+.nav-logo-name{font-family:var(--font-title);font-size:1rem;color:var(--white);letter-spacing:.08em;}
+.nav-logo-name span{color:var(--lav);}
+.nav-logo-sub{font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45);}
+.nav-links{display:flex;gap:1.8rem;align-items:center;}
+.nav-links a{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--lav);}
+.nav-cta{padding:.6rem 1.2rem;background:var(--crimson);color:#fff!important;}
+.nav-cta:hover{background:#7a1019;}
+
+/* HERO */
+.hero{padding:8.5rem 3rem 4rem;background:linear-gradient(180deg,var(--purple-tint),var(--white));border-bottom:4px solid var(--purple);}
+.hero-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr;gap:3rem;align-items:center;}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--purple);margin-bottom:1.2rem;display:block;}
+.hero-title{font-family:var(--font-title);font-size:clamp(1.9rem,4vw,3rem);color:var(--purple);line-height:1.12;margin-bottom:1rem;}
+.hero-title em{color:var(--crimson);font-style:normal;}
+.hero-divider{width:3rem;height:3px;background:var(--crimson);margin:1.4rem 0 1.6rem;}
+.hero-body{font-size:1.08rem;color:var(--gray-dark);line-height:1.85;margin-bottom:1.8rem;}
+.hero-art img{width:100%;border-top:4px solid var(--purple);box-shadow:0 18px 44px rgba(59,7,100,.18);display:block;}
+
+.btn-crimson{display:inline-block;padding:.95rem 2.1rem;background:var(--crimson);color:#fff;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:background .2s;}
+.btn-crimson:hover{background:#7a1019;}
+.btn-purple{display:inline-block;padding:.95rem 2.1rem;background:var(--purple);color:#fff;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:2px solid var(--purple);cursor:pointer;transition:background .2s;}
+.btn-purple:hover{background:#2a0548;}
+.btn-outline{display:inline-block;padding:.95rem 2.1rem;background:transparent;color:var(--purple);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:2px solid var(--purple);cursor:pointer;transition:all .2s;}
+.btn-outline:hover{background:var(--purple);color:#fff;}
+
+/* SECTIONS */
+.pg{padding:5rem 3rem;}
+.pg.white{background:var(--white);}
+.pg.offwhite{background:var(--gray-bg);}
+.pg.tint{background:var(--purple-tint);}
+.inner{max-width:1080px;margin:0 auto;}
+.s-label{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--purple);margin-bottom:.7rem;display:block;}
+.s-title{font-family:var(--font-title);font-size:clamp(1.6rem,3vw,2.4rem);color:var(--purple);line-height:1.15;margin-bottom:.4rem;}
+.s-div{width:3rem;height:3px;background:var(--purple);margin:1.2rem 0 2rem;}
+.s-body{font-size:17px;color:var(--gray-dark);line-height:1.85;max-width:760px;}
+.s-body p+p{margin-top:1.1rem;}
+
+/* STEPS */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:2.6rem;align-items:stretch;}
+.step-card{background:var(--white);border:1px solid var(--gray-light);border-top:5px solid var(--purple);padding:2.1rem 1.9rem;display:flex;flex-direction:column;}
+.step-card:nth-child(2){border-top-color:var(--crimson);}
+.step-card .n{font-family:var(--font-title);font-size:1.6rem;color:var(--crimson);display:block;margin-bottom:.6rem;}
+.step-card h3{font-family:var(--font-title);font-size:1.2rem;color:var(--purple);margin-bottom:.7rem;line-height:1.2;}
+.step-card p{font-size:15px;color:var(--gray-dark);line-height:1.7;}
+
+/* WHY GRID */
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;margin-top:2.4rem;}
+.why-card{background:var(--white);border:1px solid var(--gray-light);border-left:4px solid var(--purple);padding:1.7rem 1.8rem;}
+.why-card h4{font-family:var(--font-title);font-size:1.05rem;color:var(--purple);margin-bottom:.5rem;line-height:1.2;}
+.why-card p{font-size:14px;color:var(--gray-dark);line-height:1.65;}
+
+/* CTA BAND */
+.cta-band{background:var(--purple);padding:3.4rem 3rem;text-align:center;}
+.cta-band h2{font-family:var(--font-title);font-size:clamp(1.5rem,3vw,2.2rem);color:#fff;margin-bottom:.7rem;}
+.cta-band p{color:rgba(255,255,255,.78);font-size:1rem;max-width:640px;margin:0 auto 1.8rem;}
+
+/* FOOTER */
+footer{background:#1c0233;padding:2.6rem 3rem;text-align:center;}
+.foot-logo{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:.8rem;}
+.foot-logo img{width:30px;height:30px;}
+.foot-logo-text{font-family:var(--font-title);color:#fff;font-size:1rem;letter-spacing:.06em;}
+.foot-logo-text span{color:var(--lav);}
+footer p{color:rgba(255,255,255,.5);font-size:12px;letter-spacing:.04em;margin-top:.2rem;}
+
+@media(max-width:880px){
+  .hero-inner{grid-template-columns:1fr;}.hero-art{order:-1;}
+  .steps{grid-template-columns:1fr;}
+  .why-grid{grid-template-columns:1fr;}
+  nav{padding:.7rem 1.2rem;}
+}
+@media(max-width:620px){.nav-links{gap:.9rem;}.nav-links a:not(.nav-cta){display:none;}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="cbo_logo.png" alt="CBO HubSpace logo">
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">CBO <span>HUBSPACE</span></span>
+      <span class="nav-logo-sub">Affiliate Program</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="fiscal_sponsorship.html">Fiscal Sponsorship</a>
+    <a href="grant_proposal.html">Grant Proposals</a>
+    <a href="affiliate.html" class="active">Affiliate</a>
+    <a href="index.html#contact" class="nav-cta">Contact Us</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-eyebrow">Affiliate Program</span>
+      <h1 class="hero-title">Build Community. Generate Revenue.<br><em>Advance the Mission.</em></h1>
+      <div class="hero-divider"></div>
+      <p class="hero-body">Turn your network and your mission into sustainable revenue. As a CBO HubSpace affiliate, you connect faith communities and organizations with the partners they need — and earn referral fees as those collaborations come to life.</p>
+      <a href="index.html#contact" class="btn-crimson">Contact Us</a>
+    </div>
+    <div class="hero-art">
+      <img src="images/affiliate.jpg" alt="CBO HubSpace affiliates collaborating">
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="pg white">
+  <div class="inner">
+    <span class="s-label">How It Works</span>
+    <h2 class="s-title">Three steps to start earning</h2>
+    <div class="s-div"></div>
+    <p class="s-body">A simple, supported path — from membership to active referrals. You build the relationships; we facilitate the development and collaboration.</p>
+
+    <div class="steps">
+      <div class="step-card">
+        <span class="n">01</span>
+        <h3>Become a Member</h3>
+        <p>Members are automatically recognized as affiliates — no separate application required.</p>
+      </div>
+      <div class="step-card">
+        <span class="n">02</span>
+        <h3>Build Your CBO Hub</h3>
+        <p>Connect with the individuals and organizations you want to partner with and serve.</p>
+      </div>
+      <div class="step-card">
+        <span class="n">03</span>
+        <h3>Earn Referral Fees</h3>
+        <p>We facilitate the development process and collaboration — you earn as partnerships grow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY AFFILIATE -->
+<section class="pg offwhite">
+  <div class="inner">
+    <span class="s-label">Why Affiliate</span>
+    <h2 class="s-title">Revenue that serves your mission</h2>
+    <div class="s-div"></div>
+    <p class="s-body">Affiliation diversifies your income while deepening your community impact — built for faith communities and the organizations that serve alongside them.</p>
+
+    <div class="why-grid">
+      <div class="why-card"><h4>Recurring Revenue</h4><p>A new, ongoing income stream for your ministry or organization.</p></div>
+      <div class="why-card"><h4>A Trusted Network</h4><p>Access to our growing network of vetted community partners.</p></div>
+      <div class="why-card"><h4>Full Transparency</h4><p>Clear earning potential, with support and reporting at every step.</p></div>
+      <div class="why-card"><h4>Mission Aligned</h4><p>Partner offerings that fit your community's values and real needs.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <h2>Ready to build your CBO Hub?</h2>
+  <p>Connect with our team to get started as a CBO HubSpace affiliate and turn your network into impact.</p>
+  <a href="index.html#contact" class="btn-crimson">Contact Us</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">
+    <img src="cbo_logo.png" alt="CBO HubSpace logo">
+    <span class="foot-logo-text">CBO <span>HUBSPACE</span></span>
+  </div>
+  <p>Where Faith Communities and Neighborhood Need Meet</p>
+  <p>Community Infrastructure Initiative</p>
+</footer>
+
+</body>
+</html>

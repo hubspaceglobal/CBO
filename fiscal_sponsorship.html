@@ -93,6 +93,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--purple);bor
 .note p{font-size:15px;color:rgba(255,255,255,.82);line-height:1.75;}
 .note em{color:var(--lav);font-style:normal;font-weight:700;}
 
+/* BENEFITS GRID */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.4rem;}
+.feat{background:var(--white);border:1px solid var(--gray-light);border-left:4px solid var(--purple);padding:1.6rem 1.7rem;}
+.feat h4{font-family:var(--font-title);font-size:1rem;color:var(--purple);margin-bottom:.5rem;line-height:1.2;}
+.feat p{font-size:14px;color:var(--gray-dark);line-height:1.6;}
+
+/* HIGHLIGHT PHOTO */
+.highlight{display:grid;grid-template-columns:1.05fr 1fr;gap:0;margin-top:2.5rem;background:var(--white);border:1px solid var(--gray-light);border-top:5px solid var(--crimson);overflow:hidden;align-items:stretch;}
+.highlight .hl-photo{background:url('images/fiscal_sponsorship.jpg') center/cover no-repeat;min-height:320px;}
+.highlight .hl-text{padding:2.6rem;}
+.highlight .hl-text h3{font-family:var(--font-title);font-size:1.35rem;color:var(--purple);margin:.3rem 0 1rem;line-height:1.2;}
+.highlight .hl-text p{font-size:15px;color:var(--gray-dark);line-height:1.75;margin-bottom:1rem;}
+
 /* PROGRAM CHIPS */
 .chips{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2rem;}
 .chip{background:var(--white);border:1px solid var(--purple);color:var(--purple);font-size:13px;font-weight:600;padding:.55rem 1.1rem;border-radius:40px;}
@@ -121,6 +134,9 @@ footer p{color:rgba(255,255,255,.5);font-size:12px;letter-spacing:.04em;margin-t
   .hero-inner{grid-template-columns:1fr;}.hero-art{order:-1;}
   .stats-inner{grid-template-columns:repeat(2,1fr);}
   .track-grid{grid-template-columns:1fr;}
+  .feat-grid{grid-template-columns:1fr;}
+  .highlight{grid-template-columns:1fr;}
+  .highlight .hl-photo{min-height:220px;}
   .steps{grid-template-columns:repeat(2,1fr);}
   nav{padding:.7rem 1.2rem;}
 }
@@ -142,7 +158,8 @@ footer p{color:rgba(255,255,255,.5);font-size:12px;letter-spacing:.04em;margin-t
     <a href="index.html">Home</a>
     <a href="fiscal_sponsorship.html" class="active">Fiscal Sponsorship</a>
     <a href="grant_proposal.html">Grant Proposals</a>
-    <a href="fiscal_apply.html" class="nav-cta">Apply for Free</a>
+    <a href="affiliate.html">Affiliate</a>
+    <a href="fiscal_apply.html" class="nav-cta">Apply Now</a>
   </div>
 </nav>
 
@@ -151,11 +168,11 @@ footer p{color:rgba(255,255,255,.5);font-size:12px;letter-spacing:.04em;margin-t
   <div class="hero-inner">
     <div>
       <span class="hero-eyebrow">Fiscal Sponsorship Service</span>
-      <h1 class="hero-title">Your Mission Deserves Funding.<br><em>One Application, Endless Possibilities.</em></h1>
+      <h1 class="hero-title">Your Mission Deserves Funding.<br><em>No Barriers. More Opportunities.</em></h1>
       <div class="hero-divider"></div>
       <p class="hero-body">CBO HubSpace extends its 501(c)(3) status to mission-aligned projects and programs — so you can pursue grants, sponsorships, and tax-deductible donations without forming your own nonprofit. We handle the compliance and the paperwork. You stay focused on impact.</p>
       <div class="hero-cta-row">
-        <a href="fiscal_apply.html" class="btn-crimson">Apply for Free</a>
+        <a href="fiscal_apply.html" class="btn-crimson">Apply Now</a>
         <a href="grant_proposal.html" class="btn-outline">Grant Proposal Service</a>
       </div>
     </div>
@@ -182,8 +199,18 @@ footer p{color:rgba(255,255,255,.5);font-size:12px;letter-spacing:.04em;margin-t
     <h2 class="s-title">Funding-ready, without the red tape</h2>
     <div class="s-div"></div>
     <div class="s-body" style="max-width:760px;">
-      <p>Fiscal sponsorship allows your project or program to operate under the legal and tax-exempt umbrella of CBO HubSpace. Funders make grants and donors give to CBO HubSpace on your behalf, and those dollars flow directly to your work — fully accounted for and compliant.</p>
-      <p>This is ideal for emerging initiatives, grassroots efforts, and established programs that want to access funding opportunities reserved for registered 501(c)(3) organizations without the cost and delay of incorporating one.</p>
+      <p>Fiscal sponsorship is a formal arrangement in which a registered 501(c)(3) nonprofit — CBO HubSpace — extends its tax-exempt status to your project or program. It lets your work receive grants and tax-deductible donations under our umbrella, without the time and expense of forming and maintaining your own nonprofit entity.</p>
+      <p>Funders make grants and donors give to CBO HubSpace on your behalf, and those dollars flow directly to your work — fully accounted for and compliant. We handle the legal and financial oversight so you can stay focused on impact.</p>
+      <p>This is ideal for emerging initiatives, grassroots efforts, and established programs that want to access funding opportunities reserved for registered nonprofits without the cost and delay of incorporating one.</p>
+    </div>
+
+    <div class="feat-grid">
+      <div class="feat"><h4>501(c)(3) Umbrella</h4><p>Operate under our tax-exempt status from day one — no incorporation required.</p></div>
+      <div class="feat"><h4>Grant Access</h4><p>Pursue funding reserved for registered nonprofits, with proposals our team helps build.</p></div>
+      <div class="feat"><h4>Tax-Deductible Giving</h4><p>Donors give to a recognized 501(c)(3) and receive a deductible receipt.</p></div>
+      <div class="feat"><h4>Compliance Handled</h4><p>We manage financial oversight, reporting, and accountability for every dollar.</p></div>
+      <div class="feat"><h4>Low, Transparent Fees</h4><p>Flat fees for smaller projects and clear per-cycle pricing for larger programs.</p></div>
+      <div class="feat"><h4>Mission Focus</h4><p>Built for organizations serving underserved communities and neighborhoods.</p></div>
     </div>
   </div>
 </section>
@@ -201,15 +228,15 @@ footer p{color:rgba(255,255,255,.5);font-size:12px;letter-spacing:.04em;margin-t
       <div class="track">
         <span class="tag">Projects · Grants under $25,000</span>
         <h3>Sponsored Projects</h3>
-        <p>For projects pursuing grants up to $25,000. A simple, flat administrative fee — and your proposal package preparation is included.</p>
+        <p>For projects pursuing grants up to $25,000. A simple, flat administrative fee that covers your proposal package preparation.</p>
         <div class="fee-row"><span>Grants under $10,000</span><span>$50 flat</span></div>
         <div class="fee-row"><span>Grants $10,000 – $25,000</span><span>$250 flat</span></div>
         <ul>
-          <li><strong>Proposal package prep service included</strong> at no extra cost</li>
-          <li>All administrative fees included in the flat fee</li>
+          <li><strong>Proposal package preparation</strong> as part of your flat fee</li>
+          <li>All administrative fees covered by the flat fee</li>
           <li>Pay half upfront, half only if the grant is awarded</li>
         </ul>
-        <div class="foot"><a href="fiscal_apply.html" class="btn-purple">Apply for Free</a></div>
+        <div class="foot"><a href="fiscal_apply.html" class="btn-purple">Apply Now</a></div>
       </div>
 
       <!-- Programs -->
@@ -222,9 +249,9 @@ footer p{color:rgba(255,255,255,.5);font-size:12px;letter-spacing:.04em;margin-t
         <ul>
           <li>We determine the proposal support level needed upon application</li>
           <li>Fee is confirmed before any work begins — no surprises</li>
-          <li>All administrative fees included in the quoted figure</li>
+          <li>All administrative fees covered by the quoted figure</li>
         </ul>
-        <div class="foot"><a href="fiscal_apply.html" class="btn-purple">Apply for Free</a></div>
+        <div class="foot"><a href="fiscal_apply.html" class="btn-purple">Apply Now</a></div>
       </div>
     </div>
 
@@ -255,6 +282,25 @@ footer p{color:rgba(255,255,255,.5);font-size:12px;letter-spacing:.04em;margin-t
   </div>
 </section>
 
+<!-- HIGHLIGHT -->
+<section class="pg tint">
+  <div class="inner">
+    <span class="s-label">Why It Matters</span>
+    <h2 class="s-title">A shared home for your mission</h2>
+    <div class="s-div"></div>
+    <div class="highlight">
+      <div class="hl-photo"></div>
+      <div class="hl-text">
+        <span class="s-label">Backed By a Real Organization</span>
+        <h3>You bring the mission. We bring the infrastructure.</h3>
+        <p>Fiscal sponsorship gives your work the credibility, compliance, and financial backbone of an established nonprofit — without the overhead of building one. From the first grant to long-term programs, you operate inside a structure funders already trust.</p>
+        <p>Our team becomes an extension of yours: preparing proposals, managing accountability, and clearing the administrative barriers that slow mission-driven work down.</p>
+        <a href="fiscal_apply.html" class="btn-crimson">Apply Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PROCESS -->
 <section class="pg offwhite">
   <div class="inner">
@@ -262,7 +308,7 @@ footer p{color:rgba(255,255,255,.5);font-size:12px;letter-spacing:.04em;margin-t
     <h2 class="s-title">From application to award</h2>
     <div class="s-div"></div>
     <div class="steps">
-      <div class="step"><span class="n">01</span><h5>Apply Free</h5><p>Submit the application — no cost, no obligation. Tell us about your mission and the grant you're targeting.</p></div>
+      <div class="step"><span class="n">01</span><h5>Apply Now</h5><p>Submit the application — no obligation. Tell us about your mission and the grant you're targeting.</p></div>
       <div class="step"><span class="n">02</span><h5>Review &amp; Quote</h5><p>We confirm your track and the proposal support level needed, then send your flat fee or cycle quote.</p></div>
       <div class="step"><span class="n">03</span><h5>Payment Link</h5><p>Once approved, a secure payment link is sent manually within 24–48 hours. Projects pay half upfront.</p></div>
       <div class="step"><span class="n">04</span><h5>We Build &amp; Submit</h5><p>We prepare your proposal package and — for members — submit on your behalf. Balance due only if awarded.</p></div>
@@ -273,8 +319,8 @@ footer p{color:rgba(255,255,255,.5);font-size:12px;letter-spacing:.04em;margin-t
 <!-- CTA -->
 <section class="cta-band">
   <h2>Ready to fund your mission?</h2>
-  <p>One free application opens the door to grants, sponsorships, and tax-deductible giving. Let's get your work funded.</p>
-  <a href="fiscal_apply.html" class="btn-crimson">Apply for Free</a>
+  <p>One application opens the door to grants, sponsorships, and tax-deductible giving. Let's get your work funded.</p>
+  <a href="fiscal_apply.html" class="btn-crimson">Apply Now</a>
 </section>
 
 <!-- FOOTER -->

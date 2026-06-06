@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CBO HubSpace — Grant Proposal Submission Service</title>
-<meta name="description" content="Three tiers of grant proposal support from CBO HubSpace — Package Prep, Alignment, and Development — matched to the complexity of your funding pursuit.">
+<meta name="description" content="Three options of grant proposal support from CBO HubSpace — Package Prep, Alignment, and Development — matched to the complexity of your funding pursuit.">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 @font-face { font-family: 'Conthrax'; src: url('https://fonts.cdnfonts.com/s/15068/conthrax-sb.woff') format('woff'); }
@@ -69,6 +69,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--purple);bor
 .tier .foot{margin-top:auto;}
 .tier .foot a{width:100%;text-align:center;}
 
+/* PROGRESSION */
+.prog-row{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-top:1.6rem;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);}
+.prog-row .step{background:var(--purple-tint);padding:.4rem .9rem;border-radius:30px;}
+.prog-row .arr{color:var(--crimson);font-size:1rem;}
+
+/* HIGHLIGHT PHOTO */
+.highlight{display:grid;grid-template-columns:1fr 1.05fr;gap:0;margin-top:2.6rem;background:var(--white);border:1px solid var(--gray-light);border-top:5px solid var(--crimson);overflow:hidden;align-items:stretch;}
+.highlight .hl-photo{background:url('images/proposal.jpg') center/cover no-repeat;min-height:320px;}
+.highlight .hl-text{padding:2.6rem;}
+.highlight .hl-text h3{font-family:var(--font-title);font-size:1.35rem;color:var(--purple);margin:.3rem 0 1rem;line-height:1.2;}
+.highlight .hl-text p{font-size:15px;color:var(--gray-dark);line-height:1.75;margin-bottom:1rem;}
+
 /* NOTE */
 .note{background:var(--purple);border-left:6px solid var(--crimson);padding:2rem 2.2rem;margin-top:2.6rem;}
 .note h4{font-family:var(--font-title);font-size:1.05rem;color:#fff;margin-bottom:.7rem;}
@@ -86,7 +98,7 @@ footer{background:#1c0233;padding:2.6rem 3rem;text-align:center;}
 .foot-logo-text span{color:var(--lav);}
 footer p{color:rgba(255,255,255,.5);font-size:12px;letter-spacing:.04em;margin-top:.2rem;}
 
-@media(max-width:880px){.tiers{grid-template-columns:1fr;}nav{padding:.7rem 1.2rem;}}
+@media(max-width:880px){.tiers{grid-template-columns:1fr;}.highlight{grid-template-columns:1fr;}.highlight .hl-photo{min-height:220px;}nav{padding:.7rem 1.2rem;}}
 @media(max-width:620px){.nav-links{gap:.9rem;}.nav-links a:not(.nav-cta){display:none;}}
 </style>
 </head>
@@ -104,7 +116,8 @@ footer p{color:rgba(255,255,255,.5);font-size:12px;letter-spacing:.04em;margin-t
     <a href="index.html">Home</a>
     <a href="fiscal_sponsorship.html">Fiscal Sponsorship</a>
     <a href="grant_proposal.html" class="active">Grant Proposals</a>
-    <a href="fiscal_apply.html" class="nav-cta">Apply for Free</a>
+    <a href="affiliate.html">Affiliate</a>
+    <a href="fiscal_apply.html" class="nav-cta">Apply Now</a>
   </div>
 </nav>
 
@@ -112,43 +125,48 @@ footer p{color:rgba(255,255,255,.5);font-size:12px;letter-spacing:.04em;margin-t
   <div class="hero-inner">
     <div class="hero-art"><img src="cbo_logo.png" alt="CBO HubSpace mosaic mark"></div>
     <span class="hero-eyebrow">Grant Proposal Submission Service</span>
-    <h1 class="hero-title">Winning Proposals, <em>Built to Fund Your Mission</em></h1>
+    <h1 class="hero-title">Your Story, <em>Turned Into Measurable Outcomes</em></h1>
     <div class="hero-divider"></div>
-    <p class="hero-body">Three levels of support, matched to the complexity of your pursuit — not the size of your grant. Whether you need a polished package or a proposal built from the ground up, our 83% success rate works for you.</p>
-    <a href="fiscal_apply.html" class="btn-crimson">Apply for Free</a>
+    <p class="hero-body">Three options of support, matched to the complexity of your pursuit — not the size of your grant. Start small and build, or hand us the full proposal. Our 83% success rate works for you at every level.</p>
+    <a href="fiscal_apply.html" class="btn-crimson">Apply Now</a>
   </div>
 </section>
 
 <!-- TIERS -->
 <section class="pg white">
   <div class="inner">
-    <span class="s-label">Choose Your Level</span>
-    <h2 class="s-title">Three tiers of proposal support</h2>
+    <span class="s-label">Choose Your Option</span>
+    <h2 class="s-title">Three options of proposal support</h2>
     <div class="s-div"></div>
-    <p class="s-body" style="max-width:760px;">Tiers are based on the complexity of the service required — how much of the proposal we build with you — so you only pay for the support you actually need.</p>
+    <p class="s-body" style="max-width:760px;">Each option is matched to the complexity of the service required — how much of the proposal we build with you — so you only pay for the support you actually need. Start small, then grow into deeper support as your goals expand.</p>
+    <div class="prog-row">
+      <span class="step">Start Small</span><span class="arr">→</span>
+      <span class="step">Sharpen &amp; Align</span><span class="arr">→</span>
+      <span class="step">Full Development</span>
+    </div>
 
     <div class="tiers">
-      <!-- Tier 1 -->
+      <!-- Option 1 -->
       <div class="tier">
-        <span class="step-no">TIER 01</span>
+        <span class="step-no">OPTION 01</span>
         <h3>Package Prep</h3>
         <span class="turn">Turnaround · 10 business days</span>
-        <p class="lead">You have your narrative and materials ready — we assemble, polish, and format a submission-ready package.</p>
+        <p class="lead">Start here. You have your narrative and materials ready — we assemble, polish, and format a submission-ready package.</p>
         <ul>
           <li>Review &amp; organization of your existing materials</li>
           <li>Formatting to funder requirements &amp; guidelines</li>
           <li>Budget and attachment assembly</li>
           <li>Final compliance check before submission</li>
         </ul>
-        <div class="foot"><a href="fiscal_apply.html" class="btn-purple">Apply for Free</a></div>
+        <div class="foot"><a href="fiscal_apply.html" class="btn-purple">Apply Now</a></div>
       </div>
 
-      <!-- Tier 2 (feature) -->
+      <!-- Option 2 (feature) -->
       <div class="tier feature">
-        <span class="step-no">TIER 02</span>
+        <span class="step-no">OPTION 02</span>
         <h3>Alignment</h3>
         <span class="turn">Turnaround · 30 days</span>
-        <p class="lead">You have the pieces, but they need to be sharpened and aligned to the funder's priorities and scoring.</p>
+        <p class="lead">A step up. You have the pieces, but they need to be sharpened and aligned to the funder's priorities and scoring.</p>
         <ul>
           <li>Everything in Package Prep</li>
           <li>Funder research &amp; priority alignment</li>
@@ -156,15 +174,15 @@ footer p{color:rgba(255,255,255,.5);font-size:12px;letter-spacing:.04em;margin-t
           <li>Logic model &amp; outcomes refinement</li>
           <li>Budget alignment to program goals</li>
         </ul>
-        <div class="foot"><a href="fiscal_apply.html" class="btn-purple">Apply for Free</a></div>
+        <div class="foot"><a href="fiscal_apply.html" class="btn-purple">Apply Now</a></div>
       </div>
 
-      <!-- Tier 3 -->
+      <!-- Option 3 -->
       <div class="tier">
-        <span class="step-no">TIER 03</span>
+        <span class="step-no">OPTION 03</span>
         <h3>Development</h3>
         <span class="turn">Turnaround · 45 days</span>
-        <p class="lead">Full-service development — we build the proposal with you from concept to a complete, competitive submission.</p>
+        <p class="lead">Full support. We build the proposal with you from concept to a complete, competitive submission.</p>
         <ul>
           <li>Everything in Alignment</li>
           <li>Full narrative writing &amp; storytelling</li>
@@ -172,21 +190,33 @@ footer p{color:rgba(255,255,255,.5);font-size:12px;letter-spacing:.04em;margin-t
           <li>Complete budget development</li>
           <li>Supporting documents &amp; data sourcing</li>
         </ul>
-        <div class="foot"><a href="fiscal_apply.html" class="btn-purple">Apply for Free</a></div>
+        <div class="foot"><a href="fiscal_apply.html" class="btn-purple">Apply Now</a></div>
+      </div>
+    </div>
+
+    <!-- HIGHLIGHT -->
+    <div class="highlight">
+      <div class="hl-photo"></div>
+      <div class="hl-text">
+        <span class="s-label">From Story to Outcomes</span>
+        <h3>We turn your mission into a fundable case</h3>
+        <p>Funders invest in clarity and measurable impact. Whichever option you start with, our team shapes your story, data, and budget into a proposal that scores — and grows with you as your programs expand.</p>
+        <p>Begin with a polished package, then move into deeper alignment and full development as your funding goals grow. Each option builds on the last.</p>
+        <a href="index.html#contact" class="btn-purple">Contact Us</a>
       </div>
     </div>
 
     <div class="note">
       <h4>Members-Only Submission</h4>
-      <p>CBO HubSpace submits completed proposals on behalf of <em>members only</em>. Non-members receive their finished proposal package and submit it themselves. The right tier — and, for programs, the proposal support level — is confirmed with you upon application. Payment links are sent manually within 24–48 hours after approval.</p>
+      <p>CBO HubSpace submits completed proposals on behalf of <em>members only</em>. Non-members receive their finished proposal package and submit it themselves. The right option — and, for programs, the proposal support level — is confirmed with you upon application. Payment links are sent manually within 24–48 hours after approval.</p>
     </div>
   </div>
 </section>
 
 <section class="cta-band">
-  <h2>Not sure which tier fits?</h2>
-  <p>Apply for free and tell us about your grant. We'll recommend the right level of support and confirm your quote before any work begins.</p>
-  <a href="fiscal_apply.html" class="btn-crimson">Apply for Free</a>
+  <h2>Not sure which option fits?</h2>
+  <p>Tell us about your grant and we'll recommend the right level of support and confirm your quote before any work begins.</p>
+  <a href="index.html#contact" class="btn-crimson">Contact Us</a>
 </section>
 
 <footer>

@@ -33,7 +33,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--purple);bor
 .logo-hex{flex-shrink:0;}
 
 /* HERO */
-.hero{padding:7.5rem 3rem 5rem;background:var(--white);border-bottom:4px solid var(--purple);}
+.hero{padding:6rem 3rem 3.5rem;background:var(--white);border-bottom:4px solid var(--purple);}
 .hero-inner{max-width:860px;margin:0 auto;}
 .hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--purple);margin-bottom:1.2rem;display:block;}
 .hero-title{font-family:var(--font-title);font-size:clamp(2rem,4.5vw,3.8rem);color:var(--purple);line-height:1.1;margin-bottom:1rem;}
@@ -46,10 +46,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--purple);bor
 .ticker-inner{display:flex;gap:5rem;width:max-content;animation:scroll 55s linear infinite;}
 @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 .ticker-item{white-space:nowrap;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.8);}
-.ticker-item strong{color:#F9C0C5;margin-right:.4rem;}
+.ticker-item strong{color:#D4B8F0;margin-right:.4rem;}
 
 /* SECTIONS */
-.pg{padding:5rem 3rem;}
+.pg{padding:3.6rem 3rem;}
 .pg.white{background:var(--white);}
 .pg.offwhite{background:var(--gray-bg);}
 .pg.tint{background:var(--purple-tint);}
@@ -99,6 +99,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--purple);bor
 .btn-outline{display:inline-block;padding:.9rem 2rem;background:var(--white);color:var(--purple);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:2px solid var(--purple);cursor:pointer;transition:all .2s;}
 .btn-outline:hover{background:var(--purple);color:var(--white);}
 
+/* SCORECARD QUOTE */
+.sc-quote{border-left:5px solid var(--crimson);padding:1.2rem 0 1.2rem 2rem;margin:0 0 2.2rem;max-width:760px;}
+.sc-quote p{font-family:var(--font-title);font-size:clamp(1.3rem,2.4vw,1.9rem);color:var(--purple);line-height:1.35;}
+.sc-quote cite{display:block;margin-top:1rem;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--crimson);font-style:normal;}
+
 /* AUDIENCE OVERVIEW CARDS */
 .audience-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:2.5rem;}
 .aud-card{background:var(--white);border:1px solid var(--gray-light);border-top:4px solid var(--purple);padding:2rem;}
@@ -111,7 +116,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--purple);bor
 /* TENSION */
 .tension{background:var(--purple);border-left:6px solid var(--crimson);padding:3rem;}
 .tension p{font-family:var(--font-title);font-size:clamp(1.1rem,2.2vw,1.6rem);color:var(--white);line-height:1.5;}
-.tension em{color:#F9C0C5;font-style:normal;}
+.tension em{color:#D4B8F0;font-style:normal;}
 .tension-sub{font-size:15px;font-weight:400;color:rgba(255,255,255,.7);margin-top:1.2rem;line-height:1.8;}
 .tension-res{margin-top:1.8rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.15);font-size:15px;font-weight:600;color:#D4B8F0;}
 
@@ -182,6 +187,31 @@ footer p{font-size:12px;color:rgba(255,255,255,.35);font-weight:300;}
 .split-card ul li{position:relative;padding-left:1.3rem;font-size:14px;color:var(--gray-dark);margin-bottom:.5rem;line-height:1.5;}
 .split-card ul li::before{content:"";position:absolute;left:0;top:.5em;width:6px;height:6px;background:var(--crimson);transform:rotate(45deg);}
 
+/* WHO WE SERVE — photo background */
+.serve-section{position:relative;background:var(--purple);overflow:hidden;}
+.serve-section::before{content:"";position:absolute;inset:0;background:url('images/community.jpg') center/cover no-repeat;opacity:.16;}
+.serve-section::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(59,7,100,.92),rgba(59,7,100,.82));}
+.serve-section .inner{position:relative;z-index:2;}
+.serve-section .aud-card{background:rgba(255,255,255,.97);}
+
+/* LEADERSHIP CARE highlight */
+.care-highlight{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:2.5rem;background:var(--white);border:1px solid var(--gray-light);border-top:4px solid var(--crimson);overflow:hidden;}
+.care-photo{background:url('images/leadership_care.jpg') center/cover no-repeat;min-height:300px;}
+.care-text{padding:2.6rem;}
+.care-text .s-label{color:var(--crimson);}
+.care-text h3{font-family:var(--font-title);font-size:1.45rem;color:var(--purple);line-height:1.2;margin:.3rem 0 1rem;}
+.care-text p{font-size:15px;color:var(--gray-dark);line-height:1.8;}
+
+/* SECTION PHOTO BANNER */
+.photo-banner{width:100%;height:340px;object-fit:cover;display:block;margin-bottom:2.4rem;border-top:4px solid var(--purple);}
+
+/* APPLY NOW BAND */
+.apply-band{position:relative;background:var(--crimson);overflow:hidden;}
+.apply-band .inner{position:relative;z-index:2;text-align:center;display:flex;flex-direction:column;align-items:center;}
+.apply-band h2{font-family:var(--font-title);font-size:clamp(1.6rem,3vw,2.4rem);color:var(--white);line-height:1.15;margin-bottom:1rem;max-width:720px;}
+.apply-band p{font-size:16px;color:rgba(255,255,255,.85);line-height:1.7;max-width:600px;margin-bottom:1.8rem;}
+.apply-band .btn-outline{background:var(--white);}
+
 /* ANIMATIONS */
 .fu{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;}
 .fu.vis{opacity:1;transform:translateY(0);}
@@ -192,7 +222,8 @@ footer p{font-size:12px;color:rgba(255,255,255,.35);font-weight:300;}
   .nav-links{gap:1rem;}
   .pg{padding:3.5rem 1.5rem;}
   .hero{padding:6rem 1.5rem 3.5rem;}
-  .two-col,.two-col.wl,.two-col.wr,.audience-grid,.membership-tiers,.contact-grid,.sources-grid,.crisis-stats,.fund-grid,.split-grid{grid-template-columns:1fr;}
+  .two-col,.two-col.wl,.two-col.wr,.audience-grid,.membership-tiers,.contact-grid,.sources-grid,.crisis-stats,.fund-grid,.split-grid,.care-highlight{grid-template-columns:1fr;}
+  .care-photo{min-height:220px;}
   .fund-stats{grid-template-columns:repeat(2,1fr);}
   .fund-logo{float:none;display:block;margin:0 0 1rem;}
   footer{flex-direction:column;text-align:center;padding:2rem 1.5rem;}
@@ -205,14 +236,7 @@ footer p{font-size:12px;color:rgba(255,255,255,.35);font-weight:300;}
 <!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">
-    <svg class="logo-hex" width="36" height="36" viewBox="0 0 100 100" fill="none">
-      <polygon points="50,4 93,27.5 93,72.5 50,96 7,72.5 7,27.5" fill="#3B0764"/>
-      <clipPath id="lh"><rect x="0" y="0" width="50" height="100"/></clipPath>
-      <polygon points="50,4 93,27.5 93,72.5 50,96 7,72.5 7,27.5" fill="#A31621" clip-path="url(#lh)"/>
-      <rect x="47" y="4" width="6" height="92" fill="white" opacity="0.15"/>
-      <polygon points="50,28 67,50 50,72 33,50" fill="white" opacity="0.92"/>
-      <circle cx="50" cy="50" r="6" fill="#3B0764"/>
-    </svg>
+    <img src="cbo_logo.png" alt="CBO HubSpace logo" class="logo-hex" width="40" height="40" style="display:block;">
     <div class="nav-logo-text">
       <span class="nav-logo-name">CBO <span>HUBSPACE</span></span>
       <span class="nav-logo-sub">Community Based Organizations</span>
@@ -220,10 +244,10 @@ footer p{font-size:12px;color:rgba(255,255,255,.35);font-weight:300;}
   </a>
   <div class="nav-links">
     <a href="#crisis">The Crisis</a>
-    <a href="#audiences">Solutions</a>
-    <a href="#funding">Funding</a>
-    <a href="#affiliate">Affiliate</a>
+    <a href="#audiences">Who We Serve</a>
     <a href="#membership">Membership</a>
+    <a href="#services">Services</a>
+    <a href="#affiliate">Affiliate</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
@@ -231,10 +255,10 @@ footer p{font-size:12px;color:rgba(255,255,255,.35);font-weight:300;}
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
-    <span class="hero-eyebrow">Community Infrastructure Initiative</span>
-    <h1 class="hero-title">Where Faith-Based CBOs<br><em>Anchor Communities</em></h1>
+    <span class="hero-eyebrow">Community Cooperative Mission</span>
+    <h1 class="hero-title">Kingdom Resources<br><em>in Action</em></h1>
     <div class="hero-divider"></div>
-    <p class="hero-body">Thousands of church buildings that have anchored American neighborhoods for generations are going dark. At the same time, those neighborhoods face deepening deficits in housing, youth programming, health services, and civic support. These are not two separate problems. They are one problem — and CBO HubSpace is the answer.</p>
+    <p class="hero-body">CBO HubSpace equips faith communities to transform their buildings into thriving community hubs — delivering services, generating revenue, and restoring purpose. We bring the network and the framework. You bring the building and the mission.</p>
   </div>
 </section>
 
@@ -260,63 +284,14 @@ footer p{font-size:12px;color:rgba(255,255,255,.35);font-weight:300;}
     <span class="s-label red">The Crisis</span>
     <h2 class="s-title">Why Churches Are Closing</h2>
     <div class="s-div red"></div>
-    <div class="two-col fu">
-      <div>
-        <div class="s-body">
-          <p>The American religious landscape is undergoing its most significant contraction in modern history. In 2024, Lifeway Research confirmed that more Protestant churches closed than opened for the first time in decades. Projections for 2025 place closures as high as 15,000 in a single year.</p>
-          <p>This is not a single-cause crisis. It is the convergence of demographic decline, cultural disconnection, financial mismanagement, and institutional failure — each compounding the others. The consequences extend far beyond theology. When churches close, communities lose irreplaceable infrastructure at a time when social isolation is already at crisis levels.</p>
-        </div>
-      </div>
-      <ul class="why-list">
-        <li class="why-item">
-          <span class="why-num">01</span>
-          <div>
-            <div class="why-ttl">No Vision, Mission, or Purpose</div>
-            <div class="why-body">Congregations without a clear reason for existence beyond Sunday services cannot attract or retain members across any demographic.</div>
-          </div>
-        </li>
-        <li class="why-item">
-          <span class="why-num">02</span>
-          <div>
-            <div class="why-ttl">Demographic Collapse</div>
-            <div class="why-body">The median age of churchgoers is now approximately 60. The pipeline of future members has fundamentally broken down.</div>
-            <span class="why-data">44% of adults aged 18–29 claim no religious affiliation</span>
-          </div>
-        </li>
-        <li class="why-item">
-          <span class="why-num">03</span>
-          <div>
-            <div class="why-ttl">Cultural Irrelevance</div>
-            <div class="why-body">Shifting lifestyle norms and digital alternatives have eroded the church's role as a social anchor.</div>
-            <span class="why-data">29% of Americans now religiously unaffiliated — Pew Research 2024</span>
-          </div>
-        </li>
-        <li class="why-item">
-          <span class="why-num">04</span>
-          <div>
-            <div class="why-ttl">Financial Mismanagement</div>
-            <div class="why-body">Pastors are trained in theology, not accounting. Aging buildings require maintenance that many congregations cannot fund.</div>
-            <span class="why-data">2.7 million members fall inactive each year</span>
-          </div>
-        </li>
-        <li class="why-item">
-          <span class="why-num">05</span>
-          <div>
-            <div class="why-ttl">Institutional Scandals</div>
-            <div class="why-body">Abuse disclosures, financial impropriety, and leadership failures have permanently severed trust in organized religion for millions of Americans.</div>
-            <span class="why-data">1 in 3 congregations currently at risk of closure</span>
-          </div>
-        </li>
-      </ul>
+    <div class="s-body fu" style="max-width:820px;">
+      <p>The American religious landscape is undergoing its most significant contraction in modern history. In 2024, Lifeway Research confirmed that more Protestant churches closed than opened for the first time in decades — and projections for 2025 place closures as high as 15,000 in a single year. It is the convergence of demographic decline, cultural disconnection, and financial strain, each compounding the others. When churches close, communities lose irreplaceable infrastructure at a time when social isolation is already at crisis levels.</p>
     </div>
 
-    <!-- SCORECARD CTA -->
-    <div class="scorecard-cta fu">
-      <div class="scorecard-cta-text">
-        <h4>How Sustainable Is Your Congregation?</h4>
-        <p>Our free 5-minute Church Sustainability Scorecard assesses your organization across seven domains — financial health, attendance, demographics, leadership, facilities, mission, and adaptability — and delivers a personalized action plan.</p>
-      </div>
-      <a href="scorecard.html" class="btn-crimson">Take The Assessment</a>
+    <div class="crisis-stats fu">
+      <div class="cs"><span class="num">15,000</span><span class="desc">Church closures projected in 2025</span></div>
+      <div class="cs"><span class="num">29%</span><span class="desc">Of Americans now religiously unaffiliated</span><span class="src">Pew Research, 2024</span></div>
+      <div class="cs"><span class="num">1 in 3</span><span class="desc">Congregations currently at risk of closure</span></div>
     </div>
   </div>
 </section>
@@ -332,79 +307,59 @@ footer p{font-size:12px;color:rgba(255,255,255,.35);font-weight:300;}
   </div>
 </section>
 
-<!-- AUDIENCE OVERVIEW -->
-<section class="pg white" id="audiences">
+<!-- SCORECARD -->
+<section class="pg white" id="scorecard">
   <div class="inner">
-    <span class="s-label">Who We Serve</span>
-    <h2 class="s-title">Four Audiences. One Mission.</h2>
-    <div class="s-div"></div>
-    <p class="s-body" style="max-width:680px;">CBO HubSpace serves four distinct audiences — each with specific unmet needs that faith facilities are uniquely positioned to address. Select an audience below to explore the full scope of services and partnerships available.</p>
+    <span class="s-label red">The Scorecard</span>
+    <h2 class="s-title">Measure Your Path to Transformation</h2>
+    <div class="s-div red"></div>
+    <blockquote class="sc-quote fu">
+      <p>"Experience is your progress. Transformation is your success."</p>
+      <cite>— Stephanie Hervey</cite>
+    </blockquote>
+    <div class="scorecard-cta fu">
+      <div class="scorecard-cta-text">
+        <h4>How Sustainable Is Your Congregation?</h4>
+        <p>Our 5-minute Church Sustainability Scorecard assesses your organization across seven domains — financial health, attendance, demographics, leadership, facilities, mission, and adaptability — and delivers a personalized action plan.</p>
+      </div>
+      <a href="scorecard.html" class="btn-crimson">Take The Assessment</a>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE OVERVIEW -->
+<section class="pg serve-section" id="audiences">
+  <div class="inner">
+    <span class="s-label light">Who We Serve</span>
+    <h2 class="s-title light">Four Audiences. One Mission.</h2>
+    <div class="s-div light"></div>
+    <p class="s-body" style="max-width:680px;color:rgba(255,255,255,.82);">CBO HubSpace serves four distinct audiences — each with unmet needs that faith facilities are uniquely positioned to address.</p>
 
     <div class="audience-grid fu">
       <div class="aud-card">
         <span class="num">Audience 01</span>
         <h3>Church &amp; Ministries</h3>
-        <p>Faith communities facing declining membership and financial pressure discover a sustainable path forward — not through survival strategies, but through a return to their original calling. CBO HubSpace connects congregations with housing programs, youth initiatives, wellness services, and civic organizations that need exactly the space and community trust that churches hold. Service is the strategy.</p>
+        <p>Congregations facing decline find a sustainable path forward — a return to their calling. We connect them with housing programs, youth initiatives, and wellness services that need the space and trust churches hold. Service is the strategy.</p>
         <a href="#contact" class="learn-more">Explore Church Services</a>
       </div>
       <div class="aud-card">
         <span class="num">Audience 02</span>
         <h3>Community-Based Organizations</h3>
-        <p>CBOs have the mission, the staff, and the community relationships. What they frequently lack is a consistent, affordable, dignified home for their work. CBO HubSpace connects nonprofits and service organizations with faith facilities that are ready to serve as a permanent, reliable base for meetings, programming, training, and community events — in the neighborhoods they already serve.</p>
+        <p>CBOs have the mission, staff, and relationships — what they often lack is an affordable, dignified home. We connect them with faith facilities ready to serve as a reliable base for programming, training, and community events.</p>
         <a href="#contact" class="learn-more">Explore CBO Services</a>
       </div>
       <div class="aud-card">
         <span class="num">Audience 03</span>
         <h3>Schools &amp; Educational Programs</h3>
-        <p>The school building is essential — and it is not enough. After-school programs are turned away for lack of space. Vocational training programs cannot find accessible locations. CBO HubSpace creates a network of neighborhood learning sites — connecting educational programs with classroom wings, gymnasiums, and activity spaces within faith facilities, located where students already live.</p>
+        <p>After-school and vocational programs are turned away for lack of space. We create a network of neighborhood learning sites — classroom wings, gymnasiums, and activity spaces within faith facilities, where students already live.</p>
         <a href="#contact" class="learn-more">Explore Education Services</a>
       </div>
       <div class="aud-card">
         <span class="num">Audience 04</span>
         <h3>Community</h3>
-        <p>Every initiative CBO HubSpace supports ultimately serves the people who live in the neighborhood. Residents who need stable housing, families navigating systems without advocates, neighbors who want to organize and build. The faith facility at the center of the neighborhood is not a relic — it is a resource that belongs to the community. CBO HubSpace ensures it is activated in service of those who need it most.</p>
+        <p>Every initiative ultimately serves the neighborhood — residents needing housing, families navigating systems, neighbors organizing to build. The faith facility is not a relic; it is a resource that belongs to the community.</p>
         <a href="#contact" class="learn-more">Explore Community Services</a>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- FUNDING / FISCAL SPONSORSHIP -->
-<section class="pg dark" id="funding">
-  <div class="inner">
-    <span class="s-label light">Fiscal Sponsorship &amp; Grant Services</span>
-    <h2 class="s-title light">Your Mission Deserves Funding.<br>One Application, Endless Possibilities.</h2>
-    <div class="s-div light"></div>
-    <p class="s-body" style="color:rgba(255,255,255,.8);max-width:760px;">Access grant funding under our 501(c)(3) umbrella and let our team build winning proposals on your behalf. One free application opens the door to fiscal sponsorship and full-service grant writing — purpose-built for organizations serving underserved communities.</p>
-
-    <div class="fund-stats fu">
-      <div class="fund-stat"><span class="num">83%</span><span class="lbl">Grant Success Rate</span></div>
-      <div class="fund-stat"><span class="num">$15M+</span><span class="lbl">Raised for Communities</span></div>
-      <div class="fund-stat"><span class="num">300+</span><span class="lbl">Participants Served</span></div>
-      <div class="fund-stat"><span class="num">1M+</span><span class="lbl">People Impacted</span></div>
-    </div>
-
-    <div class="fund-grid fu">
-      <div class="fund-card">
-        <span class="num">Service 01</span>
-        <h3>Fiscal Sponsorship</h3>
-        <p>Pursue grants, sponsorships, and tax-deductible donations under our nonprofit umbrella — no need to form your own 501(c)(3). Flat fees for projects under $25k (proposal prep included), with per-cycle pricing for larger programs.</p>
-        <div class="fcta"><a href="fiscal_sponsorship.html" class="learn-more" style="color:#D4B8F0;border-color:#D4B8F0;">Explore Fiscal Sponsorship</a></div>
-      </div>
-      <div class="fund-card">
-        <span class="num">Service 02</span>
-        <h3>Grant Proposal Submission</h3>
-        <p>Three tiers of proposal support matched to complexity — Package Prep (10 business days), Alignment (30 days), and Development (45 days). We submit on behalf of members; non-members get a complete, submission-ready package.</p>
-        <div class="fcta"><a href="grant_proposal.html" class="learn-more" style="color:#D4B8F0;border-color:#D4B8F0;">Explore Grant Proposals</a></div>
-      </div>
-    </div>
-
-    <div class="scorecard-cta fu" style="margin-top:2.5rem;background:var(--crimson);">
-      <div class="scorecard-cta-text">
-        <h4>Ready to fund your mission?</h4>
-        <p>There's no cost to apply. Tell us about your grant and we'll confirm your service track and quote before any work begins.</p>
-      </div>
-      <a href="fiscal_apply.html" class="btn-outline" style="background:#fff;">Apply for Free</a>
     </div>
   </div>
 </section>
@@ -416,30 +371,25 @@ footer p{font-size:12px;color:rgba(255,255,255,.35);font-weight:300;}
     <h2 class="s-title">Transform Your Church Into a CBO Hub</h2>
     <div class="s-div"></div>
 
-    <div class="membership-promo">
-      <svg width="20" height="20" viewBox="0 0 100 100" fill="none"><polygon points="50,4 93,27.5 93,72.5 50,96 7,72.5 7,27.5" fill="white" opacity=".3"/><polygon points="50,28 67,50 50,72 33,50" fill="white" opacity=".9"/></svg>
-      <p><strong>Limited Time:</strong> Register before May 15, 2026 and receive a Complementary Year of Membership Status — at no charge.</p>
-    </div>
-
     <div class="two-col wl fu">
       <div>
         <div class="s-body">
-          <p>CBO HubSpace membership gives faith communities the tools, network, and strategic support needed to transition from a congregation at risk to a thriving community hub. Membership is structured to be accessible at every income level — because every congregation deserves a path forward.</p>
-          <p>Members gain immediate access to our full network of Community-Based Organizations, schools, housing developers, and civic organizations actively seeking faith-based partners. You bring the building and the mission. We bring the network and the framework.</p>
+          <p>CBO HubSpace membership gives faith communities the tools, network, and strategic support to move from a congregation at risk to a thriving community hub. It is structured to be accessible at every income level — because every congregation deserves a path forward.</p>
+          <p>Members gain immediate access to our full network of Community-Based Organizations, schools, housing developers, and civic organizations seeking faith-based partners. You bring the building and the mission. We bring the network and the framework.</p>
         </div>
 
         <div class="membership-tiers">
           <div class="tier-card">
-            <span class="s-label">Tier 1</span>
+            <span class="s-label">Level 1</span>
             <div class="tier-price">$150</div>
             <span class="tier-range">Annual — Organizations with revenue under $15,000</span>
-            <a href="https://buy.stripe.com/6oUeVecVn6yO97i4OseUU02" target="_blank" class="btn-purple" style="display:block;text-align:center;margin-top:1.2rem;">Join Now</a>
+            <a href="https://buy.stripe.com/6oUeVecVn6yO97i4OseUU02" target="_blank" class="btn-purple" style="display:block;text-align:center;margin-top:1.2rem;">Become a Member</a>
           </div>
           <div class="tier-card featured">
-            <span class="s-label" style="color:var(--crimson);">Tier 2</span>
+            <span class="s-label" style="color:var(--crimson);">Level 2</span>
             <div class="tier-price featured">$500</div>
             <span class="tier-range">Annual — Organizations with revenue $50,000+</span>
-            <a href="https://buy.stripe.com/8x28wQf3v9L04R2ep2eUU03" target="_blank" class="btn-crimson" style="display:block;text-align:center;margin-top:1.2rem;">Join Now</a>
+            <a href="https://buy.stripe.com/8x28wQf3v9L04R2ep2eUU03" target="_blank" class="btn-crimson" style="display:block;text-align:center;margin-top:1.2rem;">Become a Member</a>
           </div>
         </div>
       </div>
@@ -448,9 +398,9 @@ footer p{font-size:12px;color:rgba(255,255,255,.35);font-weight:300;}
         <span class="s-label">Membership Benefits</span>
         <ul class="benefits-list">
           <li>Detailed organizational assessment of your congregation's sustainability and readiness</li>
-          <li>Sustainability Plan Workshops — Monthly Meetup &amp; Coaching Session to help develop your community hub strategy</li>
-          <li>Access to coaching and program development support from experienced community leaders</li>
-          <li>Access to funding through our philanthropic network and grant connections</li>
+          <li>Sustainability Plan Workshops to develop your community hub strategy</li>
+          <li>Monthly Meetup &amp; Coaching sessions with experienced community leaders</li>
+          <li>Funding access through our philanthropic network and grant connections</li>
           <li>Community engagement tools to activate your building and attract service partners</li>
           <li>Connect with agencies, CBOs, NGOs, and other faith-based organizations in your region</li>
           <li>Connect with community members seeking services or looking to volunteer</li>
@@ -458,81 +408,82 @@ footer p{font-size:12px;color:rgba(255,255,255,.35);font-weight:300;}
       </div>
     </div>
 
-    <div class="scorecard-cta fu" style="margin-top:2.5rem;">
-      <div class="scorecard-cta-text">
-        <h4>Not Sure Where to Start?</h4>
-        <p>Take the free 5-minute Church Sustainability Assessment before choosing a membership tier. Your results will identify exactly which areas of support your congregation needs most.</p>
+    <!-- LEADERSHIP CARE -->
+    <div class="care-highlight fu">
+      <div class="care-photo"></div>
+      <div class="care-text">
+        <span class="s-label">Leadership Care</span>
+        <h3>Care for the Ones Doing the Work</h3>
+        <p>You are taking on the heavy missionary work. You need care and support — not only the people you serve. Every month we host a care session for anyone who needs a circle, an ear, and a space to work through the emotional load that comes with this work.</p>
       </div>
-      <a href="scorecard.html" class="btn-crimson">Take The Assessment</a>
     </div>
   </div>
 </section>
 
-<!-- AFFILIATE PROGRAMS -->
-<section class="pg white" id="affiliate">
+<!-- SERVICES / FISCAL SPONSORSHIP + GRANTS -->
+<section class="pg white" id="services">
   <div class="inner">
-    <span class="s-label">Affiliate Programs</span>
+    <span class="s-label">Fiscal Sponsorship &amp; Grant Services</span>
+    <h2 class="s-title">Your Mission Deserves Funding.<br>No Barriers. More Opportunities.</h2>
+    <div class="s-div"></div>
+    <p class="s-body" style="max-width:760px;">Access grant funding under our 501(c)(3) umbrella and let our team build winning proposals on your behalf. One application opens the door to fiscal sponsorship and full-service grant writing — purpose-built for organizations serving underserved communities.</p>
+
+    <div class="fund-grid fu">
+      <div class="fund-card">
+        <span class="num">Service 01</span>
+        <h3>Fiscal Sponsorship</h3>
+        <p>Pursue grants, sponsorships, and tax-deductible donations under our nonprofit umbrella — no need to form your own 501(c)(3). Flat fees for projects under $25k, with per-cycle pricing for larger programs.</p>
+        <div class="fcta"><a href="fiscal_sponsorship.html" class="learn-more">Explore Fiscal Sponsorship</a></div>
+      </div>
+      <div class="fund-card">
+        <span class="num">Service 02</span>
+        <h3>Grant Proposal Submission</h3>
+        <p>Three options of proposal support matched to complexity — a clear progression from starting small to full development. We submit on behalf of members; others receive a complete, submission-ready package.</p>
+        <div class="fcta"><a href="grant_proposal.html" class="learn-more">Explore Grant Proposals</a></div>
+      </div>
+    </div>
+
+    <div class="scorecard-cta fu" style="margin-top:2.5rem;background:var(--crimson);">
+      <div class="scorecard-cta-text">
+        <h4>Ready to fund your mission?</h4>
+        <p>Tell us about your grant and we'll confirm your service track and quote before any work begins.</p>
+      </div>
+      <a href="fiscal_apply.html" class="btn-outline" style="background:#fff;">Apply Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- AFFILIATE PROGRAM -->
+<section class="pg offwhite" id="affiliate">
+  <div class="inner">
+    <span class="s-label">Affiliate Program</span>
     <h2 class="s-title">Build Community. Generate Revenue.</h2>
     <div class="s-div"></div>
-    <p class="s-body" style="max-width:760px;">Become a CBO HubSpace affiliate and turn your congregation's interests into sustainable revenue. Our affiliate program connects faith communities with vetted partners and products that serve your neighborhood — while creating a new income stream for your mission.</p>
-
-    <div class="split-grid fu">
-      <div class="split-card">
-        <h3>The Affiliate Program</h3>
-        <p>A straightforward path to affiliate status, designed around your congregation's interests and community needs.</p>
-        <ul>
-          <li>Revenue that serves the community you already know</li>
-          <li>Partner offerings aligned to your congregation's values</li>
-          <li>A simple onboarding path to affiliate status</li>
-          <li>Transparent, supported, and built for faith communities</li>
-        </ul>
-        <a href="affiliate_program.html" class="btn-purple">Explore the Affiliate Program</a>
+    <div class="two-col wl fu" style="align-items:center;">
+      <div class="s-body">
+        <p>Turn your congregation's interests into sustainable revenue. Our affiliate program connects faith communities with vetted partners and products that serve your neighborhood — while creating a new income stream for your mission.</p>
+        <p>Members are automatically recognized as affiliates. Build your CBO Hub, connect with the partners you already know, and earn referral fees as we facilitate the development and collaboration.</p>
+        <a href="affiliate.html" class="btn-purple" style="margin-top:1.4rem;">Explore the Affiliate Program</a>
       </div>
-      <div class="split-card">
+      <div class="split-card" style="border-left-color:var(--purple);">
         <h3>Why Affiliate With CBO HubSpace</h3>
-        <p>Affiliation diversifies your income while deepening your community impact — no building ownership or existing programs required to get started.</p>
         <ul>
           <li>New, recurring revenue for your ministry or organization</li>
           <li>Access to our network of community partners</li>
           <li>Full transparency on earning potential</li>
           <li>Support at every step of the journey</li>
         </ul>
-        <a href="affiliate_program.html" class="btn-outline">Become an Affiliate</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PRICE CHART -->
-<section class="pg tint" id="pricing">
-  <div class="inner">
-    <span class="s-label">Price Chart</span>
-    <h2 class="s-title">Your Earning Potential, Fully Transparent</h2>
-    <div class="s-div"></div>
-    <p class="s-body" style="max-width:760px;">No guesswork. Our affiliate fee chart lays out exactly how affiliates earn — tier by tier — so you can see your potential before you commit. Pair it with membership tiers and fiscal sponsorship flat fees for a complete picture of working with CBO HubSpace.</p>
-
-    <div class="split-grid fu">
-      <div class="split-card" style="border-left-color:var(--purple);">
-        <h3>Affiliate Fee Chart</h3>
-        <p>A fully transparent breakdown of affiliate earning potential across every tier.</p>
-        <ul>
-          <li>Clear, tiered earning structure</li>
-          <li>No hidden fees — everything in writing</li>
-          <li>See your potential before you activate</li>
-        </ul>
-        <a href="affiliate_pricing_chart.html" class="btn-purple">View the Full Price Chart</a>
-      </div>
-      <div class="split-card" style="border-left-color:var(--purple);">
-        <h3>Membership &amp; Services Pricing</h3>
-        <p>Simple, accessible pricing across membership and funding services.</p>
-        <ul>
-          <li>Membership: $150/yr (under $15k) &middot; $500/yr ($50k+)</li>
-          <li>Fiscal sponsorship: $50 flat (grants &lt;$10k) &middot; $250 flat ($10k–$25k)</li>
-          <li>Grant proposals: tiered by complexity — apply free for a quote</li>
-        </ul>
-        <a href="fiscal_apply.html" class="btn-outline">Apply for Free</a>
-      </div>
-    </div>
+<!-- APPLY NOW BAND -->
+<section class="pg apply-band">
+  <div class="inner fu">
+    <h2>Kingdom Resources in Action Start With a Single Step</h2>
+    <p>Whether you are transforming a building, funding a mission, or building community — we will help you take the next step.</p>
+    <a href="fiscal_apply.html" class="btn-outline">Apply Now</a>
   </div>
 </section>
 
@@ -621,7 +572,7 @@ footer p{font-size:12px;color:rgba(255,255,255,.35);font-weight:300;}
 <!-- FOOTER -->
 <footer>
   <div class="foot-logo">
-    <svg width="28" height="28" viewBox="0 0 100 100" fill="none"><polygon points="50,4 93,27.5 93,72.5 50,96 7,72.5 7,27.5" fill="#3B0764"/><clipPath id="lhf"><rect x="0" y="0" width="50" height="100"/></clipPath><polygon points="50,4 93,27.5 93,72.5 50,96 7,72.5 7,27.5" fill="#A31621" clip-path="url(#lhf)"/><polygon points="50,28 67,50 50,72 33,50" fill="white" opacity="0.92"/><circle cx="50" cy="50" r="6" fill="#3B0764"/></svg>
+    <img src="cbo_logo.png" alt="CBO HubSpace logo" width="30" height="30" style="display:block;">
     <span class="foot-logo-text">CBO <span>HUBSPACE</span></span>
   </div>
   <p>Where Faith Communities and Neighborhood Need Meet</p>
