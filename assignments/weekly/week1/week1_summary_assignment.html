@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=816px">
+  <title>Week 1 | Purpose Based Programming — CBO HubSpace</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+  <style>
+    @page { size: letter; margin: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple:      #3B0764;
+      --purple-mid:  #5B1A8E;
+      --purple-dark: #2B0452;
+      --purple-lt:   #F3EEFF;
+      --purple-pale: #FAF5FF;
+      --gold:        #C9A84C;
+      --text:        #3D3D3D;
+      --white:       #FFFFFF;
+    }
+
+    html {
+      font-size: 13.5px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      width: 816px;
+      background: var(--white);
+      font-family: 'Montserrat', Arial, sans-serif;
+      color: var(--text);
+    }
+
+    /* ─── HEADER ─────────────────────────────────────────────── */
+    .hd {
+      background: linear-gradient(140deg, var(--purple-dark) 0%, var(--purple) 45%, var(--purple-mid) 100%);
+      padding: 16px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hd::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 180px; height: 100%;
+      background: linear-gradient(135deg, transparent 40%, rgba(201,168,76,0.11) 100%);
+      clip-path: polygon(45% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+    .hd-logo { height: 36px; width: auto; display: block; }
+    .hd-right { text-align: right; }
+    .hd-label {
+      font-size: 7.5px; font-weight: 700; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--gold);
+    }
+    .hd-tagline {
+      font-size: 9px; color: rgba(255,255,255,0.68);
+      margin-top: 3px;
+    }
+
+    /* ─── GOLD RULE ──────────────────────────────────────────── */
+    .gold-rule { height: 2px; background: var(--gold); }
+
+    /* ─── TITLE BAND ─────────────────────────────────────────── */
+    .tb {
+      background: var(--purple-dark);
+      padding: 18px 36px 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .tb::before {
+      content: '';
+      position: absolute;
+      top: -30px; right: -30px;
+      width: 160px; height: 160px;
+      border: 1px solid rgba(201,168,76,0.12);
+      border-radius: 50%;
+    }
+    .tb::after {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 240px; height: 240px;
+      border: 1px solid rgba(201,168,76,0.07);
+      border-radius: 50%;
+    }
+    .tb-series {
+      font-size: 7.5px; font-weight: 700; letter-spacing: 0.24em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 5px;
+    }
+    .tb-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px; line-height: 1; color: var(--white);
+      letter-spacing: 0.05em;
+    }
+    .tb-sub {
+      font-size: 10px; font-weight: 500; letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.6); margin-top: 4px;
+    }
+
+    /* ─── CONTENT ────────────────────────────────────────────── */
+    .content { padding: 20px 36px 0; }
+
+    .sec-label {
+      font-size: 7.5px; font-weight: 700; letter-spacing: 0.24em;
+      text-transform: uppercase; color: var(--purple-mid);
+      margin-bottom: 7px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .sec-label::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, var(--purple-lt), transparent);
+    }
+
+    .ch-title {
+      font-size: 15px; font-weight: 800; color: var(--purple);
+      line-height: 1.3; margin-bottom: 10px;
+    }
+
+    /* STAT CARD */
+    .stat-card {
+      background: linear-gradient(135deg, var(--purple-dark) 0%, #4A1275 100%);
+      border-radius: 6px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-card::after {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 90px; height: 100%;
+      background: rgba(201,168,76,0.07);
+      clip-path: polygon(35% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 50px; line-height: 1; color: var(--gold); flex-shrink: 0;
+    }
+    .stat-desc { font-size: 11.5px; font-weight: 600; color: var(--white); line-height: 1.5; margin-bottom: 4px; }
+    .stat-src { font-size: 9px; color: rgba(255,255,255,0.45); letter-spacing: 0.05em; }
+
+    .ch-body {
+      font-size: 11px; line-height: 1.72; color: var(--text); margin-bottom: 14px;
+    }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, var(--purple), var(--purple-lt) 80%, transparent);
+      margin: 12px 0;
+    }
+
+    /* ASSIGNMENT HEADER */
+    .asgn-hdr {
+      background: var(--purple-lt);
+      border-left: 3px solid var(--purple);
+      padding: 9px 14px;
+      border-radius: 0 5px 5px 0;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .asgn-hdr-left {}
+    .asgn-hdr-lbl { font-size: 7.5px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--purple-mid); margin-bottom: 2px; }
+    .asgn-hdr-title { font-size: 13px; font-weight: 800; color: var(--purple); }
+    .asgn-hdr-right {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 11px; letter-spacing: 0.15em;
+      color: var(--gold);
+      background: var(--purple);
+      padding: 4px 10px; border-radius: 3px;
+      white-space: nowrap;
+    }
+
+    /* STEPS GRID */
+    .steps { display: grid; grid-template-columns: 1fr 1fr; gap: 9px 18px; margin-bottom: 12px; }
+    .step { display: flex; gap: 9px; align-items: flex-start; }
+    .step-num {
+      width: 22px; height: 22px; background: var(--purple);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif; font-size: 12px; color: var(--gold);
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .step-title { font-size: 9.5px; font-weight: 700; color: var(--purple); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
+    .step-body { font-size: 9.5px; color: var(--text); line-height: 1.52; }
+
+    /* SUBMISSION BLOCKS */
+    .sub-row { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-bottom: 0; }
+    .sub-block {
+      background: var(--purple-pale);
+      border: 1px solid rgba(91,26,142,0.13);
+      border-radius: 5px;
+      padding: 10px 12px;
+      display: flex; gap: 9px; align-items: flex-start;
+    }
+    .sub-icon {
+      width: 26px; height: 26px; background: var(--gold);
+      border-radius: 4px; display: flex; align-items: center;
+      justify-content: center; font-size: 13px; flex-shrink: 0;
+    }
+    .sub-title { font-size: 9.5px; font-weight: 700; color: var(--purple); margin-bottom: 2px; }
+    .sub-body { font-size: 9px; color: var(--text); line-height: 1.5; }
+
+    /* FOOTER */
+    .footer {
+      background: var(--purple);
+      padding: 13px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 18px;
+    }
+    .footer-txt { font-size: 9.5px; color: rgba(255,255,255,0.65); line-height: 1.65; }
+    .footer-txt strong { color: rgba(255,255,255,0.9); font-weight: 700; }
+    .footer-cta {
+      background: var(--gold);
+      color: var(--purple);
+      font-size: 9.5px; font-weight: 800;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 8px 16px; border-radius: 4px;
+      text-decoration: none; white-space: nowrap;
+    }
+
+    @media print {
+      body { width: 8.5in; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="hd">
+    <img src="https://cdn.abacus.ai/images/7bd2e501-e1d0-4433-ad11-eb6aa9f45863.png" alt="CBO HubSpace" class="hd-logo">
+    <div class="hd-right">
+      <div class="hd-label">CBO HubSpace</div>
+      <div class="hd-tagline">Where Faith Communities &amp; Neighborhood Need Meet</div>
+    </div>
+  </div>
+
+  <div class="gold-rule"></div>
+
+  <!-- TITLE BAND -->
+  <div class="tb">
+    <div class="tb-series">July 2026&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Purpose Based Programming&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Week 1 of 4</div>
+    <div class="tb-title">Church History &amp; Identity</div>
+    <div class="tb-sub">Assignment Summary &amp; Weekly Challenge</div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- THE CHALLENGE -->
+    <div class="sec-label">The Challenge</div>
+    <div class="ch-title">Mission Misalignment Drives Measurable Participation Decline</div>
+
+    <div class="stat-card">
+      <div class="stat-num">63%</div>
+      <div>
+        <div class="stat-desc">of church ministry programs have not been updated in over a decade to reflect the current community context surrounding the congregation.</div>
+        <div class="stat-src">Source: Barna Group &mdash; State of the Church, 2022</div>
+      </div>
+    </div>
+
+    <p class="ch-body">When a congregation&rsquo;s programs and mission statement no longer reflect the demographic, economic, or cultural reality of its surrounding neighborhood, participation erodes &mdash; not because people have lost faith, but because the institution has lost contextual relevance. The Hartford Institute for Religion Research identifies mission-community alignment as one of the top three predictors of congregational vitality. Pew Research Center (2023) reports that 28% of Americans who disengaged from their church cite institutional disconnection from community needs as a contributing factor. Additionally, Hartford Institute data reveals that over 40% of U.S. congregations have experienced significant neighborhood demographic shifts since founding, yet fewer than 15% have formally updated their mission focus. Alignment is not aspirational &mdash; it is foundational to sustained participation.</p>
+
+    <div class="divider"></div>
+
+    <!-- ASSIGNMENT -->
+    <div class="sec-label">Week 1 Assignment</div>
+
+    <div class="asgn-hdr">
+      <div class="asgn-hdr-left">
+        <div class="asgn-hdr-lbl">Activity Focus</div>
+        <div class="asgn-hdr-title">Church History &amp; Identity Research</div>
+      </div>
+      <div class="asgn-hdr-right">Members&rsquo; Review &mdash; July Monthly Meeting</div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">Locate Founding Documents</div>
+          <div class="step-body">Retrieve your church&rsquo;s original articles of incorporation, charter, or founding mission statement. Compare it word-for-word to the current stated mission. Document every gap in writing.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">Research Neighborhood Demographics</div>
+          <div class="step-body">Trace neighborhood demographics from the church&rsquo;s inception to present using U.S. Census records, city planning data, or available community demographic profiles.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">Conduct Structured Interviews</div>
+          <div class="step-body">Interview the church historian, founding members, or the senior pastor. Ask: What problem were we founded to solve? Who were we serving? What ministries existed at inception?</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <div class="step-title">Google Maps Neighborhood Snapshot</div>
+          <div class="step-body">Use Google Maps historical satellite imagery to capture a snapshot of the church&rsquo;s immediate neighborhood every 5 years &mdash; from inception or 2007 to the present. Document visible shifts.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div>
+          <div class="step-title">Synthesize &amp; Document Findings</div>
+          <div class="step-body">Write a structured summary identifying: original mission, current mission, neighborhood demographic shift, and the alignment gap between founding purpose and present-day community context.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div>
+          <div class="step-title">Post Results for Community Engagement</div>
+          <div class="step-body">Share research discoveries, interview insights, and Google Maps comparisons in the comments of this week&rsquo;s social media posts. Community responses are part of the learning framework.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-row">
+      <div class="sub-block">
+        <div class="sub-icon">&#128172;</div>
+        <div>
+          <div class="sub-title">Share on Social Media</div>
+          <div class="sub-body">Post findings, interview highlights, and Google Maps comparisons in the comments of this week&rsquo;s CBO HubSpace social posts. Community engagement is intentional &mdash; it drives peer learning across congregations.</div>
+        </div>
+      </div>
+      <div class="sub-block">
+        <div class="sub-icon">&#128274;</div>
+        <div>
+          <div class="sub-title">Members-Only Assignment Review</div>
+          <div class="sub-body">The full assignment review, peer analysis, and strategic frameworks for realigning mission with community context are conducted exclusively in the July CBO HubSpace monthly members&rsquo; meeting.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-txt">
+      <strong>CBO HubSpace</strong> &nbsp;&mdash;&nbsp; Where Faith Communities &amp; Neighborhood Need Meet<br>
+      July 2026 &nbsp;&mdash;&nbsp; Purpose Based Programming &nbsp;&mdash;&nbsp; Week 1
+    </div>
+    <a href="https://cbo.theartisanhub.space" class="footer-cta">Join CBO HubSpace</a>
+  </div>
+
+</body>
+</html>
